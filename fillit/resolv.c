@@ -6,11 +6,35 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:44:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/21 11:15:55 by vcastro-         ###   ########.fr       */
+/*   Updated: 2015/12/21 15:31:24 by vcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int		solve(char ***map, int size, t_tlist *lst)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < size && lst)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (place_tetri(map, lst->tetri, i, j) == 1)
+			{
+				lst = lst->next;
+				i = -1;
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int		len_lst(t_tlist *start)
 {
