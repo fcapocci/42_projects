@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 15:07:45 by vcastro-          #+#    #+#             */
-/*   Updated: 2015/12/21 16:05:14 by vcastro-         ###   ########.fr       */
+/*   Updated: 2015/12/23 15:23:20 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ int main(int argc, const char *argv[])
 	tmp = start;
 	printf("virtual_size = %d\n", virtual_size(len_lst(tmp)));
 	map = create_map();
-	//place_tetri(&map, tmp->tetri, 1, 0);
-	//place_tetri(&map, tmp->next->tetri, 0, 0);
-	printf("tetri size = %d\n", tetri_size_h(tmp->tetri));
+	printf("tetri size_h = %d\n", tetri_size_h(tmp->tetri));
+	printf("tetri size_v = %d\n", tetri_size_v(tmp->tetri));
 	solve(&map, virtual_size(len_lst(tmp)), tmp);
 	i = 0;
-	while (i < 40)
+	while (i < 30)
 	{
-		write(1, map[i++], 150);
+		write(1, map[i++], 30);
 		write(1, "\n", 1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:34:09 by vcastro-          #+#    #+#             */
-/*   Updated: 2015/12/21 16:55:53 by vcastro-         ###   ########.fr       */
+/*   Updated: 2015/12/23 12:11:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,24 @@ int		tetri_size_h(char **tetri)
 	return (size);
 }
 
-/*int		is_in_range(int size, int i, int j, char **tetri)
+int		tetri_size_v(char **tetri)
 {
-	int		k[2];
+	int		i;
+	int		j;
+	int		size;
 
-	k[0] = i;
-	k[1] = j;
-	
-}*/
+	size = 0;
+	j = 0;
+	while (j < 4)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			if (tetri[i][j] != '.' && i > size)
+				size = i;
+			i++;
+		}
+		j++;
+	}
+	return (size);
+}

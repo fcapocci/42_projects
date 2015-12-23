@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:44:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/21 15:31:24 by vcastro-         ###   ########.fr       */
+/*   Updated: 2015/12/23 15:23:14 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int		solve(char ***map, int size, t_tlist *lst)
 	int		j;
 
 	i = 0;
-	while (i < size && lst)
+	while (i + tetri_size_v(lst->tetri) < size && lst)
 	{
 		j = 0;
-		while (j < size)
+		while (j + tetri_size_h(lst->tetri) < size)
 		{
 			if (place_tetri(map, lst->tetri, i, j) == 1)
 			{
