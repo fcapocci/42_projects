@@ -21,10 +21,6 @@ int		savebuffer(int const fd, char **save)
 	{
 		buff[ret] = '\0';
 		(*save) = ft_strjoin((*save), buff);
-		ft_putstr("buff content --> ");
-		ft_putstr(buff);
-		ft_putstr("\nsave content --> ");
-		ft_putendl(*save);
 		if (!(*save))
 			return (-1);
 	}
@@ -48,13 +44,15 @@ int		get_next_line(int const fd, char **line)
 	if (!buff)
 		if ((savebuffer(fd, &buff) == -1))
 			return (-1);
-	len = ft_strlen(ft_strchr(buff, '\n'));
-	ft_putstr("len value --> ");
-	ft_putnbr(len);
-	ft_putchar('\n');
-	(*line) = ft_strsub(buff, 0, len);
-	passline(&buff);
-	if (*line == '\0')
-		return (0);
-	return (1);
+	if (*buff != '\0')
+	{
+		len = ft_strlen(buff) - ft_strlen(ft_strchr(buff, '\n'));
+		(*line) = ft_strsub(buff, 0, len);
+		ft_putstr("line = ");
+		ft_putendl((*line));
+		passline(&buff);
+		if (*buff != '\0')
+			return (1);
+	}
+	return (0);
 }
