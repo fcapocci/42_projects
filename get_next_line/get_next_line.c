@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/14 11:12:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/04 12:18:00 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,23 @@ void	passline(char **buff)
 
 int		get_next_line(int const fd, char **line)
 {
-	static char	*buff;
+	static t_files	files;
 	size_t		len;
 
-	(*line) = NULL;
-	if (!buff)
-		if ((savebuffer(fd, &buff) == -1))
-			return (-1);
-	if (*buff != '\0')
+	if (files.save != fd)
 	{
-		len = ft_strlen(buff) - ft_strlen(ft_strchr(buff, '\n'));
-		(*line) = ft_strsub(buff, 0, len);
-		ft_putstr("line = ");
-		ft_putendl((*line));
-		passline(&buff);
-		if (*buff != '\0')
-			return (1);
+		files.save = fd;
+		files.buff = NULL;
 	}
-	return (0);
+	if (!files.buff)
+		if ((savebuffer(fd, &files.buff) == -1))
+			return (-1);
+	if (*files.buff == '\0')
+		return (0);
+	len = ft_strlen(files.buff) - ft_strlen(ft_strchr(files.buff, '\n'));
+	(*line) = ft_strsub(files.buff, 0, len);
+	passline(&files.buff);
+	if (*files.buff == '\0')
+		return (0);
+	return (1);
 }

@@ -1,5 +1,6 @@
 #include "get_next_line.h"
 #include <fcntl.h>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -10,20 +11,30 @@ int main(int argc, char *argv[])
 	if (argc >= 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		ft_putstr("fd return value --> ");
-		ft_putnbr(fd);
-		ft_putchar('\n');
+		printf("fd return value --> %d\n", fd);
 		ret = 1;
 		while (ret != 0)
 		{
-			ft_putstr("--GNL");
-			ft_putstr("--\n");
+			ft_putstr("--GNL--\n");
 			ret = get_next_line(fd, &line);
-			ft_putstr("ret = ");
-			ft_putnbr(ret);
-			ft_putstr("\n\n");
+			printf("line = %s\n", line);
+			printf("ret = %d\n\n", ret);
 		}
-		close(fd);
+		//close(fd);
+		if (argc >= 3)
+		{
+			fd = open(argv[2], O_RDONLY);
+			printf("fd return value --> %d\n", fd);
+			ret = 1;
+			while (ret != 0)
+			{
+				ft_putstr("--GNL--\n");
+				ret = get_next_line(fd, &line);
+				printf("line = %s\n", line);
+				printf("ret = %d\n\n", ret);
+			}
+			//close(fd);
+		}
 	}
 	return (0);
 }
