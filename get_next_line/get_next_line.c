@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/04 12:18:00 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:27:48 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		savebuffer(int const fd, char **save)
 
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
+		if (ret == -1)
+			return (-1);
 		buff[ret] = '\0';
 		(*save) = ft_strjoin((*save), buff);
 		if (!(*save))
@@ -38,22 +40,27 @@ void	passline(char **buff)
 int		get_next_line(int const fd, char **line)
 {
 	static t_files	files;
-	size_t		len;
+	char			*tmp;
+	size_t			len;
 
+	if (fd < 0 || line == NULL)
+		return (-1);
+	*line = NULL;
 	if (files.save != fd)
 	{
-		files.save = fd;
 		files.buff = NULL;
+		files.save = fd;
 	}
 	if (!files.buff)
-		if ((savebuffer(fd, &files.buff) == -1))
+		if (savebuffer(fd, &files.buff) == -1)
 			return (-1);
-	if (*files.buff == '\0')
+	tmp = ft_strchr(files.buff, '\n');
+	if (ft_strlen(files.buff) == 0)
 		return (0);
-	len = ft_strlen(files.buff) - ft_strlen(ft_strchr(files.buff, '\n'));
+	len = tmp ? tmp - files.buff : ft_strlen(files.buff);
 	(*line) = ft_strsub(files.buff, 0, len);
+	if (!(*line))
+		return (-1);
 	passline(&files.buff);
-	if (*files.buff == '\0')
-		return (0);
 	return (1);
 }
