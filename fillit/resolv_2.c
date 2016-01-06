@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:34:09 by vcastro-          #+#    #+#             */
-/*   Updated: 2015/12/23 12:11:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2015/12/29 13:39:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,12 @@ int		tetri_size_v(char **tetri)
 	}
 	return (size);
 }
+
+/*int		is_in_range(int size, char **map, chqr **tetri)
+{
+	int		k[2];
+
+	k[0] = i;
+	k[1] = j;
+	
+}*/
