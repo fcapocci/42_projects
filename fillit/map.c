@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:32:47 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/17 16:31:23 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:29:01 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,23 @@ char	**fill_map(char **map)
 		i++;
 	}
 	return (map);
+}
+
+void	print_map(char **map, int size)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			ft_putchar(map[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
 }

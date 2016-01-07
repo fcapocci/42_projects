@@ -6,47 +6,41 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:44:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/06 18:38:00 by vcastro-         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:23:47 by vcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+/*
 int		solve(char ***map, int size, t_tlist *lst)
 {
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < size && lst)
+	while (lst)
 	{
-		j = 0;
-		while (j < size)
+		i = 0;
+		while (i < size && lst)
 		{
-			if (is_tetri_writable(*map, lst->tetri, i, j) == 1 &&
-				(j + tetri_size_v(lst->tetri) < size) &&
-				(i + tetri_size_h(lst->tetri) < size))
+			j = 0;
+			while (j < size)
 			{
-				place_tetri(map, lst->tetri, i, j);
-				lst = lst->next;
-				i = -1;
-				break ;
+				if (is_tetri_writable(*map, lst->tetri, i, j) == 1 &&
+					(i + tetri_size_v(lst->tetri) < size) &&
+					(j + tetri_size_h(lst->tetri) < size))
+				{
+					place_tetri(map, lst->tetri, i, j);
+					lst = lst->next;
+					i = -1;
+					break ;
+				}
+				j++;
 			}
-			j++;
+			i++;
 		}
-		i++;
+		size++;
 	}
 	return (0);
-}
-
-/*int		backtrackit(char **map, int i, int j, int size, t_tlist *lst)
-{
-	if (lst == (void*)0)
-		return (SUCCESS);
-	if (place_tetri(&map, lst->tetri, i, j) == 1)
-	{
-		backtrackit(map, (i + 1) % size, (j + 1) % size, lst->next);
-	}
 }*/
 
 int		len_lst(t_tlist *start)

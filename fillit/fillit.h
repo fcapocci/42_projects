@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 15:29:20 by vcastro-          #+#    #+#             */
-/*   Updated: 2016/01/06 16:09:40 by vcastro-         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:59:19 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int					place_tetri(char ***map, char **tetri, int i, int j);
 int					solve(char ***map, int size, t_tlist *lst);
 int					tetri_size_h(char **tetri);
 int					tetri_size_v(char **tetri);
-//int					backtrackit(char **map, int i, int j, int size, t_tlist *list);
-
+int					is_piece_placable(char **map, int *var, int size,
+					t_tlist *pieces);
+char				getletter(char **tetri);
+char				**add_piece(char **map, int *var, char **tetri);
+char				**remove_piece(char **map, int size, char letter);
+char				**backtrackit(char **map, int size, t_tlist *pieces);
+void				print_map(char **map, int size);
 #endif
