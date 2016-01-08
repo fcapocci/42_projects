@@ -6,21 +6,19 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 15:29:20 by vcastro-          #+#    #+#             */
-/*   Updated: 2016/01/07 14:59:19 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/08 18:30:06 by vcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# define BUFF_SIZE 42
+# define BUF_SIZE 1
 # define ERROR -1
 # define SUCCESS 1
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-
-# include <stdio.h>
 
 typedef struct		s_tlist
 {
@@ -50,16 +48,13 @@ char				**create_map(void);
 char				**fill_map(char **map);
 int					len_lst(t_tlist *start);
 int					virtual_size(int ntetri);
-int					is_tetri_writable(char **map, char **tetri, int i, int j);
-int					place_tetri(char ***map, char **tetri, int i, int j);
-int					solve(char ***map, int size, t_tlist *lst);
-int					tetri_size_h(char **tetri);
-int					tetri_size_v(char **tetri);
-int					is_piece_placable(char **map, int *var, int size,
-					t_tlist *pieces);
 char				getletter(char **tetri);
-char				**add_piece(char **map, int *var, char **tetri);
 char				**remove_piece(char **map, int size, char letter);
 char				**backtrackit(char **map, int size, t_tlist *pieces);
 void				print_map(char **map, int size);
+int					ft_piecevalide(char **tabresult, int var[], int sizesquare,
+					t_tlist *piece);
+char				**add_piece(char **tabresult, int sizesquare, int var[],
+					t_tlist *piece);
+void				print_fillit(char **map, t_tlist *pieces);
 #endif

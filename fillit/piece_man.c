@@ -6,35 +6,32 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 14:01:28 by vcastro-          #+#    #+#             */
-/*   Updated: 2016/01/07 14:24:03 by vcastro-         ###   ########.fr       */
+/*   Updated: 2016/01/08 15:56:08 by vcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**add_piece(char **map, int *var, char **tetri)
+char	**add_piece(char **tabresult, int sizesquare, int var[], t_tlist *piece)
 {
-	int		x;
-	int		y;
-	int		k;
+	int index_i;
+	int index_j;
 
-	x = 0;
-	k = var[1];
-	while (x < 4)
+	index_i = 0;
+	while ((index_i < 4) && (var[0] + index_i) < sizesquare)
 	{
-		var[1] = k;
-		y = 0;
-		while (y < 4)
+		index_j = 0;
+		while ((index_j < 4) && (var[1] + index_j) < sizesquare)
 		{
-			if (map[var[0]][var[1]] == '.' && tetri[x][y] != '.')
-				map[var[0]][var[1]] = tetri[x][y];
-			var[1]++;
-			y++;
+			if (tabresult[var[0] + index_i][var[1] + index_j] == '.'
+					&& piece->tetri[index_i][index_j] != '.')
+				tabresult[var[0] + index_i][var[1] + index_j] =
+					piece->tetri[index_i][index_j];
+			index_j++;
 		}
-		var[0]++;
-		x++;
+		index_i++;
 	}
-	return (map);
+	return (tabresult);
 }
 
 char	**remove_piece(char **map, int size, char letter)

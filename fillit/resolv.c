@@ -1,121 +1,84 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolv.c                                           :+:      :+:    :+:   */
+/*   resolv_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 14:44:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/07 14:23:47 by vcastro-         ###   ########.fr       */
+/*   Created: 2015/12/21 15:34:09 by vcastro-          #+#    #+#             */
+/*   Updated: 2016/01/08 15:57:02 by vcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-/*
-int		solve(char ***map, int size, t_tlist *lst)
-{
-	int		i;
-	int		j;
 
-	while (lst)
-	{
-		i = 0;
-		while (i < size && lst)
-		{
-			j = 0;
-			while (j < size)
-			{
-				if (is_tetri_writable(*map, lst->tetri, i, j) == 1 &&
-					(i + tetri_size_v(lst->tetri) < size) &&
-					(j + tetri_size_h(lst->tetri) < size))
-				{
-					place_tetri(map, lst->tetri, i, j);
-					lst = lst->next;
-					i = -1;
-					break ;
-				}
-				j++;
-			}
-			i++;
-		}
-		size++;
-	}
-	return (0);
-}*/
-
-int		len_lst(t_tlist *start)
-{
-	t_tlist	*tmp;
-	int		len;
-
-	len = 0;
-	tmp = start;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		len++;
-	}
-	return (len);
-}
-
-int		virtual_size(int ntetri)
+char	getletter(char **tetri)
 {
 	int		i;
 
 	i = 0;
-	while (i * i < ntetri * 4)
+	while (i < 4)
+	{
+		if (tetri[0][i] != '.')
+			return (tetri[0][i]);
 		i++;
-	return (i);
+	}
+	return (0);
 }
 
-int		is_tetri_writable(char **map, char **tetri, int i, int j)
+int		ft_piecevalide(char **tabresult, int var[], int sizesquare,
+		t_tlist *piece)
 {
-	int		x;
-	int		y;
-	int		k;
+	int		index_i;
+	int		index_j;
+	int		count;
 
-	x = 0;
-	k = j;
-	while (x < 4)
+	count = 0;
+	index_i = 0;
+	index_j = 0;
+	while ((index_i < 4) && (var[0] + index_i) < sizesquare && count < 4)
 	{
-		y = 0;
-		j = k;
-		while (y < 4)
+		while ((index_j < 4) && (var[1] + index_j) < sizesquare && count < 4)
 		{
-			if (map[i][j] != '.' && tetri[x][y] != '.')
-				return (ERROR);
-			j++;
-			y++;
+			if (tabresult[var[0] + index_i][var[1] + index_j] != '.'
+					&& piece->tetri[index_i][index_j] != '.')
+				return (0);
+			if (tabresult[var[0] + index_i][var[1] + index_j] == '.'
+					&& piece->tetri[index_i][index_j] != '.')
+				count++;
+			index_j++;
 		}
-		i++;
-		x++;
+		index_j = 0;
+		index_i++;
 	}
-	return (SUCCESS);
+	return ((count == 4) ? 1 : 0);
 }
 
-int		place_tetri(char ***map, char **tetri, int i, int j)
+char	**backtrackit(char **map, int size, t_tlist *pieces)
 {
-	int		x;
-	int		y;
-	int		k;
+	int		var[2];
+	char	letter;
 
-	if ((is_tetri_writable(*map, tetri, i, j)) == ERROR)
-		return (ERROR);
-	x = 0;
-	k = j;
-	while (x < 4)
+	if (pieces == NULL)
+		return (map);
+	var[0] = 0;
+	var[1] = 0;
+	while (var[0] < size)
 	{
-		j = k;
-		y = 0;
-		while (y < 4)
+		if (ft_piecevalide(map, var, size, pieces))
 		{
-			if ((*map)[i][j] == '.' && tetri[x][y] != '.')
-				(*map)[i][j] = tetri[x][y];
-			j++;
-			y++;
+			letter = getletter(pieces->tetri);
+			map = add_piece(map, size, var, pieces);
+			if (backtrackit(map, size, pieces->next))
+				return (map);
+			map = remove_piece(map, size, letter);
 		}
-		i++;
-		x++;
+		var[1]++;
+		if (var[1] >= size)
+		{
+			var[1] = 0;
+			var[0]++;
+		}
 	}
-	return (SUCCESS);
+	return ((void*)0);
 }

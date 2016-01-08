@@ -6,14 +6,14 @@
 #    By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 14:11:52 by vcastro-          #+#    #+#              #
-#    Updated: 2016/01/07 15:18:03 by fcapocci         ###   ########.fr        #
+#    Updated: 2016/01/08 16:13:49 by vcastro-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-FILESC = checkentries.c checktetri.c ft_savefile.c list.c main_test.c order.c\
-		 rename.c resolv.c resolv_2.c resolv_3.c map.c
+FILESC = checkentries.c checktetri.c ft_savefile.c list.c main.c order.c\
+		 rename.c resolv.c piece_man.c sizes.c map.c
 
 FILESO = $(FILESC:.c=.o)
 

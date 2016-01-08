@@ -15,9 +15,7 @@
 t_tlist	*ft_create_elem(char *file)
 {
 	t_tlist	*elem;
-	int		i;
 
-	i = 0;
 	elem = malloc(sizeof(t_list));
 	if (!elem)
 		return ((void*)0);
