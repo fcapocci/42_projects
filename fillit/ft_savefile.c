@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 16:19:47 by vcastro-          #+#    #+#             */
-/*   Updated: 2016/01/08 18:48:03 by vcastro-         ###   ########.fr       */
+/*   Updated: 2016/01/12 14:16:14 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ int		ft_savefile(int fd, char **file)
 			return (ERROR);
 		ft_memdel((void**)file);
 		(*file) = adr;
-	}
-	if (buf[0] == '#' || buf[0] == '.')
-	{
-		(*file)[ft_strlen((*file))] = '\n';
-		(*file) = ft_strjoin(*file, "\0");
 	}
 	return (SUCCESS);
 }

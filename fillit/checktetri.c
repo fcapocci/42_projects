@@ -6,7 +6,7 @@
 /*   By: vcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:18:02 by vcastro-          #+#    #+#             */
-/*   Updated: 2015/12/17 12:04:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/12 14:27:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ int		is_tetri_ok(char *file, char **piece)
 int		are_tetris_ok(t_tlist *list)
 {
 	char	*file;
-	int		fd;
 
-	file = (void*)0;
-	if ((fd = open("tetriminos.fillitex", O_RDONLY)) == -1)
-		return (ERROR);
-	if ((ft_savefile(fd, &file)) == ERROR)
-		return (ERROR);
+	file = malloc(sizeof(char) * 305);
+	file = "#...##...#.......##.##...........#..##..#.......##...##.........##";
+	file = ft_strjoin(file, "...#...#........#.###.........###.#...........#.");
+	file = ft_strjoin(file, "..#...##......#...#...#...#...####............##");
+	file = ft_strjoin(file, "#..#..........#...##..#........#..###..........#");
+	file = ft_strjoin(file, "..##...#......##..#...#.......#...###..........#");
+	file = ft_strjoin(file, "...#..##......###...#.........##..##..........");
 	while (list)
 	{
 		if (is_tetri_ok(file, list->tetri) == ERROR)
