@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/04 17:27:48 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:03:20 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		savebuffer(int const fd, char **save)
 {
 	char		buff[BUFF_SIZE + 1];
+	char		*tmp;
 	int			ret;
 
 	while ((ret = read(fd, buff, BUFF_SIZE)))
@@ -22,19 +23,22 @@ int		savebuffer(int const fd, char **save)
 		if (ret == -1)
 			return (-1);
 		buff[ret] = '\0';
-		(*save) = ft_strjoin((*save), buff);
+		tmp = ft_strjoin((*save), buff);
+		ft_memdel((void**)save);
+		(*save) = tmp;
 		if (!(*save))
 			return (-1);
 	}
 	return (1);
 }
 
-void	passline(char **buff)
+char	*passline(char *buff)
 {
-	while (**buff != '\n' && **buff != '\0')
-		(*buff)++;
-	if (**buff == '\n')
-		(*buff)++;
+	while (*buff != '\n' && *buff != '\0')
+		buff++;
+	if (*buff == '\n')
+		buff++;
+	return (buff);
 }
 
 int		get_next_line(int const fd, char **line)
@@ -61,6 +65,6 @@ int		get_next_line(int const fd, char **line)
 	(*line) = ft_strsub(files.buff, 0, len);
 	if (!(*line))
 		return (-1);
-	passline(&files.buff);
+	files.buff = passline(files.buff);
 	return (1);
 }
