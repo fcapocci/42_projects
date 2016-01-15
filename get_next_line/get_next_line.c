@@ -12,14 +12,16 @@
 
 #include "get_next_line.h"
 
-int		savebuffer(int const fd, char **save)
+int		savebuffer(int const fd, char **save, char ***line)
 {
 	char		buff[BUFF_SIZE + 1];
 	char		*tmp;
 	int			ret;
 
-	while ((ret = read(fd, buff, BUFF_SIZE)))
+	ret = 1;
+	while (!ft_strchr(buff, '\n') && ret != 0)
 	{
+		ret = read(fd, buff, BUFF_SIZE);
 		if (ret == -1)
 			return (-1);
 		buff[ret] = '\0';
@@ -29,42 +31,24 @@ int		savebuffer(int const fd, char **save)
 		if (!(*save))
 			return (-1);
 	}
-	return (1);
-}
-
-char	*passline(char *buff)
-{
-	while (*buff != '\n' && *buff != '\0')
-		buff++;
-	if (*buff == '\n')
-		buff++;
-	return (buff);
+	(**line) = (*save);
+	if (!(**line))
+		return (-1);
+	else if (ret == 0)
+		return (0);
+	else
+		return (1);
 }
 
 int		get_next_line(int const fd, char **line)
 {
 	static t_files	files;
-	char			*tmp;
-	size_t			len;
 
 	if (fd < 0 || line == NULL)
 		return (-1);
 	*line = NULL;
+	files.buff = NULL;
 	if (files.save != fd)
-	{
-		files.buff = NULL;
 		files.save = fd;
-	}
-	if (!files.buff)
-		if (savebuffer(fd, &files.buff) == -1)
-			return (-1);
-	tmp = ft_strchr(files.buff, '\n');
-	if (ft_strlen(files.buff) == 0)
-		return (0);
-	len = tmp ? tmp - files.buff : ft_strlen(files.buff);
-	(*line) = ft_strsub(files.buff, 0, len);
-	if (!(*line))
-		return (-1);
-	files.buff = passline(files.buff);
-	return (1);
+	return (savebuffer(fd, &files.buff, &line));
 }
