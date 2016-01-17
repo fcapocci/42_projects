@@ -23,7 +23,7 @@ SRC_C = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	  ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c\
 	  ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c\
 	  ft_putendl_fd.c ft_strclr.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c\
-	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_passline.c
+	  ft_lstadd.c ft_lstiter.c ft_lstmap.c
 
 SRC_O = $(SRC_C:.c=.o)
 
