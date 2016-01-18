@@ -6,19 +6,19 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/13 14:03:20 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/18 17:41:20 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		savebuffer(int const fd, char **save)
+static int		savebuffer(int const fd, char **save)
 {
 	char			buff[BUFF_SIZE + 1];
 	char			*tmp;
 	int				ret;
 
-	ret = 1;
+	ft_bzero(buff, BUFF_SIZE + 1);
 	while (!ft_strchr(buff, '\n'))
 	{
 		if ((ret = read(fd, buff, BUFF_SIZE)) <= 0)
@@ -32,12 +32,14 @@ int		savebuffer(int const fd, char **save)
 	return (1);
 }
 
-int		get_next_line(int const fd, char **line)
+int				get_next_line(int const fd, char **line)
 {
 	static t_files	files;
 	char			*ptr;
 	char			*tmp;
 
+	if (fd < 0 || line == NULL)
+		return (-1);
 	if (files.save != fd)
 	{
 		files.save = fd;
@@ -48,9 +50,8 @@ int		get_next_line(int const fd, char **line)
 	if ((ft_strlen(files.buff) == 0) || (files.buff == NULL))
 		return (0);
 	ptr = ft_strchr(files.buff, '\n');
-	*line = ft_strsub(files.buff, 0, ptr - files.buff);
-	ptr++;
-	tmp = ft_strdup(ptr);
+	*line = ft_strndup(files.buff, ptr - files.buff);
+	tmp = ft_strsub(files.buff, ptr - files.buff + 1, ft_strlen(files.buff));
 	ft_memdel((void**)&files.buff);
 	files.buff = tmp;
 	return (1);

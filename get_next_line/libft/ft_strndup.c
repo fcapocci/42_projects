@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 14:50:26 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/18 15:19:30 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/01/18 12:10:44 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/01/18 16:21:56 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strndup(char *s1, size_t n)
 {
-	char	*newstr;
-	size_t	len;
-	size_t	i;
+	char	*s2;
+	char	*tmp;
+	size_t	size;
 
-	if (!s2)
+	size = (n < ft_strlen(s1) + 1) ? n : ft_strlen(s1);
+	if ((s2 = ft_memalloc(size + 1)) == NULL)
 		return (NULL);
-	if (!s1)
-		len = ft_strlen(s2);
-	else
-		len = ft_strlen(s1) + ft_strlen(s2);
-	i = 0;
-	newstr = ft_strnew(len);
-	if (newstr)
+	tmp = s2;
+	while (*s1 != '\0' && n > 0)
 	{
-		while (s1 && *s1 != '\0')
-			newstr[i++] = *s1++;
-		while (*s2 != '\0')
-			newstr[i++] = *s2++;
-		return (newstr);
+		*s2++ = *s1++;
+		n--;
 	}
-	return (NULL);
+	*s2 = '\0';
+	return (tmp);
 }
