@@ -47,7 +47,7 @@ int				get_next_line(int const fd, char **line)
 	}
 	if ((savebuffer(fd, &files.buff)) == -1)
 		return (-1);
-	if ((ft_strlen(files.buff) == 0) || (files.buff == NULL))
+	if ((files.buff == NULL) || (ft_strlen(files.buff) == 0))
 		return (0);
 	ptr = ft_strchr(files.buff, '\n');
 	*line = ft_strndup(files.buff, ptr - files.buff);
