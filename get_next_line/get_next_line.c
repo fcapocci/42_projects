@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/20 18:12:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/20 18:44:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ static char		*save_line(char **buff)
 	char			*tmp;
 
 	if ((ptr = ft_strchr((*buff), '\n')) == NULL)
-		new_line = ft_strdup(*buff);
+		new_line = ft_strdup((*buff));
 	else
 		new_line = ft_strsub((*buff), 0, ptr - (*buff));
-	if ((tmp = ft_strsub((*buff), ptr - (*buff) + 1, ft_strlen(*buff))) == NULL)
+	if ((tmp = ft_strsub((*buff), (ptr == NULL) ? ft_strlen(new_line) :
+		ft_strlen(new_line) + 1, ft_strlen(*buff))) == NULL)
 		return (NULL);
 	ft_memdel((void**)buff);
 	(*buff) = tmp;
@@ -94,7 +95,7 @@ int				get_next_line(int const fd, char **line)
 		return (-1);
 	if ((files->buff == NULL) || (ft_strlen(files->buff) == 0))
 		return (0);
-	if ((*line = save_line(&files->buff)) == NULL)
+	if (((*line) = save_line(&files->buff)) == NULL)
 		return (-1);
 	return (1);
 }
