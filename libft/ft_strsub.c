@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 11:44:03 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/03 11:31:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/18 14:45:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*newstr;
+	char	*s2;
 	size_t	i;
 
-	newstr = ft_strnew(len);
-	if (newstr)
+	i = 0;
+	if (start > ft_strlen(s))
+		return (NULL);
+	s2 = ft_strnew(len);
+	if (!s2)
+		return (NULL);
+	while (i < len)
 	{
-		i = 0;
-		while (len-- > 0)
-			newstr[i++] = s[start++];
-		newstr[i++] = '\0';
-		return (newstr);
+		s2[i] = (s) ? s[start + i] : '\0';
+		i++;
 	}
-	return (NULL);
+	s2[i] = '\0';
+	return (s2);
 }

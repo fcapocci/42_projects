@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:58:41 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/11/25 10:39:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/13 11:18:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t		len;
 
 	len = 0;
-	while (s[len] != '\0')
+	while (s[len])
 		len++;
 	return (len);
 }

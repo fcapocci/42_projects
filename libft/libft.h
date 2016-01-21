@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:46:30 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/12 18:08:06 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/21 10:59:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# define BUFF_SIZE 42
+
+typedef struct		s_files
+{
+	char			*buff;
+	int				save;
+	struct s_files	*next;
+}					t_files;
 
 typedef struct		s_list
 {
@@ -23,6 +31,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+int					get_next_line(int const fd, char **line);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
@@ -60,6 +70,7 @@ char				*ft_strncat(char *dst, const char *src, size_t n);
 char				*ft_strchr(const char *str, int c);
 char				*ft_strrchr(const char *str, int c);
 char				*ft_strdup(const char *str);
+char				*ft_strndup(char *s1, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);

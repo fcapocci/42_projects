@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 14:50:26 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/09 12:52:19 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/18 15:19:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 	size_t	i;
 
+	if (!s2)
+		return (NULL);
 	if (!s1)
 		len = ft_strlen(s2);
 	else
