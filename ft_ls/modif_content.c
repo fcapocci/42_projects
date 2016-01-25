@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe1.c                                             :+:      :+:    :+:   */
+/*   modif_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/22 19:46:24 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/25 11:33:46 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/01/25 19:13:40 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/01/25 19:35:53 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+char		*dating(const time_t *clock)
 {
-	DIR				*rep;
-	struct dirent	*dir;
+	char	*crt_date;
+	char	*date;
 
-	if (argc >= 2)
-	{
-		if ((rep = opendir(argv[1])) == NULL)
-			return (-1);
-		while ((dir = readdir(rep)))
-			if (dir->d_name[0] != '.')
-				printf("%s\n",dir->d_name);
-	}
-	return 0;
+	date = ctime(&(clock.st_time));
+	crt_date = ft_strsub(date, 4, 12);
+	ft_memdel((void**)&date);
+	return (crt_date);
 }
