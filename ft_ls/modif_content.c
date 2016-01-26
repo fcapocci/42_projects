@@ -17,7 +17,7 @@ char		*dating(const time_t *clock)
 	char	*crt_date;
 	char	*date;
 
-	date = ctime(&(clock.st_time));
+	date = ctime(clock);
 	crt_date = ft_strsub(date, 4, 12);
 	ft_memdel((void**)&date);
 	return (crt_date);
