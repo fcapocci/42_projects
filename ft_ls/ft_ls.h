@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/26 15:22:43 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/27 20:23:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
+
+typedef struct			s_opt
+{
+	char			o;
+	struct s_opt	*next;
+}						t_opt;
 
 typedef struct			s_dir
 {

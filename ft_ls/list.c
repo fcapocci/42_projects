@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 17:53:06 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/27 00:27:40 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/27 17:48:48 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ t_dir		*add_link(t_dir *list, struct stat stats, char *name)
 {
 	t_dir		*new;
 
-	ft_putstr("yo");
 	if ((new = (t_dir*)ft_memalloc(sizeof(t_dir))) == NULL)
 		return (NULL);
-	list->next = new;
+	if (list == NULL)
+		list = new;
+	else
+		list->next = new;
 	if ((new = add_content(new, stats, name)) == NULL)
 		return (NULL);
 	return (new);
@@ -36,6 +38,5 @@ t_dir		*add_content(t_dir *list, struct stat stats, char *name)
 	list->date = dating(&stats.st_mtime);
 	list->name = strdup(name);
 	list->next = NULL;
-	ft_putstr("addcontent");
 	return (list);
 }
