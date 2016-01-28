@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/27 20:23:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/01/28 21:46:33 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct			s_opt
 {
-	char			o;
+	char			c;
 	struct s_opt	*next;
 }						t_opt;
 
@@ -40,6 +40,9 @@ typedef struct			s_dir
 	struct s_dir	*next;
 }						t_dir;
 
+int						read_dir(t_dir *list[], int argc, char **argv);
+
+t_opt					*creat_elem(char o);
 t_dir					*add_link(t_dir *list, struct stat stats, char *name);
 t_dir					*add_content(t_dir *list, struct stat stats, char *name);
 char					*dating(const time_t *clock);
@@ -47,4 +50,6 @@ char					*take_modes(mode_t st_mode);
 char					take_type(mode_t st_mode);
 void					printing(t_dir *list);
 
+t_opt					*take_option(int argc, char **argv);
+int						compt_option(int argc, char **argv);
 #endif

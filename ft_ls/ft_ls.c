@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/25 17:20:13 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/27 18:15:08 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/01/28 17:38:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+int		read_dir(t_dir *list[2], int argc, char **argv)
 {
 	DIR				*rep;
 	struct dirent	*dir;
-	t_dir			*list[2];
 	struct stat		stats;
 
 	if (argc >= 2)
