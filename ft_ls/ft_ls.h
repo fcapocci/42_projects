@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/29 21:09:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/01 19:22:06 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 # include <pwd.h>
 # include <grp.h>
 
-typedef struct			s_opt
+typedef struct		s_opt
 {
 	char			c;
 	struct s_opt	*next;
-}						t_opt;
+}					t_opt;
 
-typedef struct			s_dir
+typedef struct		s_dir
 {
 	char			type;
 	char			*modes;
@@ -38,21 +38,22 @@ typedef struct			s_dir
 	char			*date;
 	char			*name;
 	struct s_dir	*next;
-}						t_dir;
+}					t_dir;
 
-int						read_dir(t_dir *list, int argc, char **argv);
+int					read_dir(t_dir **list, int argc, char **argv);
+int					app_option(t_dir **list, t_opt *optl);
 
-t_opt					*creat_elem(t_opt *optl, char o);
-t_dir					*add_link(t_dir *list, struct stat stats, char *name);
-t_dir					*add_content(t_dir *list, struct stat stats, char *name);
-char					*dating(const time_t *clock);
-char					*take_modes(mode_t st_mode);
-char					take_type(mode_t st_mode);
+t_dir				*add_link(t_dir *list, struct stat stats, char *name);
+t_dir				*add_content(t_dir *list, struct stat stats, char *name);
+char				*dating(const time_t *clock);
+char				*take_modes(mode_t st_mode);
+char				take_type(mode_t st_mode);
 
-void					printing(t_dir *list);
-void					illegal_option(char c);
+void				printing(t_dir *list);
+void				illegal_option(char c);
 
-t_opt					*take_option(int argc, char **argv);
-int						check_option(char o);
+t_opt				*creat_elem(t_opt *optl, char o);
+t_opt				*take_option(int argc, char **argv);
+int					check_option(char o);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/29 20:59:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:31:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_opt	*creat_elem(t_opt *optl, char o)
 {
 	t_opt	*new;
 
+	new = NULL;
 	if (check_option(o) == 1)
 	{
 		if ((new = (t_opt*)ft_memalloc(sizeof(t_opt))) == NULL)
