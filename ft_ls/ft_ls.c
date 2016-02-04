@@ -6,45 +6,66 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/01 19:38:26 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/04 18:58:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-/*int		app_option(t_dir **list, t_opt *optl)
+char	*manage_rep(char **argv)
 {
-	return (0);
-}*/
+	char			*dirname;
 
-int		read_dir(t_dir **list, int argc, char **argv)
+	dirname = NULL;
+	while (argv[1][0] == '-')
+		argv++;
+	dirname = argv[1];
+	return (dirname);
+}
+
+int		read_dir(t_dir **list, char *dirname)
 {
 	DIR				*rep;
 	struct dirent	*dir;
-	struct stat		stats;
 	t_dir			*slist;
+	char			*path;
 
+	ft_memdel((void**)list);
+	path = ft_strjoin(dirname, "/");
 	slist = (*list);
-	if (argc >= 2)
+	if ((rep = opendir(dirname)) == NULL)
+		exit(-1);
+	if ((dir = readdir(rep)))
 	{
-		while (argv[1][0] == '-')
-			(*argv)++;
-		if ((rep = opendir(argv[1])) == NULL)
-		ft_putendl(argv[1]);
-			exit(-1);
-		while ((dir = readdir(rep)))
-		{
-			if (dir->d_name[0] != '.')
-			{
-				if ((stat(ft_strjoin(ft_strjoin(argv[1], "/"), dir->d_name)
-				, &stats)) == -1)
-					return (-1);
-				if ((slist = add_link(slist, stats, dir->d_name)) == NULL)
-					return (-1);
-				if (!(*list))
-					(*list) = slist;
-			}
-		}
+		slist = get_content(ft_strjoin(path, dir->d_name));
+		(*list) = slist;
 	}
+	while ((dir = readdir(rep)))
+	{
+		slist->next = get_content(ft_strjoin(path, dir->d_name));
+		slist = slist->next;
+	}
+	closedir(rep);
 	return (0);
+}
+
+t_dir	*get_content(char *entity)
+{
+	struct stat		stats;
+	t_dir			*list;
+
+	if ((list = (t_dir*)ft_memalloc(sizeof(t_dir))) == NULL)
+		return (NULL);
+	lstat(entity, &stats);
+	list->type = take_type(stats.st_mode);
+	list->modes = take_modes(stats.st_mode);
+	list->nblink = stats.st_nlink;
+	list->owner = getpwuid(stats.st_uid)->pw_name;
+	list->grp = getgrgid(stats.st_gid)->gr_name;
+	list->tall = stats.st_size;
+	list->date = dating(&stats.st_mtime);
+	list->numdate = stats.st_mtime;
+	list->name = strdup(entity);
+	list->next = NULL;
+	return (list);
 }

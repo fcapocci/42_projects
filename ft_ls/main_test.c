@@ -6,26 +6,40 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 16:25:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/01 19:33:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/04 19:00:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int main(int argc, char **argv)
+void	print_opt(t_opt *optl)
+{
+	ft_putchar('\n');
+	ft_putstr("option: ");
+	while (optl)
+	{
+		ft_putchar('-');
+		ft_putchar(optl->c);
+		ft_putchar(' ');
+		optl = optl->next;
+	}
+	ft_putstr("\n\n");
+}
+
+int		main(int argc, char **argv)
 {
 	t_dir		*list;
 	t_opt		*optl;
+	char		*dirname;
 
 	optl = NULL;
 	list = NULL;
-	if ((optl = take_option(argc, argv)) == NULL)
+	dirname = manage_rep(argv);
+	if ((take_option(&optl, argc, argv)) == -1)
 		return (-1);
-	if ((read_dir(&list, argc, argv)) == -1)
+	if ((read_dir(&list, dirname)) == -1)
 		return (-1);
-		/*
-	if ((app_option(&list, optl)) == -1)
-		return (-1);*/
-	printing(list);
+	print_opt(optl);
+	printing(optl, list);
 	return (0);
 }
