@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/06 15:18:48 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/06 18:39:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ typedef struct		s_dir
 	char			*date;
 	long long		numdate;
 	char			*name;
+	struct s_dir	*prev;
 	struct s_dir	*next;
 }					t_dir;
 
 char				*manage_rep(char **argv);
-int					read_dir(t_dir **list, char *dirname);
+int					read_dir(t_opt *optl, t_dir *list, char *dirname);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
@@ -60,6 +61,7 @@ void				padd_owner(t_dir *list, t_dir *start);
 void				padd_grp(t_dir *list, t_dir *start);
 void				padd_tall(t_dir *list, t_dir *start);
 
+void				print_opt_l(t_dir *start, t_dir *list);
 void				printing(t_opt *optl, t_dir *list);
 void				illegal_option(char c);
 

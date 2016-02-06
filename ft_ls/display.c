@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/04 18:49:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/06 18:39:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,34 @@ void		printing(t_opt *optl, t_dir *list)
 {
 	t_dir	*start;
 
-	while ((option_ok(optl, 'a') == 0) && (hide_path(list->name)[0] == '.'))
-		list = list->next;
+	if (!list->next)
+		exit(0);
 	start = list;
 	while (list != NULL)
 	{
 		if (option_ok(optl, 'l') == 1)
-		{
-			ft_putchar(list->type);
-			ft_putstr(list->modes);
-			padd_nblink(start, list);
-			ft_putnbr(list->nblink);
-			ft_putchar(' ');
-			ft_putstr(list->owner);
-			padd_owner(start, list);
-			ft_putstr(list->grp);
-			padd_grp(start, list);
-			padd_tall(start, list);
-			ft_putnbr(list->tall);
-			ft_putchar(' ');
-			ft_putstr(list->date);
-			ft_putchar(' ');
-		}
+			print_opt_l(start, list);
 		ft_putendl(hide_path(list->name));
 		list = list->next;
 	}
+}
+
+void		print_opt_l(t_dir *start, t_dir *list)
+{
+	ft_putchar(list->type);
+	ft_putstr(list->modes);
+	padd_nblink(start, list);
+	ft_putnbr(list->nblink);
+	ft_putchar(' ');
+	ft_putstr(list->owner);
+	padd_owner(start, list);
+	ft_putstr(list->grp);
+	padd_grp(start, list);
+	padd_tall(start, list);
+	ft_putnbr(list->tall);
+	ft_putchar(' ');
+	ft_putstr(list->date);
+	ft_putchar(' ');
 }
 
 void		not_arg_printing(char *arg)

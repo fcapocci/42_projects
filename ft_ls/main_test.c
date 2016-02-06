@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 16:25:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/06 16:38:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/06 16:47:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		main(int argc, char **argv)
 	dirname = manage_rep(argv);
 	if ((take_option(&optl, argc, argv)) == -1)
 		return (-1);
-	if ((read_dir(&list, dirname)) == -1)
-		return (-1);
 	print_opt(optl);
+	if ((read_dir(optl, list, dirname)) == -1)
+		return (-1);
 	//manage_list(optl, list);
-	printing(optl, list);
+	//printing(optl, list);
 	return (0);
 }
