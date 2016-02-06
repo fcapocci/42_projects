@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/05 19:09:53 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/06 15:18:48 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int					read_dir(t_dir **list, char *dirname);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
-void				manage(t_opt *optl, t_dir *list);
-void				change_content(t_dir **list, t_dir **list_next);
+
+void				manage_list(t_opt *optl, t_dir *list);
+t_dir				*sort_lexico(t_dir *list);
+size_t				nb_link(t_dir *list);
 
 t_dir				*get_content(char *name);
 char				*take_modes(mode_t st_mode);
