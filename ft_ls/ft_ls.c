@@ -6,20 +6,29 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/08 23:26:07 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/09 00:45:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	*manage_rep(char **argv)
+char	*manage_rep(int argc, char **argv)
 {
 	char			*dirname;
 
 	dirname = NULL;
-	while (argv[1][0] == '-')
+	while (argc > 1 && argv[1][0] == '-')
+	{
 		argv++;
-	dirname = argv[1];
+		argc--;
+	}
+	if (argc == 1)
+	{
+		dirname = ft_strnew(1);
+		dirname[0] = '.';
+	}
+	else
+		dirname = argv[1];
 	return (dirname);
 }
 
