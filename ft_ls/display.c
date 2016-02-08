@@ -6,26 +6,37 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/06 18:39:18 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/08 23:07:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		printing(t_opt *optl, t_dir *list)
+void		printing(t_opt *optl, t_dir *start, t_dir *end)
 {
-	t_dir	*start;
+	t_dir	*ptr;
 
-	if (!list->next)
+	ptr = start;
+	if (!start->next || !end->prev)
 		exit(0);
-	start = list;
-	while (list != NULL)
+	if (option_ok(optl, 'r') == 1)
 	{
-		if (option_ok(optl, 'l') == 1)
-			print_opt_l(start, list);
-		ft_putendl(hide_path(list->name));
-		list = list->next;
+		while (end != NULL)
+		{
+			if (option_ok(optl, 'l') == 1)
+				print_opt_l(ptr, end);
+			ft_putendl(hide_path(end->name));
+			end = end->prev;
+		}
 	}
+	else
+		while (start != NULL)
+		{
+			if (option_ok(optl, 'l') == 1)
+				print_opt_l(ptr, start);
+			ft_putendl(hide_path(start->name));
+			start = start->next;
+		}
 }
 
 void		print_opt_l(t_dir *start, t_dir *list)

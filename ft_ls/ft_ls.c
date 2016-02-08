@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/06 18:39:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/08 23:26:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		read_dir(t_opt *optl, t_dir *list, char *dirname)
 		}
 	}
 	closedir(rep);
-	printing(optl, list);
+	printing(optl, list, slist);
 	return (0);
 }
 
