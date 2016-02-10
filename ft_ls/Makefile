@@ -6,14 +6,14 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#    Updated: 2016/02/06 14:38:26 by fcapocci         ###   ########.fr        #
+#    Updated: 2016/02/10 20:00:30 by fcapocci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
 FILESC = main_test.c display.c ft_ls.c modif_content.c option.c\
-		 take_modes.c padding.c manage.c
+		 take_modes.c padding.c
 
 FILESO = $(FILESC:.c=.o)
 

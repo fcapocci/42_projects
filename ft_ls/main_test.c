@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 16:25:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 12:54:46 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:21:46 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,13 @@ int		main(int argc, char **argv)
 {
 	t_dir		*list;
 	t_opt		*optl;
-	char		*dirname;
 
 	optl = NULL;
 	list = NULL;
-	if ((take_option(&optl, argc, argv)) == -1)
+	if ((take_option(&optl, &argc, &argv)) == -1)
 		return (-1);
-	dirname = manage_rep(argc, argv);
-	if ((read_dir(optl, list, dirname)) == -1)
+	if ((manage(argc, argv, optl, list)) == -1)
 		return (-1);
+	ft_memdel((void**)&optl);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 12:56:18 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/10 20:20:58 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
+int					manage(int argc, char **argv, t_opt *optl, t_dir *list);
+int					manage_read(int argc, char **argv, t_opt *optl, t_dir *list);
 char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir *list, char *dirname);
+t_dir				*read_file(t_dir *flist, char *dirname);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
@@ -61,10 +64,11 @@ void				padd_tall(t_dir *list, t_dir *start);
 
 void				print_opt_l(t_dir *start, t_dir *list);
 void				printing(t_opt *optl, t_dir *start, t_dir *end);
+void				print_file(t_opt *optl, t_dir *start, t_dir *end);
 void				illegal_option(char c);
 
 t_opt				*creat_elem(t_opt *optl, char o);
-int					take_option(t_opt **optl, int argc, char **argv);
+int					take_option(t_opt **optl, int *argc, char ***argv);
 int					check_option(char o);
 int					option_ok(t_opt *optl, char o);
 

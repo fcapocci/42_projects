@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/03 19:30:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:36:05 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,31 @@ t_opt	*creat_elem(t_opt *optl, char o)
 	return (new);
 }
 
-int		take_option(t_opt **optl, int argc, char **argv)
+int		take_option(t_opt **optl, int *argc, char ***argv)
 {
 	t_opt	*optlist;
-	int		i[2];
+	int		i;
 
 	(*optl) = NULL;
 	optlist = NULL;
-	i[0] = 1;
-	while (i[0] < argc)
+	while ((*argc) > 1)
 	{
-		if (argv[i[0]][0] == '-')
+		(*argv)++;
+		if (***argv == '-')
 		{
-			i[1] = 1;
-			while (argv[i[0]][i[1]])
+			i = 1;
+			while ((**argv)[i])
 			{
-				optlist = creat_elem(optlist, argv[i[0]][i[1]++]);
+				optlist = creat_elem(optlist, (**argv)[i++]);
 				if (!(*optl))
 					(*optl) = optlist;
 			}
 		}
-		if (argv[i[0]++][0] != '-')
+		else if (***argv != '-')
+		{
 			break ;
+		}
+		(*argc)--;
 	}
 	return (0);
 }
