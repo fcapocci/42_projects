@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/09 00:35:00 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:56:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_dir
 	long			tall;
 	char			*date;
 	long long		numdate;
+	long			blksize;
 	char			*name;
 	struct s_dir	*prev;
 	struct s_dir	*next;
@@ -47,10 +48,7 @@ int					read_dir(t_opt *optl, t_dir *list, char *dirname);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
-
-void				manage_list(t_opt *optl, t_dir *list);
-t_dir				*sort_lexico(t_dir *list);
-size_t				nb_link(t_dir *list);
+long				total_blk(t_dir *list);
 
 t_dir				*get_content(char *name);
 char				*take_modes(mode_t st_mode);

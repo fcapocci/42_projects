@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/08 23:07:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:18:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,21 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	ptr = start;
 	if (!start->next || !end->prev)
 		exit(0);
-	if (option_ok(optl, 'r') == 1)
+	if (option_ok(optl, 'l') == 1)
 	{
-		while (end != NULL)
-		{
-			if (option_ok(optl, 'l') == 1)
-				print_opt_l(ptr, end);
-			ft_putendl(hide_path(end->name));
-			end = end->prev;
-		}
+		ft_putstr("total ");
+		ft_putnbr(total_blk(start));
+		ft_putchar('\n');
 	}
-	else
-		while (start != NULL)
-		{
-			if (option_ok(optl, 'l') == 1)
-				print_opt_l(ptr, start);
-			ft_putendl(hide_path(start->name));
-			start = start->next;
-		}
+	while ((option_ok(optl, 'r') == 1) ? end : start)
+	{
+		if (option_ok(optl, 'l') == 1)
+			print_opt_l(ptr, (option_ok(optl, 'r') == 1) ? end : start);
+		ft_putendl(hide_path(option_ok(optl, 'r') == 1 ? end->name
+		: start->name));
+		end = (option_ok(optl, 'r') == 1) ? end->prev : end;
+		start = (option_ok(optl, 'r') == 0) ? start->next : start;
+	}
 }
 
 void		print_opt_l(t_dir *start, t_dir *list)
