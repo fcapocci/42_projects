@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/11 15:55:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/11 22:31:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,18 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 	if (flist[1])
 		print_file(optl, flist[1], flist[0]);
 	ft_memdel((void**)&flist);
-	while (save-- > 1)
+	while (save > 1)
 	{
 		lstat(*argv2, &stats);
 		if (take_type(stats.st_mode) == 'd')
+		{
+			if (save - argc > 2)
+				print_path(*argv2);
 			if ((read_dir(optl, list, *argv2)) == -1)
 				return (-1);
+		}
 		argv2++;
+		save--;
 	}
 	return (0);
 }
