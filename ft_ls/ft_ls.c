@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 20:20:53 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:55:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,39 +47,38 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 	{
 		lstat(*argv, &stats);
 		if (take_type(stats.st_mode) != 'd')
-			flist[0] = read_file(flist[1], (*argv)++);
-		if (!flist[1])
-			flist[1] = flist[0];
+			read_file(&flist[0], &flist[1], *argv);
+		argv++;
 	}
-	print_file(optl, flist[1], flist[0]);
+	if (flist[1])
+		print_file(optl, flist[1], flist[0]);
 	ft_memdel((void**)&flist);
 	while (save-- > 1)
 	{
 		lstat(*argv2, &stats);
 		if (take_type(stats.st_mode) == 'd')
-			if ((read_dir(optl, list, *argv2++)) == -1)
+			if ((read_dir(optl, list, *argv2)) == -1)
 				return (-1);
+		argv2++;
 	}
 	return (0);
 }
 
-t_dir		*read_file(t_dir *flist, char *dirname)
+int			read_file(t_dir **flist, t_dir **first, char *dirname)
 {
-	t_dir			*newlist;
-
-	newlist = NULL;
-	if (!flist)
+	if (!(*flist))
 	{
-		newlist = get_content(dirname);
-		newlist->prev = NULL;
+		(*flist) = get_content(dirname);
+		(*flist)->prev = NULL;
+		(*first) = (*flist);
 	}
 	else
 	{
-		newlist->next = get_content(dirname);
-		newlist->next->prev = newlist;
-		newlist = newlist->next;
+		(*flist)->next = get_content(dirname);
+		(*flist)->next->prev = (*flist);
+		(*flist) = (*flist)->next;
 	}
-	return (newlist);
+	return (0);
 }
 
 int			read_dir(t_opt *optl, t_dir *list, char *dirname)

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 20:20:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:16:47 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int					manage(int argc, char **argv, t_opt *optl, t_dir *list);
 int					manage_read(int argc, char **argv, t_opt *optl, t_dir *list);
 char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir *list, char *dirname);
-t_dir				*read_file(t_dir *flist, char *dirname);
+int					read_file(t_dir **flist, t_dir **first, char *dirname);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
