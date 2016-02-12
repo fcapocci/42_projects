@@ -6,15 +6,21 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/11 22:22:30 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:00:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		print_path(char *dirname)
+void		print_path(char *dirname,int save, t_dir *flist)
 {
-	ft_putchar('\n');
-	ft_putstr(dirname);
-	ft_putstr(":\n");
+	static int		loop;
+
+	if (save > 1 && (loop > 0 || flist))
+	{
+		ft_putchar('\n');
+		ft_putstr(dirname);
+		ft_putstr(":\n");
+	}
+	loop++;
 }

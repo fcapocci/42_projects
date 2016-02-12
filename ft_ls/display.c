@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 20:21:02 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:03:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	t_dir	*ptr;
 
 	ptr = start;
-	if (!start)
-		exit(0);
-	if (option_ok(optl, 'l') == 1)
+	if (option_ok(optl, 'l') == 1 && start)
 	{
 		ft_putstr("total ");
 		ft_putnbr(total_blk(start));
@@ -41,8 +39,6 @@ void		print_file(t_opt *optl, t_dir *start, t_dir *end)
 	t_dir	*ptr;
 
 	ptr = start;
-	if (!start)
-		exit(0);
 	while ((option_ok(optl, 'r') == 1) ? end : start)
 	{
 		if (option_ok(optl, 'l') == 1)

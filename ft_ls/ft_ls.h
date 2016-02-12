@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/11 22:23:14 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:56:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_dir				*get_content(char *name);
 char				*take_modes(mode_t st_mode);
 char				take_type(mode_t st_mode);
 
+char				**sort_arg(t_opt *optl, char **argv);
+
 void				padd_nblink(t_dir *list, t_dir *start);
 void				padd_owner(t_dir *list, t_dir *start);
 void				padd_grp(t_dir *list, t_dir *start);
@@ -66,7 +68,7 @@ void				print_opt_l(t_dir *start, t_dir *list);
 void				printing(t_opt *optl, t_dir *start, t_dir *end);
 void				print_file(t_opt *optl, t_dir *start, t_dir *end);
 void				illegal_option(char c);
-void				print_path(char *dirname);
+void				print_path(char *dirname, int save, t_dir *flist);
 
 t_opt				*creat_elem(t_opt *optl, char o);
 int					take_option(t_opt **optl, int *argc, char ***argv);

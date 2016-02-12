@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 17:05:09 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/12 14:56:20 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/02/12 14:56:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+char		**sort_arg(t_opt *optl, char **argv)
 {
-	unsigned char	*us1;
-	unsigned char	*us2;
+	char		*tmp;
+	char		**start;
+	t_opt		*opop;
 
-	us1 = (unsigned char*)s1;
-	us2 = (unsigned char*)s2;
-	while (us1 && *us1 == *us2)
+	opop = optl;
+	start = argv;
+	while (argv[1])
 	{
-		if (*us1 == '\0')
-			return (0);
-		us1++;
-		us2++;
+		argv = start;
+		ft_putendl(argv[1]);
+		ft_putendl(argv[0]);
+		if (ft_strcmp(argv[1], argv[0]) == 1)
+		{
+			tmp = argv[0];
+			argv[0] = argv[1];
+			argv[1] = tmp;
+		}
+		argv++;
 	}
-	if (*us1 < *us2)
-		return (-1);
-	else if (*us1 > *us2)
-		return (1);
-	else
-		return (0);
+	return (start);
 }
