@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/12 14:56:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/12 18:28:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,20 @@
 char		**sort_arg(t_opt *optl, char **argv)
 {
 	char		*tmp;
-	char		**start;
-	t_opt		*opop;
+	int			i;
 
-	opop = optl;
-	start = argv;
-	while (argv[1])
+	i = 0;
+	while (argv[i + 1])
 	{
-		argv = start;
-		ft_putendl(argv[1]);
-		ft_putendl(argv[0]);
-		if (ft_strcmp(argv[1], argv[0]) == 1)
+		if (ft_strcmp(argv[i], argv[i + 1]) == (option_ok(optl, 'r')
+			== 1 ? -1 : 1))
 		{
-			tmp = argv[0];
-			argv[0] = argv[1];
-			argv[1] = tmp;
+			tmp = argv[i];
+			argv[i] = argv[i + 1];
+			argv[i + 1] = tmp;
+			i = -1;
 		}
-		argv++;
+		i++;
 	}
-	return (start);
+	return (argv);
 }
