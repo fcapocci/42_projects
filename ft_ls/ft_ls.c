@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/12 14:56:17 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:13:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 		argv++;
 	}
 	if (flist[1])
-		print_file(optl, flist[1], flist[0]);
+		print_file(optl, flist[1]);
 	while (save-- > 1)
 	{
 		lstat(*argv2, &stats);
@@ -97,22 +97,9 @@ int			read_dir(t_opt *optl, t_dir *list, char *dirname)
 		exit(-1);
 	while ((dir = readdir(rep)))
 		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
-			(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
-			(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
-		{
-			if (!slist)
-			{
-				slist = get_content(ft_strjoin(path, dir->d_name));
-				slist->prev = NULL;
-				list = slist;
-			}
-			else
-			{
-				slist->next = get_content(ft_strjoin(path, dir->d_name));
-				slist->next->prev = slist;
-				slist = slist->next;
-			}
-		}
+		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
+		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
+			sort_list(optl, &list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
 	printing(optl, list, slist);
 	ft_memdel((void**)&list);

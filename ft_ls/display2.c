@@ -6,13 +6,13 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/12 12:00:51 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:46:09 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		print_path(char *dirname,int save, t_dir *flist)
+void		print_path(char *dirname, int save, t_dir *flist)
 {
 	static int		loop;
 

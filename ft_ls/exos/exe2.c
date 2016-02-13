@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:34:10 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/25 19:20:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:52:09 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int		main(int argc, char **argv)
 		printf("Taille: %lld\n", stats.st_size);
 		printf("Date de derniere modification: %s\n", ctime(&(stats.st_mtime)));
 	}
-	return 0;
+	return (0);
 }

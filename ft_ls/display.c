@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/12 11:03:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:13:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,17 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	}
 }
 
-void		print_file(t_opt *optl, t_dir *start, t_dir *end)
+void		print_file(t_opt *optl, t_dir *start)
 {
 	t_dir	*ptr;
 
 	ptr = start;
-	while ((option_ok(optl, 'r') == 1) ? end : start)
+	while (start)
 	{
 		if (option_ok(optl, 'l') == 1)
-			print_opt_l(ptr, (option_ok(optl, 'r') == 1) ? end : start);
-		ft_putendl(hide_path(option_ok(optl, 'r') == 1 ? end->name
-		: start->name));
-		end = (option_ok(optl, 'r') == 1) ? end->prev : end;
-		start = (option_ok(optl, 'r') == 0) ? start->next : start;
+			print_opt_l(ptr, start);
+		ft_putendl(start->name);
+		start = start->next;
 	}
 }
 
