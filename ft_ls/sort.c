@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/13 15:16:02 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 19:33:59 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,47 @@ char		**sort_arg(t_opt *optl, char **argv)
 	return (argv);
 }
 
-void		sort_list(t_opt *optl, t_dir **list, t_dir **slist, char *entity)
+void		sort_list(t_dir **list, t_dir **slist, char *entity)
 {
-	t_opt		*opop;
+	t_dir		*ptr;
 
-	opop = optl;
+	ptr = (*list);
 	if (!(*slist))
 	{
+		//ft_putendl("test1");
 		(*slist) = get_content(entity);
-		(*slist)->prev = NULL;
 		(*list) = (*slist);
 	}
 	else
 	{
+		/*
+		(*slist)->next = get_content(entity);
+		(*slist) = (*slist)->next;
+		ft_putendl("test");
+		while (ptr->next && ft_strcmp((*slist)->name, ptr->name) == 1)
+		{
+			ft_putendl("pouet");
+			ptr = ptr->next;
+		}
+		if (!ptr->prev)
+		{
+			ft_putendl("test2");
+			ptr->prev = (*slist);
+			ptr->prev->next = ptr;
+			ptr->prev->prev = NULL;
+			(*list) = ptr->prev;
+		}
+		else
+		{
+			ft_putendl("test3");
+			ptr->prev->next = (*slist);
+			ptr->next->prev = (*slist);
+		}
+		(*slist) = (*slist)->next;
+		*/
 		(*slist)->next = get_content(entity);
 		(*slist)->next->prev = (*slist);
 		(*slist) = (*slist)->next;
+		(*slist)->next = NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/13 15:13:25 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 19:27:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int			read_file(t_dir **flist, t_dir **first, char *dirname)
 	if (!(*flist))
 	{
 		(*flist) = get_content(dirname);
-		(*flist)->prev = NULL;
 		(*first) = (*flist);
 	}
 	else
@@ -99,7 +98,7 @@ int			read_dir(t_opt *optl, t_dir *list, char *dirname)
 		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
-			sort_list(optl, &list, &slist, ft_strjoin(path, dir->d_name));
+			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
 	printing(optl, list, slist);
 	ft_memdel((void**)&list);
@@ -124,6 +123,7 @@ t_dir		*get_content(char *entity)
 	list->numdate = stats.st_mtime;
 	list->blksize = stats.st_blocks;
 	list->name = strdup(entity);
+	list->prev = NULL;
 	list->next = NULL;
 	return (list);
 }
