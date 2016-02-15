@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/13 19:27:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/15 21:01:55 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 		}
 		argv2++;
 	}
-	ft_memdel((void**)&flist);
+	ft_memdel((void**)flist);
 	return (0);
 }
 
@@ -93,13 +93,14 @@ int			read_dir(t_opt *optl, t_dir *list, char *dirname)
 	path = ft_strjoin(dirname, "/");
 	slist = list;
 	if ((rep = opendir(dirname)) == NULL)
-		exit(-1);
+		return (permis_denied(dirname));
 	while ((dir = readdir(rep)))
 		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
 			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
+	ft_memdel((void**)&path);
 	printing(optl, list, slist);
 	ft_memdel((void**)&list);
 	return (0);

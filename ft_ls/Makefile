@@ -26,7 +26,7 @@ CC = gcc -Wall -Werror -Wextra
 all: compileo compile
 
 compileo:
-	@$(CC) -c $(FILESC)
+	@$(CC) -c $(FILESC) -g
 	@echo "\033[1;36m[\033[0mFILES .c \033[1;32mSUCCESSFULLY\033[0m \
 	COMPILED\033[1;36m]\033[0m"
 

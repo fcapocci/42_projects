@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 16:25:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 18:21:46 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:05:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int		main(int argc, char **argv)
 	if ((manage(argc, argv, optl, list)) == -1)
 		return (-1);
 	ft_memdel((void**)&optl);
+	ft_memdel((void**)&list);
 	return (0);
 }
