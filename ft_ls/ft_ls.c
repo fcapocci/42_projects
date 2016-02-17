@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 02:47:08 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 08:37:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 
 	flist[1] = NULL;
 	flist[0] = NULL;
-	arg[0] = read_arg(optl, argc, argv);
+	if ((arg[0] = read_arg(optl, argc, argv)) == NULL)
+	{
+		exit(0);
+	}
 	arg[1] = arg[0];
 	while (arg[0])
 	{
@@ -70,7 +73,7 @@ int			read_file(t_dir **flist, t_dir **first, char *dirname)
 		if (((*flist) = get_content(dirname)))
 			(*first) = (*flist);
 		else
-			print_error(dirname);
+			print_error(dirname, 1);
 	else
 		if (((*flist)->next = get_content(dirname)))
 		{
@@ -78,7 +81,7 @@ int			read_file(t_dir **flist, t_dir **first, char *dirname)
 			(*flist) = (*flist)->next;
 		}
 		else
-			print_error(dirname);
+			print_error(dirname, 1);
 	return (0);
 }
 

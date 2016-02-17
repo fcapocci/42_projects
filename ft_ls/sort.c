@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 02:52:05 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 08:53:55 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 
 	opi = optl;
 	arg[0] = NULL;
+	arg[1] = NULL;
 	while (argc-- > 1)
 	{
 		if (!arg[0])
 			if ((arg[0] = get_arg_content(*argv)))
 				arg[1] = arg[0];
 			else
-				print_error(*argv);
+				print_error(*argv, 0);
 		else
 			if ((arg[0]->next = get_arg_content(*argv)))
 			{
@@ -33,12 +34,10 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 				arg[0] = arg[0]->next;
 			}
 			else
-				print_error(*argv);
+				print_error(*argv, 0);
 		argv++;
 	}
-	arg[0] = sort_arg_lex(optl, arg[1]);
-	if (option_ok(optl, 't') == 1)
-		arg[0] = sort_arg_time(optl, arg[1]);
+	//arg[0] = sort_arg_lex(optl, arg[1]);
 	return (arg[1]);
 }
 
@@ -77,6 +76,8 @@ t_arg			*sort_arg_lex(t_opt *optl, t_arg *argument)
 		argument = argument->next;
 	}
 	arg[0] = argument;
+	if (option_ok(optl, 't') == 1)
+		return (sort_arg_time(optl, arg[1]));
 	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
 }
 
@@ -110,7 +111,7 @@ void			sort_list(t_dir **list, t_dir **slist, char *entity)
 		if (((*slist) = get_content(entity)))
 			(*list) = (*slist);
 		else
-			print_error(entity);
+			print_error(entity, 1);
 	else
 		/*
 		if (ft_strcmp(get_content(entity)->name, (*slist)->name) == 1)
@@ -133,5 +134,5 @@ void			sort_list(t_dir **list, t_dir **slist, char *entity)
 			(*slist)->next = NULL;
 		}
 		else
-			print_error(entity);
+			print_error(entity, 1);
 }

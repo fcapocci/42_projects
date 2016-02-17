@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/16 02:12:24 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 08:34:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,6 @@ void		print_opt_l(t_dir *start, t_dir *list)
 	ft_putchar(' ');
 	ft_putstr(list->date);
 	ft_putchar(' ');
-}
-
-void		not_arg_printing(char *arg)
-{
-	ft_putstr("ls: ");
-	ft_putstr(arg);
-	ft_putstr(": ");
-	ft_putendl("No such file or directory");
 }
 
 void		illegal_option(char c)
