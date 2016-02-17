@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/15 21:01:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 02:47:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,32 @@ int			manage(int argc, char **argv, t_opt *optl, t_dir *list)
 
 int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 {
-	char			**argv2;
-	struct stat		stats;
+	t_arg			*arg[2];
 	t_dir			*flist[2];
-	int				save;
 
-	flist[0] = NULL;
 	flist[1] = NULL;
-	save = argc;
-	argv2 = sort_arg(optl, argv);
-	while (argc-- > 1)
+	flist[0] = NULL;
+	arg[0] = read_arg(optl, argc, argv);
+	arg[1] = arg[0];
+	while (arg[0])
 	{
-		lstat(*argv, &stats);
-		if (take_type(stats.st_mode) != 'd')
-			read_file(&flist[0], &flist[1], *argv);
-		argv++;
+		if (arg[0]->type != 'd')
+			read_file(&flist[0], &flist[1], arg[0]->argument);
+		arg[0] = (option_ok(optl, 'r') == 1 ? arg[0]->prev : arg[0]->next);
 	}
 	if (flist[1])
 		print_file(optl, flist[1]);
-	while (save-- > 1)
+	while (arg[1])
 	{
-		lstat(*argv2, &stats);
-		if (take_type(stats.st_mode) == 'd')
+		if (arg[1]->type == 'd')
 		{
-			print_path(*argv2, save + 1, flist[1]);
-			if ((read_dir(optl, list, *argv2)) == -1)
+			print_path(arg[1]->argument, argc, flist[1]);
+			if ((read_dir(optl, list, arg[1]->argument)) == -1)
 				return (-1);
 		}
-		argv2++;
+		arg[1] = (option_ok(optl, 'r') == 1 ? arg[1]->prev : arg[1]->next);
 	}
+	ft_memdel((void**)arg);
 	ft_memdel((void**)flist);
 	return (0);
 }
@@ -70,16 +67,18 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 int			read_file(t_dir **flist, t_dir **first, char *dirname)
 {
 	if (!(*flist))
-	{
-		(*flist) = get_content(dirname);
-		(*first) = (*flist);
-	}
+		if (((*flist) = get_content(dirname)))
+			(*first) = (*flist);
+		else
+			print_error(dirname);
 	else
-	{
-		(*flist)->next = get_content(dirname);
-		(*flist)->next->prev = (*flist);
-		(*flist) = (*flist)->next;
-	}
+		if (((*flist)->next = get_content(dirname)))
+		{
+			(*flist)->next->prev = (*flist);
+			(*flist) = (*flist)->next;
+		}
+		else
+			print_error(dirname);
 	return (0);
 }
 
@@ -113,7 +112,8 @@ t_dir		*get_content(char *entity)
 
 	if ((list = (t_dir*)ft_memalloc(sizeof(t_dir))) == NULL)
 		return (NULL);
-	lstat(entity, &stats);
+	if ((lstat(entity, &stats)) == -1)
+		return (NULL);
 	list->type = take_type(stats.st_mode);
 	list->modes = take_modes(stats.st_mode);
 	list->nblink = stats.st_nlink;

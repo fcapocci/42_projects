@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/15 20:27:09 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:40:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ int			permis_denied(char *entity)
 	ft_putstr(dirname);
 	ft_putendl(": Permission denied");
 	return (0);
+}
+
+void		print_error(char *entity)
+{
+	char			*filename;
+
+	filename = hide_path(entity);
+	ft_putstr("ls: ");
+	ft_putstr(filename);
+	ft_putendl(": Input/output error");
 }

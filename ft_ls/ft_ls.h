@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/15 18:49:00 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 00:55:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef struct		s_opt
 	char			c;
 	struct s_opt	*next;
 }					t_opt;
+
+typedef struct		s_arg
+{
+	char			*argument;
+	char			type;
+	long long		time;
+	struct s_arg	*prev;
+	struct s_arg	*next;
+}					t_arg;
 
 typedef struct		s_dir
 {
@@ -57,7 +66,10 @@ t_dir				*get_content(char *name);
 char				*take_modes(mode_t st_mode);
 char				take_type(mode_t st_mode);
 
-char				**sort_arg(t_opt *optl, char **argv);
+t_arg				*read_arg(t_opt *optl,int argc, char **argv);
+t_arg				*get_arg_content(char *entity);
+t_arg				*sort_arg_lex(t_opt *optl, t_arg *argument);
+t_arg				*sort_arg_time(t_opt *optl, t_arg *argument);
 void				sort_list(t_dir **list, t_dir **slist, char *entity);
 
 void				padd_nblink(t_dir *list, t_dir *start);
@@ -70,6 +82,7 @@ void				printing(t_opt *optl, t_dir *start, t_dir *end);
 void				print_file(t_opt *optl, t_dir *start);
 void				illegal_option(char c);
 int					permis_denied(char *entity);
+void				print_error(char *entity);
 void				print_path(char *dirname, int save, t_dir *flist);
 
 t_opt				*creat_elem(t_opt *optl, char o);
