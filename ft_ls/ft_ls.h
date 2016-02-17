@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 08:34:03 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:08:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ char				take_type(mode_t st_mode);
 
 t_arg				*read_arg(t_opt *optl,int argc, char **argv);
 t_arg				*get_arg_content(char *entity);
-t_arg				*sort_arg_lex(t_opt *optl, t_arg *argument);
+//t_arg				*sort_arg_lex(t_opt *optl, t_arg *argument);
 t_arg				*sort_arg_time(t_opt *optl, t_arg *argument);
+char				**sort_arg_lex(char **argv);
 void				sort_list(t_dir **list, t_dir **slist, char *entity);
 
 void				padd_nblink(t_dir *list, t_dir *start);

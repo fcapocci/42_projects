@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 08:53:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:09:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 	opi = optl;
 	arg[0] = NULL;
 	arg[1] = NULL;
+	//argv = sort_arg_lex(entity);
 	while (argc-- > 1)
 	{
 		if (!arg[0])
@@ -37,8 +38,8 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 				print_error(*argv, 0);
 		argv++;
 	}
-	//arg[0] = sort_arg_lex(optl, arg[1]);
-	return (arg[1]);
+	//arg[1] = (option_ok(optl, 't') == 1 ? sort_arg_lex(optl, arg[1]) : arg[1]);
+	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
 }
 
 t_arg			*get_arg_content(char *entity)
@@ -58,6 +59,14 @@ t_arg			*get_arg_content(char *entity)
 	return (arg);
 }
 
+char			**sort_arg_lex(char **argv)
+{
+	char			**tab;
+	char			*tmp;
+
+	return (tab);
+}
+/*
 t_arg			*sort_arg_lex(t_opt *optl, t_arg *argument)
 {
 	t_arg			*arg[2];
@@ -80,7 +89,7 @@ t_arg			*sort_arg_lex(t_opt *optl, t_arg *argument)
 		return (sort_arg_time(optl, arg[1]));
 	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
 }
-
+*/
 t_arg			*sort_arg_time(t_opt *optl, t_arg *argument)
 {
 	t_arg			*arg[2];
