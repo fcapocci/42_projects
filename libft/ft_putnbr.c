@@ -6,16 +6,17 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:53:26 by fcapocci          #+#    #+#             */
-/*   Updated: 2015/12/01 11:25:18 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:49:00 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void	ft_putnbr(long long n)
 {
-	if (n == -2147483648)
-		ft_putstr("-2147483648");
+	if (n == LLONG_MIN)
+		ft_putstr("-9223372036854775807");
 	else
 	{
 		if (n < 0)
