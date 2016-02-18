@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 23:09:18 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/18 16:33:49 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 	opi = optl;
 	arg[0] = NULL;
 	arg[1] = NULL;
-	//argv = sort_arg_lex(entity);
+	argv = sort_arg_lex(argc, argv);
 	while (argc-- > 1)
 	{
 		if (!arg[0])
@@ -59,37 +59,26 @@ t_arg			*get_arg_content(char *entity)
 	return (arg);
 }
 
-char			**sort_arg_lex(char **argv)
+char			**sort_arg_lex(int argc, char **argv)
 {
-	char			**tab;
 	char			*tmp;
+	int				i;
 
-	return (tab);
-}
-/*
-t_arg			*sort_arg_lex(t_opt *optl, t_arg *argument)
-{
-	t_arg			*arg[2];
-
-	arg[1] = argument;
-	while (argument->next)
+	i = 0;
+	while (i != (argc - 2))
 	{
-		if (ft_strcmp(argument->argument, argument->next->argument) == 1)
+		if (ft_strcmp(argv[i + 1], argv[i]) < 0)
 		{
-			argument->next->prev = argument->prev;
-			argument->prev = argument->next;
-			argument->next = argument->next->next;
-			argument->next->next = argument;
-			argument = arg[1];
+			tmp = argv[i + 1];
+			argv[i + 1] = argv[i];
+			argv[i] = tmp;
+			i = -1;
 		}
-		argument = argument->next;
+		i++;
 	}
-	arg[0] = argument;
-	if (option_ok(optl, 't') == 1)
-		return (sort_arg_time(optl, arg[1]));
-	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
+	return (argv);
 }
-*/
+
 t_arg			*sort_arg_time(t_opt *optl, t_arg *argument)
 {
 	t_arg			*arg[2];
