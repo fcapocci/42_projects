@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 15:36:40 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:16:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 t_arg			*get_arg_content(char *entity)
 {
 	t_arg			*arg;
-	struct stat		stat;
+	struct stat		stats;
 
 	if ((arg = (t_arg*)ft_memalloc(sizeof(t_dir))) == NULL)
 		return (NULL);
-	if ((lstat(entity, &stat)) == -1)
+	if ((lstat(entity, &stats)) == -1)
 		return (NULL);
 	arg->argument = entity;
-	arg->type = take_type(stat.st_mode);
-	arg->time = stat.st_mtime;
+	arg->type = take_type(stats.st_mode);
+	arg->time = stats.st_mtime;
 	arg->prev = NULL;
 	arg->next = NULL;
 	return (arg);

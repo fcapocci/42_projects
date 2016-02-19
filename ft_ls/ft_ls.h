@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 15:36:43 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:07:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_arg				*get_arg_content(char *entity);
 t_arg				*swap_arg_content(t_arg *list1, t_arg *link2);
 t_arg				*sort_arg_time(t_arg *argument);
 char				**sort_arg_lex(int argc, char **argv);
-void				sort_list(t_opt *opl, t_dir **lst, t_dir **slst, char *eity);
+void				sort_list(t_opt *opl, t_dir **lst, t_dir **slst, char *ent);
 t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
 t_dir				*sort_dir_time(t_dir *list);

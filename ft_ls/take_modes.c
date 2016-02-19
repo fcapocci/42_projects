@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:58:13 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/27 15:58:19 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:42:01 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ char	*take_modes(mode_t st_mode)
 	s[6] = (st_mode & S_IROTH) ? 'r' : '-';
 	s[7] = (st_mode & S_IWOTH) ? 'w' : '-';
 	s[8] = (st_mode & S_IXOTH) ? 'x' : '-';
+	if (st_mode & S_ISUID)
+		s[2] = (st_mode & S_IXUSR) ? 's' : 'S';
+	if (st_mode & S_ISGID)
+		s[5] = (st_mode & S_IXGRP) ? 's' : 'S';
+	if (st_mode & S_ISVTX)
+		s[8] = (st_mode & S_IXOTH) ? 't' : 'T';
 	return (s);
 }
 

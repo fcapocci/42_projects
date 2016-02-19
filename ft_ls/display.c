@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 08:34:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:45:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,13 @@ void		illegal_option(char c)
 	ft_putchar(c);
 	ft_putchar('\n');
 	ft_putstr("usage: ls [-Ralrt] [file ...]");
+}
+
+void		get_link(char *file)
+{
+	char	buff[256];
+	int		n;
+
+	n = readlink(file, buff, 255);
+	write(1, buff, n);
 }
