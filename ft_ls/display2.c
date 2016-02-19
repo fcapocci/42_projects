@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 08:34:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:45:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void		print_error(char *entity, int fonction)
 
 	if (fonction == 1)
 	{
-	filename = hide_path(entity);
-	ft_putstr("ls: ");
-	ft_putstr(filename);
-	ft_putendl(": Input/output error");
+		filename = hide_path(entity);
+		ft_putstr("ls: ");
+		ft_putstr(filename);
+		ft_putendl(": Input/output error");
 	}
 	if (fonction == 0)
 	{
-	filename = hide_path(entity);
-	ft_putstr("ls: ");
-	ft_putstr(filename);
-	ft_putendl(": No such file or directory");
+		filename = hide_path(entity);
+		ft_putstr("ls: ");
+		ft_putstr(filename);
+		ft_putendl(": No such file or directory");
 	}
 }

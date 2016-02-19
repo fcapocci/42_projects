@@ -13,7 +13,7 @@
 NAME = ft_ls
 
 FILESC = main_test.c display.c ft_ls.c modif_content.c option.c\
-		 take_modes.c padding.c display2.c sort.c
+		 take_modes.c padding.c display2.c sort.c sort2.c
 
 FILESO = $(FILESC:.c=.o)
 

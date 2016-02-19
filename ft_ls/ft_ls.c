@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/17 08:37:08 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:36:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 int			read_file(t_dir **flist, t_dir **first, char *dirname)
 {
 	if (!(*flist))
+	{
 		if (((*flist) = get_content(dirname)))
 			(*first) = (*flist);
 		else
 			print_error(dirname, 1);
+	}
 	else
+	{
 		if (((*flist)->next = get_content(dirname)))
 		{
 			(*flist)->next->prev = (*flist);
@@ -82,6 +85,7 @@ int			read_file(t_dir **flist, t_dir **first, char *dirname)
 		}
 		else
 			print_error(dirname, 1);
+	}
 	return (0);
 }
 
@@ -100,7 +104,7 @@ int			read_dir(t_opt *optl, t_dir *list, char *dirname)
 		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
-			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
+			sort_list(optl, &list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
 	ft_memdel((void**)&path);
 	printing(optl, list, slist);

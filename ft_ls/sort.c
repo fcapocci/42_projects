@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/18 16:33:49 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:36:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 {
 	t_arg			*arg[2];
-	t_opt			*opi;
 
-	opi = optl;
 	arg[0] = NULL;
 	arg[1] = NULL;
 	argv = sort_arg_lex(argc, argv);
 	while (argc-- > 1)
 	{
 		if (!arg[0])
+		{
 			if ((arg[0] = get_arg_content(*argv)))
 				arg[1] = arg[0];
 			else
 				print_error(*argv, 0);
+		}
 		else
+		{
 			if ((arg[0]->next = get_arg_content(*argv)))
 			{
 				arg[0]->next->prev = arg[0];
@@ -36,9 +37,10 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 			}
 			else
 				print_error(*argv, 0);
+		}
 		argv++;
 	}
-	//arg[1] = (option_ok(optl, 't') == 1 ? sort_arg_lex(optl, arg[1]) : arg[1]);
+	arg[1] = (option_ok(optl, 't') == 1 ? sort_arg_time(arg[1]) : arg[1]);
 	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
 }
 
@@ -79,52 +81,40 @@ char			**sort_arg_lex(int argc, char **argv)
 	return (argv);
 }
 
-t_arg			*sort_arg_time(t_opt *optl, t_arg *argument)
+t_arg			*sort_arg_time(t_arg *list)
 {
-	t_arg			*arg[2];
+	t_arg			*start;
+	t_arg			*tmp;
 
-	arg[1] = argument;
-	while (argument->next)
+	tmp = (t_arg*)ft_memalloc(sizeof(t_arg));
+	start = list;
+	while (list && list->next)
 	{
-		if (argument->time > argument->next->time)
+		if (list->time < list->next->time)
 		{
-			argument->next->prev = argument->prev;
-			argument->prev = argument->next;
-			argument->next = argument->next->next;
-			argument->next->next = argument;
-			argument = arg[1];
+			tmp = swap_arg_content(tmp, list);
+			list = swap_arg_content(list, list->next);
+			list->next = swap_arg_content(list->next, tmp);
+			list = start;
 		}
-		argument = argument->next;
+		else
+			list = list->next;
 	}
-	arg[0] = argument;
-	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
+	ft_memdel((void**)&tmp);
+	return (start);
 }
 
-void			sort_list(t_dir **list, t_dir **slist, char *entity)
+void			sort_list(t_opt *opl, t_dir **list, t_dir **slist, char *entity)
 {
-	t_dir			*ptr;
-
-	ptr = (*list);
 	if (!(*slist))
+	{
 		if (((*slist) = get_content(entity)))
 			(*list) = (*slist);
 		else
 			print_error(entity, 1);
+	}
 	else
-		/*
-		if (ft_strcmp(get_content(entity)->name, (*slist)->name) == 1)
-		{
-			(*slist)->next = get_content(entity);
-			(*slist)->next->prev = (*slist);
-			(*slist) = (*slist)->next;
-		}
-		else
-		{
-			(*list)->prev = get_content(entity);
-			(*list)->prev->next = (*list);
-			(*list) = (*list)->prev;
-		}
-		*/
+	{
 		if (((*slist)->next = get_content(entity)))
 		{
 			(*slist)->next->prev = (*slist);
@@ -133,4 +123,7 @@ void			sort_list(t_dir **list, t_dir **slist, char *entity)
 		}
 		else
 			print_error(entity, 1);
+	}
+	(*list) = sort_dir_lex((*list));
+	(*list) = (option_ok(opl, 't') ? sort_dir_time((*list)) : (*list));
 }
