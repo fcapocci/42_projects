@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_option.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/28 08:37:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/04 11:18:27 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/02/20 13:58:58 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/02/20 14:02:04 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 int		main(int argc, char **argv)
 {
-	t_opt		*opt;
+	t_dir		*list;
+	t_opt		*optl;
 
-	if (argc > 1)
-	{
-		if (take_option(&opt, argc, argv) == -1)
-			return (-1);
-		while (opt)
-		{
-			ft_putchar(opt->c);
-			ft_putstr(" -- ");
-			opt = opt->next;
-		}
-		ft_putchar('\n');
-	}
+	optl = NULL;
+	list = NULL;
+	if ((take_option(&optl, &argc, &argv)) == -1)
+		return (-1);
+	if ((manage(argc, argv, optl, list)) == -1)
+		return (-1);
+	ft_memdel((void**)&optl);
+	ft_memdel((void**)&list);
 	return (0);
 }

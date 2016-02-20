@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 15:36:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/20 15:20:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			manage(int argc, char **argv, t_opt *optl, t_dir *list)
 	{
 		dirname = ft_strnew(1);
 		dirname[0] = '.';
-		if ((read_dir(optl, flist, dirname)) == -1)
+		if ((read_dir(optl, &flist, dirname)) == -1)
 			return (-1);
 		exit(0);
 	}
@@ -40,9 +40,7 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 	flist[1] = NULL;
 	flist[0] = NULL;
 	if ((arg[0] = read_arg(optl, argc, argv)) == NULL)
-	{
 		exit(0);
-	}
 	arg[1] = arg[0];
 	while (arg[0])
 	{
@@ -57,7 +55,7 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 		if (arg[1]->type == 'd')
 		{
 			print_path(arg[1]->argument, argc, flist[1]);
-			if ((read_dir(optl, list, arg[1]->argument)) == -1)
+			if ((read_dir(optl, &list, arg[1]->argument)) == -1)
 				return (-1);
 		}
 		arg[1] = (option_ok(optl, 'r') == 1 ? arg[1]->prev : arg[1]->next);
@@ -89,7 +87,7 @@ int			read_file(t_dir **flist, t_dir **first, char *dirname)
 	return (0);
 }
 
-int			read_dir(t_opt *optl, t_dir *list, char *dirname)
+int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 {
 	DIR				*rep;
 	struct dirent	*dir;
@@ -97,18 +95,20 @@ int			read_dir(t_opt *optl, t_dir *list, char *dirname)
 	char			*path;
 
 	path = ft_strjoin(dirname, "/");
-	slist = list;
+	slist = (*list);
 	if ((rep = opendir(dirname)) == NULL)
 		return (permis_denied(dirname));
 	while ((dir = readdir(rep)))
 		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
 		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
-			sort_list(optl, &list, &slist, ft_strjoin(path, dir->d_name));
+			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
+	(*list) = sort_dir_lex((*list));
+	(*list) = (option_ok(optl, 't') ? sort_dir_time((*list)) : (*list));
 	ft_memdel((void**)&path);
-	printing(optl, list, slist);
-	ft_memdel((void**)&list);
+	printing(optl, (*list), slist);
+	ft_memdel((void**)list);
 	return (0);
 }
 
@@ -128,9 +128,9 @@ t_dir		*get_content(char *entity)
 	list->grp = getgrgid(stats.st_gid)->gr_name;
 	list->tall = stats.st_size;
 	list->date = dating(&stats.st_mtime);
-	list->numdate = stats.st_mtime;
+	list->numdate = stats.st_mtimespec.tv_nsec;
 	list->blksize = stats.st_blocks;
-	list->name = strdup(entity);
+	list->name = ft_strdup(entity);
 	list->prev = NULL;
 	list->next = NULL;
 	return (list);

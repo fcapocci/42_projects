@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 17:07:22 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/20 13:37:33 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct		s_dir
 int					manage(int argc, char **argv, t_opt *optl, t_dir *list);
 int					manage_read(int argc, char **argv, t_opt *optl, t_dir *lst);
 char				*manage_rep(int argc, char **argv);
-int					read_dir(t_opt *optl, t_dir *list, char *dirname);
+int					read_dir(t_opt *optl, t_dir **list, char *dirname);
 int					read_file(t_dir **flist, t_dir **first, char *dirname);
 
 char				*dating(const time_t *clock);
@@ -71,7 +71,7 @@ t_arg				*get_arg_content(char *entity);
 t_arg				*swap_arg_content(t_arg *list1, t_arg *link2);
 t_arg				*sort_arg_time(t_arg *argument);
 char				**sort_arg_lex(int argc, char **argv);
-void				sort_list(t_opt *opl, t_dir **lst, t_dir **slst, char *ent);
+void				sort_list(t_dir ***lst, t_dir **slst, char *ent);
 t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
 t_dir				*sort_dir_time(t_dir *list);
@@ -88,6 +88,7 @@ void				illegal_option(char c);
 int					permis_denied(char *entity);
 void				print_error(char *entity, int fonction);
 void				print_path(char *dirname, int save, t_dir *flist);
+void				get_link(char *file);
 
 t_opt				*creat_elem(t_opt *optl, char o);
 int					take_option(t_opt **optl, int *argc, char ***argv);

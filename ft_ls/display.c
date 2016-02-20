@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 17:45:02 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/20 11:01:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	{
 		if (option_ok(optl, 'l') == 1)
 			print_opt_l(ptr, (option_ok(optl, 'r') == 1) ? end : start);
-		ft_putendl(hide_path(option_ok(optl, 'r') == 1 ? end->name
+		ft_putstr(hide_path(option_ok(optl, 'r') == 1 ? end->name
 		: start->name));
+		if ((((option_ok(optl, 'r') == 1) ? end->type : start->type) == 'l')
+		&& (option_ok(optl, 'l') == 1))
+			get_link(option_ok(optl, 'r') == 1 ? end->name : start->name);
+		ft_putchar('\n');
 		end = (option_ok(optl, 'r') == 1) ? end->prev : end;
 		start = (option_ok(optl, 'r') == 0) ? start->next : start;
 	}
@@ -43,7 +47,10 @@ void		print_file(t_opt *optl, t_dir *start)
 	{
 		if (option_ok(optl, 'l') == 1)
 			print_opt_l(ptr, start);
-		ft_putendl(start->name);
+		ft_putstr(start->name);
+		if (start->type == 'l' && option_ok(optl, 'l') == 1)
+			get_link(start->name);
+		ft_putchar('\n');
 		start = start->next;
 	}
 }
@@ -80,5 +87,6 @@ void		get_link(char *file)
 	int		n;
 
 	n = readlink(file, buff, 255);
+	ft_putstr(" -> ");
 	write(1, buff, n);
 }

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 17:16:35 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/20 13:41:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,18 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 	while (argc-- > 1)
 	{
 		if (!arg[0])
-		{
 			if ((arg[0] = get_arg_content(*argv)))
 				arg[1] = arg[0];
 			else
 				print_error(*argv, 0);
+				else
+		if ((arg[0]->next = get_arg_content(*argv)))
+		{
+			arg[0]->next->prev = arg[0];
+			arg[0] = arg[0]->next;
 		}
 		else
-		{
-			if ((arg[0]->next = get_arg_content(*argv)))
-			{
-				arg[0]->next->prev = arg[0];
-				arg[0] = arg[0]->next;
-			}
-			else
-				print_error(*argv, 0);
-		}
+			print_error(*argv, 0);
 		argv++;
 	}
 	arg[1] = (option_ok(optl, 't') == 1 ? sort_arg_time(arg[1]) : arg[1]);
@@ -104,26 +100,24 @@ t_arg			*sort_arg_time(t_arg *list)
 	return (start);
 }
 
-void			sort_list(t_opt *opl, t_dir **list, t_dir **slist, char *entity)
+void			sort_list(t_dir ***list, t_dir **slist, char *ent)
 {
 	if (!(*slist))
 	{
-		if (((*slist) = get_content(entity)))
-			(*list) = (*slist);
+		if (((*slist) = get_content(ent)))
+			(**list) = (*slist);
 		else
-			print_error(entity, 1);
+			print_error(ent, 1);
 	}
 	else
 	{
-		if (((*slist)->next = get_content(entity)))
+		if (((*slist)->next = get_content(ent)))
 		{
 			(*slist)->next->prev = (*slist);
 			(*slist) = (*slist)->next;
 			(*slist)->next = NULL;
 		}
 		else
-			print_error(entity, 1);
+			print_error(ent, 1);
 	}
-	(*list) = sort_dir_lex((*list));
-	(*list) = (option_ok(opl, 't') ? sort_dir_time((*list)) : (*list));
 }
