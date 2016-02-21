@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 16:27:05 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:10:55 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 	flist[0] = NULL;
 	if ((arg[0] = read_arg(optl, argc, argv)) == NULL)
 		exit(0);
-	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_time(arg[0]) : arg[0]);
-	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_nanotime(arg[0]) : arg[0]);
+	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_time(optl, arg[0]) : arg[0]);
+	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_nanotime(optl, arg[0]) : arg[0]);
 	arg[1] = arg[0];
 	while (arg[0])
 	{
 		if (arg[0]->type != 'd')
 			read_file(&flist[0], &flist[1], arg[0]->argument);
-		arg[0] = (option_ok(optl, 'r') == 1 ? arg[0]->prev : arg[0]->next);
+		arg[0] = arg[0]->next;
 	}
 	if (flist[1])
 		print_file(optl, flist[1]);
@@ -60,7 +60,7 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 			if ((read_dir(optl, &list, arg[1]->argument)) == -1)
 				return (-1);
 		}
-		arg[1] = (option_ok(optl, 'r') == 1 ? arg[1]->prev : arg[1]->next);
+		arg[1] = arg[1]->next;
 	}
 	ft_memdel((void**)arg);
 	ft_memdel((void**)flist);

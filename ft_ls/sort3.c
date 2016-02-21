@@ -6,13 +6,13 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 13:43:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 13:53:44 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:10:27 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_arg			*sort_arg_nanotime(t_arg *argument)
+t_arg			*sort_arg_nanotime(t_opt *optl, t_arg *argument)
 {
 	t_arg			*start;
 	t_arg			*tmp;
@@ -21,8 +21,10 @@ t_arg			*sort_arg_nanotime(t_arg *argument)
 	start = argument;
 	while (argument && argument->next)
 	{
-		if ((argument->time == argument->next->time) &&
-		(argument->nanotime < argument->next->nanotime))
+		if ((!option_ok(optl, 'r') && argument->time == argument->next->time &&
+		argument->nanotime < argument->next->nanotime)
+		|| (option_ok(optl, 'r') && argument->time == argument->next->time &&
+		argument->nanotime > argument->next->nanotime))
 		{
 			tmp = swap_arg_content(tmp, argument);
 			argument = swap_arg_content(argument, argument->next);

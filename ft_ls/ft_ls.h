@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 13:45:25 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:03:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ char				take_type(mode_t st_mode);
 t_arg				*read_arg(t_opt *optl, int argc, char **argv);
 t_arg				*get_arg_content(char *entity);
 t_arg				*swap_arg_content(t_arg *list1, t_arg *link2);
-t_arg				*sort_arg_time(t_arg *argument);
-t_arg				*sort_arg_nanotime(t_arg *argument);
-char				**sort_arg_lex(int argc, char **argv);
+t_arg				*sort_arg_time(t_opt *optl, t_arg *argument);
+t_arg				*sort_arg_nanotime(t_opt *optl, t_arg *argument);
+char				**sort_arg_lex(t_opt *optl, int argc, char **argv);
 void				sort_list(t_dir ***lst, t_dir **slst, char *ent);
 t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
