@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/20 13:37:33 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 13:45:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_arg
 	char			*argument;
 	char			type;
 	long long		time;
+	long long		nanotime;
 	struct s_arg	*prev;
 	struct s_arg	*next;
 }					t_arg;
@@ -46,6 +47,7 @@ typedef struct		s_dir
 	long			tall;
 	char			*date;
 	long long		numdate;
+	long long		nano_numdate;
 	long			blksize;
 	char			*name;
 	struct s_dir	*prev;
@@ -70,11 +72,13 @@ t_arg				*read_arg(t_opt *optl, int argc, char **argv);
 t_arg				*get_arg_content(char *entity);
 t_arg				*swap_arg_content(t_arg *list1, t_arg *link2);
 t_arg				*sort_arg_time(t_arg *argument);
+t_arg				*sort_arg_nanotime(t_arg *argument);
 char				**sort_arg_lex(int argc, char **argv);
 void				sort_list(t_dir ***lst, t_dir **slst, char *ent);
 t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
 t_dir				*sort_dir_time(t_dir *list);
+t_dir				*sort_dir_nanotime(t_dir *list);
 
 void				padd_nblink(t_dir *list, t_dir *start);
 void				padd_owner(t_dir *list, t_dir *start);

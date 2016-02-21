@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/20 13:41:23 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 16:47:33 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 			print_error(*argv, 0);
 		argv++;
 	}
-	arg[1] = (option_ok(optl, 't') == 1 ? sort_arg_time(arg[1]) : arg[1]);
 	return (option_ok(optl, 'r') == 1 ? arg[0] : arg[1]);
 }
 
@@ -52,6 +51,7 @@ t_arg			*get_arg_content(char *entity)
 	arg->argument = entity;
 	arg->type = take_type(stats.st_mode);
 	arg->time = stats.st_mtime;
+	arg->nanotime = stats.st_mtimespec.tv_nsec;
 	arg->prev = NULL;
 	arg->next = NULL;
 	return (arg);

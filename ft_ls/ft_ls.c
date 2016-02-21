@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/20 15:20:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/21 16:27:05 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
 	flist[0] = NULL;
 	if ((arg[0] = read_arg(optl, argc, argv)) == NULL)
 		exit(0);
+	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_time(arg[0]) : arg[0]);
+	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_nanotime(arg[0]) : arg[0]);
 	arg[1] = arg[0];
 	while (arg[0])
 	{
@@ -106,6 +108,7 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 	closedir(rep);
 	(*list) = sort_dir_lex((*list));
 	(*list) = (option_ok(optl, 't') ? sort_dir_time((*list)) : (*list));
+	(*list) = (option_ok(optl, 't') ? sort_dir_nanotime((*list)) : (*list));
 	ft_memdel((void**)&path);
 	printing(optl, (*list), slist);
 	ft_memdel((void**)list);
@@ -128,7 +131,8 @@ t_dir		*get_content(char *entity)
 	list->grp = getgrgid(stats.st_gid)->gr_name;
 	list->tall = stats.st_size;
 	list->date = dating(&stats.st_mtime);
-	list->numdate = stats.st_mtimespec.tv_nsec;
+	list->numdate = stats.st_mtime;
+	list->nano_numdate = stats.st_mtimespec.tv_nsec;
 	list->blksize = stats.st_blocks;
 	list->name = ft_strdup(entity);
 	list->prev = NULL;
