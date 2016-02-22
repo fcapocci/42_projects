@@ -6,7 +6,7 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/02/21 13:54:48 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/02/22 22:42:35 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ft_ls
 
 FILESC = main.c display.c ft_ls.c modif_content.c option.c\
 		 take_modes.c padding.c display2.c sort.c sort2.c\
-		 sort3.c
+		 sort3.c recursion.c
 
 FILESO = $(FILESC:.c=.o)
 

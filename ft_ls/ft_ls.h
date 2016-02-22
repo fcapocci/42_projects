@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 16:21:09 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 22:28:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int					manage_read(int argc, char **argv, t_opt *optl, t_dir *lst);
 char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir **list, char *dirname);
 int					read_file(t_dir **flist, t_dir **first, char *dirname);
+void				recursion(t_opt *optl, t_dir *start, t_dir *end);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);

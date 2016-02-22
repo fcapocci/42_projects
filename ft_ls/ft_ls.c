@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:19:43 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 22:30:01 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 	(*list) = (op_ok(optl, 't') ? sort_dir_nanotime((*list)) : (*list));
 	ft_memdel((void**)&path);
 	printing(optl, (*list), slist);
+	recursion(optl, (*list), slist);
 	ft_memdel((void**)list);
 	return (0);
 }
