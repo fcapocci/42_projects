@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 14:05:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:16:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	t_dir	*ptr;
 
 	ptr = start;
-	if (option_ok(optl, 'l') == 1 && start)
+	if (op_ok(optl, 'l') == 1 && start)
 	{
 		ft_putstr("total ");
 		ft_putnbr(total_blk(start));
 		ft_putchar('\n');
 	}
-	while ((option_ok(optl, 'r') == 1) ? end : start)
+	while ((op_ok(optl, 'r') == 1) ? end : start)
 	{
-		if (option_ok(optl, 'l') == 1)
-			print_opt_l(ptr, (option_ok(optl, 'r') == 1) ? end : start);
-		colors(optl, hide_path(option_ok(optl, 'r') == 1 ? end->name
-		: start->name), (option_ok(optl, 'r') ? end->type : start->type),
-		option_ok(optl, 'r') ? end->modes : start->modes);
-		if ((((option_ok(optl, 'r') == 1) ? end->type : start->type) == 'l')
-		&& (option_ok(optl, 'l') == 1))
-			get_link(option_ok(optl, 'r') == 1 ? end->name : start->name);
+		if (op_ok(optl, 'l') == 1)
+			print_opt_l(ptr, (op_ok(optl, 'r') == 1) ? end : start);
+		colors(optl, hide_path(op_ok(optl, 'r') == 1 ? end->name
+		: start->name), (op_ok(optl, 'r') ? end->type : start->type),
+		op_ok(optl, 'r') ? end->modes : start->modes);
+		if ((((op_ok(optl, 'r') == 1) ? end->type : start->type) == 'l')
+		&& (op_ok(optl, 'l') == 1))
+			get_link(op_ok(optl, 'r') == 1 ? end->name : start->name);
 		ft_putchar('\n');
-		end = (option_ok(optl, 'r') == 1) ? end->prev : end;
-		start = (option_ok(optl, 'r') == 0) ? start->next : start;
+		end = (op_ok(optl, 'r') == 1) ? end->prev : end;
+		start = (op_ok(optl, 'r') == 0) ? start->next : start;
 	}
 }
 
@@ -46,10 +46,10 @@ void		print_file(t_opt *optl, t_dir *start)
 	ptr = start;
 	while (start)
 	{
-		if (option_ok(optl, 'l') == 1)
+		if (op_ok(optl, 'l') == 1)
 			print_opt_l(ptr, start);
 		colors(optl, start->name, start->type, start->modes);
-		if (start->type == 'l' && option_ok(optl, 'l') == 1)
+		if (start->type == 'l' && op_ok(optl, 'l') == 1)
 			get_link(start->name);
 		ft_putchar('\n');
 		start = start->next;

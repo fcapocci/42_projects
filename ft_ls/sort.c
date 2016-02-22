@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 10:45:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:22:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ char			**sort_arg_lex(t_opt *optl, int argc, char **argv)
 	i = 0;
 	while (i != (argc - 2))
 	{
-		if ((!option_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) < 0)
-		|| (option_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) > 0))
+		if ((!op_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) < 0)
+		|| (op_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) > 0))
 		{
 			tmp = argv[i + 1];
 			argv[i + 1] = argv[i];
@@ -87,8 +87,8 @@ t_arg			*sort_arg_time(t_opt *optl, t_arg *list)
 	start = list;
 	while (list && list->next)
 	{
-		if ((!option_ok(optl, 'r') && list->time < list->next->time)
-		|| (option_ok(optl, 'r') && list->time > list->next->time))
+		if ((!op_ok(optl, 'r') && list->time < list->next->time)
+		|| (op_ok(optl, 'r') && list->time > list->next->time))
 		{
 			tmp = swap_arg_content(tmp, list);
 			list = swap_arg_content(list, list->next);

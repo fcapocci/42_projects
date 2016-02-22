@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 13:20:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:26:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		check_option(char o)
 	return (0);
 }
 
-int		option_ok(t_opt *optl, char o)
+int		op_ok(t_opt *optl, char o)
 {
 	while (optl)
 	{

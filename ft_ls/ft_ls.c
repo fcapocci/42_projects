@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 11:39:05 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:19:43 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int			manage_read(int argc, char **argv, t_opt *op, t_dir *list)
 	flist[0] = NULL;
 	if ((arg[0] = read_arg(op, argc, argv)) == NULL)
 		exit(0);
-	arg[0] = (option_ok(op, 't') == 1 ? sort_arg_time(op, arg[0]) : arg[0]);
-	arg[0] = (option_ok(op, 't') == 1 ? sort_arg_nanotime(op, arg[0]) : arg[0]);
+	arg[0] = (op_ok(op, 't') == 1 ? sort_arg_time(op, arg[0]) : arg[0]);
+	arg[0] = (op_ok(op, 't') == 1 ? sort_arg_nanotime(op, arg[0]) : arg[0]);
 	arg[1] = arg[0];
 	while (arg[0])
 	{
-		if ((!option_ok(op, 'l') ? (arg[0]->type != 'l' &&
+		if ((!op_ok(op, 'l') ? (arg[0]->type != 'l' &&
 		arg[0]->type != 'd') : (arg[0]->type != 'd')))
 			read_file(&flist[0], &flist[1], arg[0]->argument);
 		arg[0] = arg[0]->next;
@@ -55,7 +55,7 @@ int			manage_read(int argc, char **argv, t_opt *op, t_dir *list)
 		print_file(op, flist[1]);
 	while (arg[1])
 	{
-		if ((arg[1]->type == 'd') || (!option_ok(op, 'l') && arg[1]->type == 'l'))
+		if ((arg[1]->type == 'd') || (!op_ok(op, 'l') && arg[1]->type == 'l'))
 		{
 			print_path(arg[1]->argument, argc, flist[1]);
 			if ((read_dir(op, &list, arg[1]->argument)) == -1)
@@ -102,14 +102,14 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 	if ((rep = opendir(dirname)) == NULL)
 		return (permis_denied(dirname));
 	while ((dir = readdir(rep)))
-		if ((option_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
-		(option_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
-		(option_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
+		if ((op_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
+		(op_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
+		(op_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
 			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
 	(*list) = sort_dir_lex((*list));
-	(*list) = (option_ok(optl, 't') ? sort_dir_time((*list)) : (*list));
-	(*list) = (option_ok(optl, 't') ? sort_dir_nanotime((*list)) : (*list));
+	(*list) = (op_ok(optl, 't') ? sort_dir_time((*list)) : (*list));
+	(*list) = (op_ok(optl, 't') ? sort_dir_nanotime((*list)) : (*list));
 	ft_memdel((void**)&path);
 	printing(optl, (*list), slist);
 	ft_memdel((void**)list);
