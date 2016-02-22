@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 19:13:40 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 14:01:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:33:19 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void		colors(t_opt *optl, char *name, char type, char *modes)
 			print_colors("\033[35m", name, "\033[0m");
 		else if (type == 'c')
 			print_colors("\033[33m", name, "\033[0m");
+		else if (type == 'b')
+			print_colors("\033[34m", name, "\033[0m");
 		else if (type == 's')
 			print_colors("\033[32m", name, "\033[0m");
 		else
