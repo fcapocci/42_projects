@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:49:22 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/23 00:34:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ int		take_option(t_opt **optl, int *argc, char ***argv)
 	while ((*argc) > 1)
 	{
 		(*argv)++;
-		if (***argv == '-')
+		if ((***argv != '-') || (***argv == '-' && !(**argv)[1]))
+		{
+			break ;
+		}
+		else if (***argv == '-')
 		{
 			i = 1;
 			while ((**argv)[i])
@@ -50,10 +54,6 @@ int		take_option(t_opt **optl, int *argc, char ***argv)
 				if (!(*optl))
 					(*optl) = optlist;
 			}
-		}
-		else if (***argv != '-')
-		{
-			break ;
 		}
 		(*argc)--;
 	}
