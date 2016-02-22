@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 18:04:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:45:58 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			**sort_arg_lex(t_opt *optl, int argc, char **argv)
 	while (i != (argc - 2))
 	{
 		if ((!option_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) < 0)
-		||(option_ok(optl, 'r') && ft_strcmp(argv [i + 1], argv[i]) > 0))
+		|| (option_ok(optl, 'r') && ft_strcmp(argv[i + 1], argv[i]) > 0))
 		{
 			tmp = argv[i + 1];
 			argv[i + 1] = argv[i];

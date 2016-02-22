@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/20 11:01:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:05:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	{
 		if (option_ok(optl, 'l') == 1)
 			print_opt_l(ptr, (option_ok(optl, 'r') == 1) ? end : start);
-		ft_putstr(hide_path(option_ok(optl, 'r') == 1 ? end->name
-		: start->name));
+		colors(optl, hide_path(option_ok(optl, 'r') == 1 ? end->name
+		: start->name), (option_ok(optl, 'r') ? end->type : start->type),
+		option_ok(optl, 'r') ? end->modes : start->modes);
 		if ((((option_ok(optl, 'r') == 1) ? end->type : start->type) == 'l')
 		&& (option_ok(optl, 'l') == 1))
 			get_link(option_ok(optl, 'r') == 1 ? end->name : start->name);
@@ -47,7 +48,7 @@ void		print_file(t_opt *optl, t_dir *start)
 	{
 		if (option_ok(optl, 'l') == 1)
 			print_opt_l(ptr, start);
-		ft_putstr(start->name);
+		colors(optl, start->name, start->type, start->modes);
 		if (start->type == 'l' && option_ok(optl, 'l') == 1)
 			get_link(start->name);
 		ft_putchar('\n');
@@ -78,7 +79,7 @@ void		illegal_option(char c)
 	ft_putstr("ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putstr("usage: ls [-Ralrt] [file ...]");
+	ft_putstr("usage: ls [-GRalrt] [file ...]");
 }
 
 void		get_link(char *file)

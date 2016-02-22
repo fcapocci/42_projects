@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 18:03:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 13:45:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int					permis_denied(char *entity);
 void				print_error(char *entity, int fonction);
 void				print_path(char *dirname, int save, t_dir *flist);
 void				get_link(char *file);
+void				colors(t_opt *optl, char *name, char type, char *modes);
+void				print_colors(char *s1, char *s2, char *s3);
 
 t_opt				*creat_elem(t_opt *optl, char o);
 int					take_option(t_opt **optl, int *argc, char ***argv);

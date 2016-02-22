@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 18:10:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 11:39:05 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,33 @@ int			manage(int argc, char **argv, t_opt *optl, t_dir *list)
 	return (0);
 }
 
-int			manage_read(int argc, char **argv, t_opt *optl, t_dir *list)
+int			manage_read(int argc, char **argv, t_opt *op, t_dir *list)
 {
 	t_arg			*arg[2];
 	t_dir			*flist[2];
 
 	flist[1] = NULL;
 	flist[0] = NULL;
-	if ((arg[0] = read_arg(optl, argc, argv)) == NULL)
+	if ((arg[0] = read_arg(op, argc, argv)) == NULL)
 		exit(0);
-	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_time(optl, arg[0]) : arg[0]);
-	arg[0] = (option_ok(optl, 't') == 1 ? sort_arg_nanotime(optl, arg[0]) : arg[0]);
+	arg[0] = (option_ok(op, 't') == 1 ? sort_arg_time(op, arg[0]) : arg[0]);
+	arg[0] = (option_ok(op, 't') == 1 ? sort_arg_nanotime(op, arg[0]) : arg[0]);
 	arg[1] = arg[0];
 	while (arg[0])
 	{
-		if (arg[0]->type != 'd')
+		if ((!option_ok(op, 'l') ? (arg[0]->type != 'l' &&
+		arg[0]->type != 'd') : (arg[0]->type != 'd')))
 			read_file(&flist[0], &flist[1], arg[0]->argument);
 		arg[0] = arg[0]->next;
 	}
 	if (flist[1])
-		print_file(optl, flist[1]);
+		print_file(op, flist[1]);
 	while (arg[1])
 	{
-		if (arg[1]->type == 'd')
+		if ((arg[1]->type == 'd') || (!option_ok(op, 'l') && arg[1]->type == 'l'))
 		{
 			print_path(arg[1]->argument, argc, flist[1]);
-			if ((read_dir(optl, &list, arg[1]->argument)) == -1)
+			if ((read_dir(op, &list, arg[1]->argument)) == -1)
 				return (-1);
 		}
 		arg[1] = arg[1]->next;

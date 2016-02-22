@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 19:13:40 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 11:19:09 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:01:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,31 @@ long		total_blk(t_dir *list)
 		list = list->next;
 	}
 	return (total);
+}
+
+void		print_colors(char *s1, char *s2, char *s3)
+{
+	ft_putstr(s1);
+	ft_putstr(s2);
+	ft_putstr(s3);
+}
+
+void		colors(t_opt *optl, char *name, char type, char *modes)
+{
+	if (option_ok(optl, 'G'))
+		if (type == '-' && ((modes[8] == 'x') || (modes[5] == 'x')
+		|| (modes[2] == 'x')))
+			print_colors("\033[31m", name, "\033[0m");
+		else if (type == 'd')
+			print_colors("\033[36m", name, "\033[0m");
+		else if (type == 'l')
+			print_colors("\033[35m", name, "\033[0m");
+		else if (type == 'c')
+			print_colors("\033[33m", name, "\033[0m");
+		else if (type == 's')
+			print_colors("\033[32m", name, "\033[0m");
+		else
+			ft_putstr(name);
+	else
+		ft_putstr(name);
 }
