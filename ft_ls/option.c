@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:26:30 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:49:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int		check_option(char o)
 	if (o == 'R')
 		return (1);
 	if (o == 'G')
+		return (1);
+	if (o == 'g')
+		return (1);
+	if (o == 'o')
 		return (1);
 	else
 	{

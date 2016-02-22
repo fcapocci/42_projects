@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:16:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 16:27:17 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void		printing(t_opt *optl, t_dir *start, t_dir *end)
 	}
 	while ((op_ok(optl, 'r') == 1) ? end : start)
 	{
-		if (op_ok(optl, 'l') == 1)
-			print_opt_l(ptr, (op_ok(optl, 'r') == 1) ? end : start);
+		if ((op_ok(optl, 'l')) || (op_ok(optl, 'g')) || (op_ok(optl, 'o')))
+			print_opt_l(optl, ptr, (op_ok(optl, 'r') == 1) ? end : start);
 		colors(optl, hide_path(op_ok(optl, 'r') == 1 ? end->name
 		: start->name), (op_ok(optl, 'r') ? end->type : start->type),
 		op_ok(optl, 'r') ? end->modes : start->modes);
@@ -47,7 +47,7 @@ void		print_file(t_opt *optl, t_dir *start)
 	while (start)
 	{
 		if (op_ok(optl, 'l') == 1)
-			print_opt_l(ptr, start);
+			print_opt_l(optl, ptr, start);
 		colors(optl, start->name, start->type, start->modes);
 		if (start->type == 'l' && op_ok(optl, 'l') == 1)
 			get_link(start->name);
@@ -56,17 +56,23 @@ void		print_file(t_opt *optl, t_dir *start)
 	}
 }
 
-void		print_opt_l(t_dir *start, t_dir *list)
+void		print_opt_l(t_opt *optl, t_dir *start, t_dir *list)
 {
 	ft_putchar(list->type);
 	ft_putstr(list->modes);
 	padd_nblink(start, list);
 	ft_putnbr(list->nblink);
 	ft_putchar(' ');
-	ft_putstr(list->owner);
-	padd_owner(start, list);
-	ft_putstr(list->grp);
-	padd_grp(start, list);
+	if (!op_ok(optl, 'g'))
+	{
+		ft_putstr(list->owner);
+		padd_owner(start, list);
+	}
+	if (!op_ok(optl, 'o'))
+	{
+		ft_putstr(list->grp);
+		padd_grp(start, list);
+	}
 	padd_tall(start, list);
 	ft_putnbr(list->tall);
 	ft_putchar(' ');
@@ -79,7 +85,7 @@ void		illegal_option(char c)
 	ft_putstr("ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putstr("usage: ls [-GRalrt] [file ...]");
+	ft_putstr("usage: ls [-GRaglort] [file ...]");
 }
 
 void		get_link(char *file)

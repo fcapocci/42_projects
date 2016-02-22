@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:17:47 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/22 16:21:09 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void				padd_owner(t_dir *list, t_dir *start);
 void				padd_grp(t_dir *list, t_dir *start);
 void				padd_tall(t_dir *list, t_dir *start);
 
-void				print_opt_l(t_dir *start, t_dir *list);
+void				print_opt_l(t_opt *optl, t_dir *start, t_dir *list);
 void				printing(t_opt *optl, t_dir *start, t_dir *end);
 void				print_file(t_opt *optl, t_dir *start);
 void				illegal_option(char c);
