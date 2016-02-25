@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:10:58 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/04 18:27:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 13:52:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	padd_nblink(t_dir *start, t_dir *list)
 			max = ft_strlen(ft_itoa(start->nblink));
 		start = start->next;
 	}
-	max += 2;
+	max += 1;
 	while ((max - ft_strlen(ft_itoa(list->nblink))) > 0)
 	{
 		ft_putchar(' ');

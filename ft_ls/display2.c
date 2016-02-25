@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 17:45:14 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:08:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			permis_denied(char *entity)
 	char			*dirname;
 
 	dirname = hide_path(entity);
-	ft_putstr("ls: ");
+	ft_putstr("ft_ls: ");
 	ft_putstr(dirname);
 	ft_putendl(": Permission denied");
 	free(dirname);
@@ -49,7 +49,7 @@ void		print_error(char *entity, int fonction)
 	if (fonction == 0 || fonction == 1)
 	{
 		filename = hide_path(entity);
-		ft_putstr("ls: ");
+		ft_putstr("ft_ls: ");
 		ft_putstr(filename);
 		ft_putendl(": No such file or directory");
 		free(filename);
@@ -57,7 +57,7 @@ void		print_error(char *entity, int fonction)
 	else
 	{
 		filename = hide_path(entity);
-		ft_putstr("ls: ");
+		ft_putstr("ft_ls: ");
 		ft_putstr(filename);
 		ft_putendl(": Input/output error");
 		free(filename);

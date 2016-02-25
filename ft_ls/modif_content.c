@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 19:13:40 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:20:47 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:17:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 char		*dating(const time_t *clock)
 {
 	char	*crt_date;
-	char	*date;
+	char	*tmp;
+	char	*tmp2;
 
-	date = ctime(clock);
-	crt_date = ft_strsub(date, 4, 12);
+	if ((long)(time(NULL) - (long)*clock) > 15780000)
+	{
+		tmp = ft_strsub(ctime(clock), 4, 7);
+		tmp2 = ft_strsub(ctime(clock), 19, 5);
+		crt_date = ft_strjoin(tmp, tmp2);
+		ft_memdel((void**)&tmp);
+		ft_memdel((void**)&tmp2);
+	}
+	else
+		crt_date = ft_strsub(ctime(clock), 4, 12);
 	return (crt_date);
 }
 
@@ -61,13 +70,13 @@ void		colors(t_opt *optl, char *name, char type, char *modes)
 		|| (modes[2] == 'x')))
 			print_colors("\033[31m", name, "\033[0m");
 		else if (type == 'd')
-			print_colors("\033[36m", name, "\033[0m");
+			print_colors("\033[1;36m", name, "\033[0m");
 		else if (type == 'l')
 			print_colors("\033[35m", name, "\033[0m");
 		else if (type == 'c')
-			print_colors("\033[33m", name, "\033[0m");
+			print_colors("\033[0;34;43m", name, "\033[0m");
 		else if (type == 'b')
-			print_colors("\033[34m", name, "\033[0m");
+			print_colors("\033[0;34;46m", name, "\033[0m");
 		else if (type == 's')
 			print_colors("\033[32m", name, "\033[0m");
 		else

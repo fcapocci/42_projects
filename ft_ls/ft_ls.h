@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 12:08:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:15:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_dir
 {
 	char			type;
 	char			*modes;
+	char			acl;
 	long			nblink;
 	char			*owner;
 	char			*grp;
@@ -69,6 +70,7 @@ long				total_blk(t_dir *list);
 t_dir				*get_content(char *name);
 char				*take_modes(mode_t st_mode);
 char				take_type(mode_t st_mode);
+char				take_acl_el(char *entity);
 
 t_arg				*read_arg(t_opt *optl, int argc, char **argv);
 t_arg				*get_arg_content(char *entity);

@@ -6,11 +6,13 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:58:13 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/19 16:42:01 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:33:55 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include <sys/xattr.h>
+#include <sys/acl.h>
 
 char	*take_modes(mode_t st_mode)
 {
@@ -36,6 +38,25 @@ char	*take_modes(mode_t st_mode)
 	return (s);
 }
 
+char	take_acl_el(char *entity)
+{
+	char	buff[4096];
+	void	*tmp;
+	char	c;
+
+	tmp = NULL;
+	if ((listxattr(entity, buff, sizeof(buff), XATTR_NOFOLLOW)) > 0)
+		c = '@';
+	else if ((tmp = acl_get_file(entity, ACL_TYPE_EXTENDED)))
+	{
+		c = '+';
+		acl_free(tmp);
+	}
+	else
+		c = ' ';
+	return (c);
+}
+
 char	take_type(mode_t st_mode)
 {
 	if (S_ISREG(st_mode))
@@ -54,3 +75,9 @@ char	take_type(mode_t st_mode)
 		return ('l');
 	return (0);
 }
+
+/*char	*minor_major()
+{
+	char	*s;
+	return (s);
+}*/

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 13:30:05 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/21 16:35:25 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 13:58:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_dir			*swap_dir_content(t_dir *link1, t_dir *link2)
 {
 	link1->type = link2->type;
 	link1->modes = link2->modes;
+	link1->acl = link2->acl;
 	link1->nblink = link2->nblink;
 	link1->owner = link2->owner;
 	link1->grp = link2->grp;
