@@ -20,28 +20,33 @@ FILESO = $(FILESC:.c=.o)
 
 INCLUDES = fillit.h libft/libft.h
 
-LIB = libft/libft.a
+LIB = libft
 
 CC = gcc -Wall -Werror -Wextra
 
-all: compileo compile
+all: $(NAME)
 
-compileo:
+$(NAME):
+	@make -C $(LIB)
 	@$(CC) -c $(FILESC) -g
-	@echo "\033[1;36m[\033[0mFILES .c \033[1;32mSUCCESSFULLY\033[0m \
+	@echo "\033[1;36m[\033[0mFILES/libft .c \033[1;32mSUCCESSFULLY\033[0m \
 	COMPILED\033[1;36m]\033[0m"
-
-compile: compileo
-	@$(CC) $(FLAGS) -o $(NAME) $(FILESO) $(LIB)
+	@$(CC) -o $(NAME) $(FILESO) -L $(LIB) libft/libft.a
 	@echo "\033[1;36m[\033[0m$(NAME) \033[1;32mSUCCESSFULLY\033[0m \
 	CREATED\033[1;36m]\033[0m"
 
+libft:
+	@make -C libft fclean
+	@make -C libft
+
 clean:
 	@rm -rf $(FILESO)
-	@echo "\033[1;36m[\033[0mFILES .o \033[0;31mDELETED\033[1;36m]\033[0m"
+	@make -C libft clean
+	@echo "\033[1;36m[\033[0mFILES/libft .o \033[0;31mDELETED\033[1;36m]\033[0m"
 
 fclean: clean
+	@rm -rf libft/libft.a
 	@rm -rf $(NAME)
-	@echo "\033[1;36m[\033[0m$(NAME) \033[0;31mDELETED\033[1;36m]\033[0m"
+	@echo "\033[1;36m[\033[0m$(NAME)/libft.a \033[0;31mDELETED\033[1;36m]\033[0m"
 
 re: fclean all

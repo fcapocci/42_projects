@@ -6,7 +6,7 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 10:40:38 by fcapocci          #+#    #+#              #
-#    Updated: 2016/01/21 11:00:32 by fcapocci         ###   ########.fr        #
+#    Updated: 2016/02/25 11:38:15 by fcapocci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,15 @@ COMP_FLAG = gcc -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME) : $(SRC_O)
-	ar -qs $(NAME) $(SRC_O)
+	@ar -qs $(NAME) $(SRC_O)
 
 %.o: %.c
-	$(COMP_FLAG) -c $<
+	@$(COMP_FLAG) -c $<
 
 clean:
-	rm -rf $(SRC_O)
+	@rm -rf $(SRC_O)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
