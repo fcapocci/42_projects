@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 15:22:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:13:00 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,18 @@ t_arg			*sort_arg_time(t_opt *optl, t_arg *list)
 	return (start);
 }
 
-void			sort_list(t_dir ***list, t_dir **slist, char *ent)
+void			sort_list(t_opt *op, t_dir ***list, t_dir **slist, char *ent)
 {
 	if (!(*slist))
 	{
-		if (((*slist) = get_content(ent)))
+		if (((*slist) = get_content(op, ent)))
 			(**list) = (*slist);
 		else
 			print_error(ent, 1);
 	}
 	else
 	{
-		if (((*slist)->next = get_content(ent)))
+		if (((*slist)->next = get_content(op, ent)))
 		{
 			(*slist)->next->prev = (*slist);
 			(*slist) = (*slist)->next;

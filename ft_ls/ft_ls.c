@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:05:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:45:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			manage_read(int argc, char **argv, t_opt *op)
 	{
 		if ((!op_ok(op, 'l') ? (arg[0]->type != 'l' &&
 		arg[0]->type != 'd') : (arg[0]->type != 'd')))
-			read_file(&flist[0], &flist[1], arg[0]->argument);
+			read_file(op, &flist[0], &flist[1], arg[0]->argument);
 		arg[0] = arg[0]->next;
 	}
 	if (flist[1])
@@ -60,18 +60,18 @@ int			manage_read(int argc, char **argv, t_opt *op)
 	return (0);
 }
 
-int			read_file(t_dir **flist, t_dir **first, char *dirname)
+int			read_file(t_opt *op, t_dir **flist, t_dir **first, char *dirname)
 {
 	if (!(*flist))
 	{
-		if (((*flist) = get_content(dirname)))
+		if (((*flist) = get_content(op, dirname)))
 			(*first) = (*flist);
 		else
 			print_error(dirname, 1);
 	}
 	else
 	{
-		if (((*flist)->next = get_content(dirname)))
+		if (((*flist)->next = get_content(op, dirname)))
 		{
 			(*flist)->next->prev = (*flist);
 			(*flist) = (*flist)->next;
@@ -97,7 +97,7 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 		if ((op_ok(optl, 'a') == 0 && dir->d_name[0] != '.') ||
 		(op_ok(optl, 'a') == 1 && dir->d_name[0] == '.') ||
 		(op_ok(optl, 'a') == 1 && dir->d_name[0] != '.'))
-			sort_list(&list, &slist, ft_strjoin(path, dir->d_name));
+			sort_list(optl, &list, &slist, ft_strjoin(path, dir->d_name));
 	closedir(rep);
 	(*list) = sort_dir_lex((*list));
 	(*list) = (op_ok(optl, 't') ? sort_dir_time((*list)) : (*list));
@@ -109,7 +109,7 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 	return (0);
 }
 
-t_dir		*get_content(char *entity)
+t_dir		*get_content(t_opt *op, char *entity)
 {
 	struct stat		stats;
 	t_dir			*list;
@@ -122,8 +122,10 @@ t_dir		*get_content(char *entity)
 	list->modes = take_modes(stats.st_mode);
 	list->acl = take_acl_el(entity);
 	list->nblink = stats.st_nlink;
-	list->owner = getpwuid(stats.st_uid)->pw_name;
-	list->grp = getgrgid(stats.st_gid)->gr_name;
+	list->owner = !op_ok(op, 'n') ? getpwuid(stats.st_uid)->pw_name
+	: ft_itoa(stats.st_uid);
+	list->grp = !op_ok(op, 'n') ? getgrgid(stats.st_gid)->gr_name
+	: ft_itoa(stats.st_gid);
 	list->tall = stats.st_size;
 	list->date = dating(&stats.st_mtime);
 	list->numdate = stats.st_mtime;

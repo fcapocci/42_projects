@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 16:15:08 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:20:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int					manage_read(int argc, char **argv, t_opt *optl);
 int					sub_manage(int argc, t_opt *op, t_arg *arg, t_dir *flist);
 char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir **list, char *dirname);
-int					read_file(t_dir **flist, t_dir **first, char *dirname);
+int					read_file(t_opt *op, t_dir **flist, t_dir **first, char *d);
 void				recursion(t_opt *optl, t_dir *start, t_dir *end);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
 long				total_blk(t_dir *list);
 
-t_dir				*get_content(char *name);
+t_dir				*get_content(t_opt *op, char *name);
 char				*take_modes(mode_t st_mode);
 char				take_type(mode_t st_mode);
 char				take_acl_el(char *entity);
@@ -78,7 +78,7 @@ t_arg				*swap_arg_content(t_arg *list1, t_arg *link2);
 t_arg				*sort_arg_time(t_opt *optl, t_arg *argument);
 t_arg				*sort_arg_nanotime(t_opt *optl, t_arg *argument);
 char				**sort_arg_lex(t_opt *optl, int argc, char **argv);
-void				sort_list(t_dir ***lst, t_dir **slst, char *ent);
+void				sort_list(t_opt *op, t_dir ***lst, t_dir **slst, char *ent);
 t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
 t_dir				*sort_dir_time(t_dir *list);
