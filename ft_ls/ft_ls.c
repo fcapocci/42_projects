@@ -6,13 +6,13 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 22:30:01 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 12:13:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			manage(int argc, char **argv, t_opt *optl, t_dir *list)
+int			manage(int argc, char **argv, t_opt *optl)
 {
 	char			*dirname;
 	t_dir			*flist;
@@ -28,11 +28,11 @@ int			manage(int argc, char **argv, t_opt *optl, t_dir *list)
 		exit(0);
 	}
 	else
-		manage_read(argc, argv, optl, list);
+		manage_read(argc, argv, optl);
 	return (0);
 }
 
-int			manage_read(int argc, char **argv, t_opt *op, t_dir *list)
+int			manage_read(int argc, char **argv, t_opt *op)
 {
 	t_arg			*arg[2];
 	t_dir			*flist[2];
@@ -53,16 +53,8 @@ int			manage_read(int argc, char **argv, t_opt *op, t_dir *list)
 	}
 	if (flist[1])
 		print_file(op, flist[1]);
-	while (arg[1])
-	{
-		if ((arg[1]->type == 'd') || (!op_ok(op, 'l') && arg[1]->type == 'l'))
-		{
-			print_path(arg[1]->argument, argc, flist[1]);
-			if ((read_dir(op, &list, arg[1]->argument)) == -1)
-				return (-1);
-		}
-		arg[1] = arg[1]->next;
-	}
+	if ((sub_manage(argc, op, arg[1], flist[1])) == -1)
+		return (-1);
 	ft_memdel((void**)arg);
 	ft_memdel((void**)flist);
 	return (0);

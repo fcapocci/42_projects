@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/22 22:28:29 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/25 12:08:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
-int					manage(int argc, char **argv, t_opt *optl, t_dir *list);
-int					manage_read(int argc, char **argv, t_opt *optl, t_dir *lst);
+int					manage(int argc, char **argv, t_opt *optl);
+int					manage_read(int argc, char **argv, t_opt *optl);
+int					sub_manage(int argc, t_opt *op, t_arg *arg, t_dir *flist);
 char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir **list, char *dirname);
 int					read_file(t_dir **flist, t_dir **first, char *dirname);

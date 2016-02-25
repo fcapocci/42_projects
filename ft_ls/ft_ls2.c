@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ls2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/20 13:58:58 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 12:09:26 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/02/25 11:49:06 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/02/25 12:09:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
+int			sub_manage(int argc, t_opt *op, t_arg *arg, t_dir *flist)
 {
-	t_opt		*optl;
+	t_dir		*list;
 
-	optl = NULL;
-	if ((take_option(&optl, &argc, &argv)) == -1)
-		return (-1);
-	if ((manage(argc, argv, optl)) == -1)
-		return (-1);
-	ft_memdel((void**)&optl);
+	list = NULL;
+	while (arg)
+	{
+		if ((arg->type == 'd') || (!op_ok(op, 'l') && arg->type == 'l'))
+		{
+			print_path(arg->argument, argc, flist);
+			if ((read_dir(op, &list, arg->argument)) == -1)
+				return (-1);
+		}
+		arg = arg->next;
+	}
 	return (0);
 }
