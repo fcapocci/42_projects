@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:45:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:42:26 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ t_dir		*get_content(t_opt *op, char *entity)
 	list->grp = !op_ok(op, 'n') ? getgrgid(stats.st_gid)->gr_name
 	: ft_itoa(stats.st_gid);
 	list->tall = stats.st_size;
+	get_minor_major(&list->minor, &list->major, stats.st_rdev);
 	list->date = dating(&stats.st_mtime);
 	list->numdate = stats.st_mtime;
 	list->nano_numdate = stats.st_mtimespec.tv_nsec;

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:08:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:33:06 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,22 @@ void		print_error(char *entity, int fonction)
 		ft_putstr(filename);
 		ft_putendl(": Input/output error");
 		free(filename);
+	}
+}
+
+void		print_tall(t_dir *start, t_dir *list)
+{
+	if (list->minor >= 0 && list->major >= 0)
+	{
+		padd_min_maj(start, list, 1);
+		ft_putnbr(list->major);
+		ft_putchar(',');
+		padd_min_maj(start, list, 2);
+		ft_putnbr(list->minor);
+	}
+	else
+	{
+		padd_tall(start, list);
+		ft_putnbr(list->tall);
 	}
 }

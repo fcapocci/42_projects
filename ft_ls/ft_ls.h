@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:20:24 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:23:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct		s_dir
 	char			*owner;
 	char			*grp;
 	long			tall;
+	int				minor;
+	int				major;
 	char			*date;
 	long long		numdate;
 	long long		nano_numdate;
@@ -83,12 +85,15 @@ t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
 t_dir				*sort_dir_lex(t_dir *list);
 t_dir				*sort_dir_time(t_dir *list);
 t_dir				*sort_dir_nanotime(t_dir *list);
+void				get_minor_major(int *minor, int *major, dev_t st_rdev);
 
 void				padd_nblink(t_dir *list, t_dir *start);
 void				padd_owner(t_dir *list, t_dir *start);
 void				padd_grp(t_dir *list, t_dir *start);
 void				padd_tall(t_dir *list, t_dir *start);
+void				padd_min_maj(t_dir *list, t_dir *start, int i);
 
+void				print_tall(t_dir *start, t_dir *list);
 void				print_opt_l(t_opt *optl, t_dir *start, t_dir *list);
 void				printing(t_opt *optl, t_dir *start, t_dir *end);
 void				print_file(t_opt *optl, t_dir *start);

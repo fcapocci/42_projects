@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:07:28 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:28:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void		print_opt_l(t_opt *optl, t_dir *start, t_dir *list)
 		ft_putstr(list->grp);
 		padd_grp(start, list);
 	}
-	padd_tall(start, list);
-	ft_putnbr(list->tall);
+	print_tall(start, list);
 	ft_putchar(' ');
 	ft_putstr(list->date);
 	ft_putchar(' ');
@@ -86,7 +85,7 @@ void		illegal_option(char c)
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putstr("usage: ft_ls [-GRaglort] [file ...]");
+	ft_putstr("usage: ft_ls [-GRaglnort] [file ...]");
 }
 
 void		get_link(char *file)

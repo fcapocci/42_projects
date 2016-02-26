@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:10:58 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 13:52:22 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:33:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,25 @@ void	padd_tall(t_dir *start, t_dir *list)
 	}
 	max += 2;
 	while ((max - ft_strlen(ft_itoa(list->tall))) > 0)
+	{
+		ft_putchar(' ');
+		max--;
+	}
+}
+
+void	padd_min_maj(t_dir *start, t_dir *list, int i)
+{
+	size_t		max;
+
+	max = 0;
+	while (start)
+	{
+		if (ft_strlen(ft_itoa(i == 2 ? start->minor : start->major)) > max)
+			max = ft_strlen(ft_itoa(i == 2 ? start->minor : start->major));
+		start = start->next;
+	}
+	max += (i == 1 ? 2 : 1);
+	while ((max - ft_strlen(ft_itoa(i == 2 ? list->minor : list->major))) > 0)
 	{
 		ft_putchar(' ');
 		max--;

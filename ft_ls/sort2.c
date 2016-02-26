@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 13:30:05 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 13:58:23 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 18:05:43 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_dir			*swap_dir_content(t_dir *link1, t_dir *link2)
 	link1->owner = link2->owner;
 	link1->grp = link2->grp;
 	link1->tall = link2->tall;
+	link1->minor = link2->minor;
+	link1->major = link2->major;
 	link1->date = link2->date;
 	link1->numdate = link2->numdate;
 	link1->nano_numdate = link2->nano_numdate;
@@ -47,8 +49,10 @@ t_dir			*sort_dir_lex(t_dir *list)
 	start = list;
 	while (list && list->next)
 	{
-		if (ft_strcmp(list->next->name, list->name) == -1)
+		if (ft_strcmp(list->next->name, list->name) <= 0)
 		{
+			ft_putstr(list->next->name);
+			ft_putchar('\n');
 			tmp = swap_dir_content(tmp, list);
 			list = swap_dir_content(list, list->next);
 			list->next = swap_dir_content(list->next, tmp);

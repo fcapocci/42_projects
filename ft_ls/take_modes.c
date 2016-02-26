@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:58:13 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 18:33:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:31:11 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,13 @@ char	take_type(mode_t st_mode)
 	return (0);
 }
 
-/*char	*minor_major()
+void	get_minor_major(int *min, int *maj, dev_t st_rdev)
 {
-	char	*s;
-	return (s);
-}*/
+	*min = -1;
+	*maj = -1;
+	if (st_rdev)
+	{
+		*maj = major(st_rdev);
+		*min = minor(st_rdev);
+	}
+}
