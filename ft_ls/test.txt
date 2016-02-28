@@ -1,0 +1,366 @@
+total 0
+drwxr-xr-x   7 fcapocci  staff   238 Feb 26 21:58 RFFR
+drwxr-xr-x  17 fcapocci  staff   578 Feb 26 21:58 fillit
+drwxr-xr-x  24 fcapocci  staff   816 Feb 27 15:19 ft_ls
+drwxr-xr-x   9 fcapocci  staff   306 Feb 26 21:58 get_next_line
+drwxr-xr-x   4 fcapocci  staff   136 Feb 26 21:58 html_css
+drwxr-xr-x  65 fcapocci  staff  2210 Feb 26 21:58 libft
+drwxr-xr-x  13 fcapocci  staff   442 Feb 26 21:58 wong_kar_wai
+
+../RFFR:
+total 16
+drwxr-xr-x  3 fcapocci  staff   102 Feb 26 21:58 fonts
+drwxr-xr-x  7 fcapocci  staff   238 Feb 26 21:58 img
+-rwxr-xr-x  1 fcapocci  staff  1286 Feb 26 21:58 index.html
+-rwxr-xr-x  1 fcapocci  staff  2585 Feb 26 21:58 style.css
+
+../RFFR/fonts:
+total 96
+-rwxr-xr-x  1 fcapocci  staff  46860 Feb 26 21:58 Wolf in the City.ttf
+
+../RFFR/img:
+total 944
+-rwxr-xr-x  1 fcapocci  staff   15905 Feb 26 21:58 fbicon.png
+-rwxr-xr-x  1 fcapocci  staff  322718 Feb 26 21:58 home.jpg
+-rwxr-xr-x  1 fcapocci  staff   16638 Feb 26 21:58 instaicon.png
+-rwxr-xr-x  1 fcapocci  staff  101318 Feb 26 21:58 logo.png
+-rwxr-xr-x  1 fcapocci  staff   17018 Feb 26 21:58 underline.png
+
+../fillit:
+total 104
+-rw-r--r--   1 fcapocci  staff  1669 Feb 26 21:58 Makefile
+-rw-r--r--   1 fcapocci  staff  2237 Feb 26 21:58 checkentries.c
+-rw-r--r--   1 fcapocci  staff  1915 Feb 26 21:58 checktetri.c
+-rw-r--r--   1 fcapocci  staff  2373 Feb 26 21:58 fillit.h
+-rw-r--r--   1 fcapocci  staff  1191 Feb 26 21:58 ft_savefile.c
+drwxr-xr-x  68 fcapocci  staff  2312 Feb 26 21:58 libft
+-rw-r--r--   1 fcapocci  staff  1586 Feb 26 21:58 list.c
+-rw-r--r--   1 fcapocci  staff  2028 Feb 26 21:58 main.c
+-rw-r--r--   1 fcapocci  staff  1543 Feb 26 21:58 map.c
+-rw-r--r--   1 fcapocci  staff  2151 Feb 26 21:58 order.c
+-rw-r--r--   1 fcapocci  staff  1654 Feb 26 21:58 piece_man.c
+-rw-r--r--   1 fcapocci  staff  1328 Feb 26 21:58 rename.c
+-rw-r--r--   1 fcapocci  staff  2217 Feb 26 21:58 resolv.c
+-rw-r--r--   1 fcapocci  staff  1160 Feb 26 21:58 sizes.c
+
+../fillit/libft:
+total 640
+-rw-r--r--  1 fcapocci  staff   2817 Feb 26 21:58 Makefile
+-rw-r--r--  1 fcapocci  staff      9 Feb 26 21:58 auteur
+-rw-r--r--  1 fcapocci  staff   1326 Feb 26 21:58 ft_atoi.c
+-rw-r--r--  1 fcapocci  staff   1007 Feb 26 21:58 ft_bzero.c
+-rw-r--r--  1 fcapocci  staff   1049 Feb 26 21:58 ft_isalnum.c
+-rw-r--r--  1 fcapocci  staff   1021 Feb 26 21:58 ft_isalpha.c
+-rw-r--r--  1 fcapocci  staff    991 Feb 26 21:58 ft_isascii.c
+-rw-r--r--  1 fcapocci  staff    996 Feb 26 21:58 ft_isdigit.c
+-rw-r--r--  1 fcapocci  staff    992 Feb 26 21:58 ft_isprint.c
+-rw-r--r--  1 fcapocci  staff   1421 Feb 26 21:58 ft_itoa.c
+-rw-r--r--  1 fcapocci  staff   1501 Feb 26 21:58 ft_itoa_base.c
+-rw-r--r--  1 fcapocci  staff   1019 Feb 26 21:58 ft_lstadd.c
+-rw-r--r--  1 fcapocci  staff   1143 Feb 26 21:58 ft_lstdel.c
+-rw-r--r--  1 fcapocci  staff   1076 Feb 26 21:58 ft_lstdelone.c
+-rw-r--r--  1 fcapocci  staff   1022 Feb 26 21:58 ft_lstiter.c
+-rw-r--r--  1 fcapocci  staff   1241 Feb 26 21:58 ft_lstmap.c
+-rw-r--r--  1 fcapocci  staff   1259 Feb 26 21:58 ft_lstnew.c
+-rw-r--r--  1 fcapocci  staff   1060 Feb 26 21:58 ft_memalloc.c
+-rw-r--r--  1 fcapocci  staff   1212 Feb 26 21:58 ft_memccpy.c
+-rw-r--r--  1 fcapocci  staff   1106 Feb 26 21:58 ft_memchr.c
+-rw-r--r--  1 fcapocci  staff   1153 Feb 26 21:58 ft_memcmp.c
+-rw-r--r--  1 fcapocci  staff   1120 Feb 26 21:58 ft_memcpy.c
+-rw-r--r--  1 fcapocci  staff    971 Feb 26 21:58 ft_memdel.c
+-rw-r--r--  1 fcapocci  staff   1198 Feb 26 21:58 ft_memmove.c
+-rw-r--r--  1 fcapocci  staff   1055 Feb 26 21:58 ft_memset.c
+-rw-r--r--  1 fcapocci  staff   1058 Feb 26 21:58 ft_nbrlen.c
+-rw-r--r--  1 fcapocci  staff   1042 Feb 26 21:58 ft_passline.c
+-rw-r--r--  1 fcapocci  staff   1020 Feb 26 21:58 ft_power.c
+-rw-r--r--  1 fcapocci  staff    958 Feb 26 21:58 ft_putchar.c
+-rw-r--r--  1 fcapocci  staff    970 Feb 26 21:58 ft_putchar_fd.c
+-rw-r--r--  1 fcapocci  staff    995 Feb 26 21:58 ft_putendl.c
+-rw-r--r--  1 fcapocci  staff   1008 Feb 26 21:58 ft_putendl_fd.c
+-rw-r--r--  1 fcapocci  staff   1121 Feb 26 21:58 ft_putnbr.c
+-rw-r--r--  1 fcapocci  staff   1148 Feb 26 21:58 ft_putnbr_fd.c
+-rw-r--r--  1 fcapocci  staff    974 Feb 26 21:58 ft_putstr.c
+-rw-r--r--  1 fcapocci  staff    986 Feb 26 21:58 ft_putstr_fd.c
+-rw-r--r--  1 fcapocci  staff   1104 Feb 26 21:58 ft_strcat.c
+-rw-r--r--  1 fcapocci  staff   1112 Feb 26 21:58 ft_strchr.c
+-rw-r--r--  1 fcapocci  staff   1024 Feb 26 21:58 ft_strclr.c
+-rw-r--r--  1 fcapocci  staff   1221 Feb 26 21:58 ft_strcmp.c
+-rw-r--r--  1 fcapocci  staff   1052 Feb 26 21:58 ft_strcpy.c
+-rw-r--r--  1 fcapocci  staff    971 Feb 26 21:58 ft_strdel.c
+-rw-r--r--  1 fcapocci  staff   1168 Feb 26 21:58 ft_strdup.c
+-rw-r--r--  1 fcapocci  staff   1094 Feb 26 21:58 ft_strequ.c
+-rw-r--r--  1 fcapocci  staff   1024 Feb 26 21:58 ft_striter.c
+-rw-r--r--  1 fcapocci  staff   1069 Feb 26 21:58 ft_striteri.c
+-rw-r--r--  1 fcapocci  staff   1338 Feb 26 21:58 ft_strjoin.c
+-rw-r--r--  1 fcapocci  staff   1297 Feb 26 21:58 ft_strlcat.c
+-rw-r--r--  1 fcapocci  staff   1009 Feb 26 21:58 ft_strlen.c
+-rw-r--r--  1 fcapocci  staff   1209 Feb 26 21:58 ft_strmap.c
+-rw-r--r--  1 fcapocci  staff   1248 Feb 26 21:58 ft_strmapi.c
+-rw-r--r--  1 fcapocci  staff   1132 Feb 26 21:58 ft_strncat.c
+-rw-r--r--  1 fcapocci  staff   1322 Feb 26 21:58 ft_strncmp.c
+-rw-r--r--  1 fcapocci  staff   1174 Feb 26 21:58 ft_strncpy.c
+-rw-r--r--  1 fcapocci  staff   1179 Feb 26 21:58 ft_strnequ.c
+-rw-r--r--  1 fcapocci  staff   1115 Feb 26 21:58 ft_strnew.c
+-rw-r--r--  1 fcapocci  staff   1270 Feb 26 21:58 ft_strnstr.c
+-rw-r--r--  1 fcapocci  staff   1119 Feb 26 21:58 ft_strrchr.c
+-rw-r--r--  1 fcapocci  staff   1851 Feb 26 21:58 ft_strsplit.c
+-rw-r--r--  1 fcapocci  staff   1219 Feb 26 21:58 ft_strstr.c
+-rw-r--r--  1 fcapocci  staff   1206 Feb 26 21:58 ft_strsub.c
+-rw-r--r--  1 fcapocci  staff   1615 Feb 26 21:58 ft_strtrim.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_tolower.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_toupper.c
+-rw-r--r--  1 fcapocci  staff  57392 Feb 26 21:58 libft.a
+-rw-r--r--  1 fcapocci  staff   3910 Feb 26 21:58 libft.h
+
+../ft_ls:
+total 248
+-rw-r--r--   1 fcapocci  staff   1853 Feb 27 14:40 Makefile
+-rw-r--r--   1 fcapocci  staff      9 Feb 26 21:58 auteur
+-rw-r--r--   1 fcapocci  staff   2849 Feb 26 21:58 display.c
+-rw-r--r--   1 fcapocci  staff   2095 Feb 26 21:58 display2.c
+-rwxr-xr-x   1 fcapocci  staff  35668 Feb 27 14:58 ft_ls
+-rw-r--r--   1 fcapocci  staff   4071 Feb 27 14:58 ft_ls.c
+-rw-r--r--   1 fcapocci  staff   4484 Feb 27 14:48 ft_ls.h
+-rw-r--r--   1 fcapocci  staff   1247 Feb 26 21:58 ft_ls2.c
+drwxr-xr-x  66 fcapocci  staff   2244 Feb 27 14:58 libft
+-rw-r--r--   1 fcapocci  staff   1135 Feb 26 21:58 main.c
+-rw-r--r--   1 fcapocci  staff   1895 Feb 27 14:50 merge_sort.c
+-rw-r--r--   1 fcapocci  staff   1946 Feb 27 14:49 merge_sort_nano_time.c
+-rw-r--r--   1 fcapocci  staff   1904 Feb 27 14:48 merge_sort_time.c
+-rw-r--r--   1 fcapocci  staff   2354 Feb 26 21:58 modif_content.c
+-rw-r--r--   1 fcapocci  staff   2246 Feb 26 21:58 option.c
+-rw-r--r--   1 fcapocci  staff   2453 Feb 26 21:58 padding.c
+-rw-r--r--   1 fcapocci  staff   1615 Feb 26 21:58 recursion.c
+-rw-r--r--   1 fcapocci  staff   3057 Feb 26 21:58 sort.c
+-rw-r--r--   1 fcapocci  staff   3010 Feb 27 15:19 sort2.c
+-rw-r--r--   1 fcapocci  staff   1615 Feb 26 21:58 sort3.c
+-rw-r--r--   1 fcapocci  staff   2442 Feb 26 21:58 take_modes.c
+-rw-r--r--   1 fcapocci  staff   6110 Feb 28 15:28 test.txt
+
+../ft_ls/libft:
+total 616
+-rw-r--r--  1 fcapocci  staff   1954 Feb 26 21:58 Makefile
+-rw-r--r--  1 fcapocci  staff      9 Feb 26 21:58 auteur
+-rw-r--r--  1 fcapocci  staff   1279 Feb 26 21:58 ft_atoi.c
+-rw-r--r--  1 fcapocci  staff   1045 Feb 26 21:58 ft_bzero.c
+-rw-r--r--  1 fcapocci  staff   1049 Feb 26 21:58 ft_isalnum.c
+-rw-r--r--  1 fcapocci  staff   1025 Feb 26 21:58 ft_isalpha.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_isascii.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_isdigit.c
+-rw-r--r--  1 fcapocci  staff    999 Feb 26 21:58 ft_isprint.c
+-rw-r--r--  1 fcapocci  staff   1531 Feb 26 21:58 ft_itoa.c
+-rw-r--r--  1 fcapocci  staff   1002 Feb 26 21:58 ft_lstadd.c
+-rw-r--r--  1 fcapocci  staff   1152 Feb 26 21:58 ft_lstdel.c
+-rw-r--r--  1 fcapocci  staff   1073 Feb 26 21:58 ft_lstdelone.c
+-rw-r--r--  1 fcapocci  staff   1018 Feb 26 21:58 ft_lstiter.c
+-rw-r--r--  1 fcapocci  staff   1226 Feb 26 21:58 ft_lstmap.c
+-rw-r--r--  1 fcapocci  staff   1260 Feb 26 21:58 ft_lstnew.c
+-rw-r--r--  1 fcapocci  staff   1076 Feb 26 21:58 ft_memalloc.c
+-rw-r--r--  1 fcapocci  staff   1182 Feb 26 21:58 ft_memccpy.c
+-rw-r--r--  1 fcapocci  staff   1133 Feb 26 21:58 ft_memchr.c
+-rw-r--r--  1 fcapocci  staff   1165 Feb 26 21:58 ft_memcmp.c
+-rw-r--r--  1 fcapocci  staff   1124 Feb 26 21:58 ft_memcpy.c
+-rw-r--r--  1 fcapocci  staff    967 Feb 26 21:58 ft_memdel.c
+-rw-r--r--  1 fcapocci  staff   1225 Feb 26 21:58 ft_memmove.c
+-rw-r--r--  1 fcapocci  staff   1059 Feb 26 21:58 ft_memset.c
+-rw-r--r--  1 fcapocci  staff    978 Feb 26 21:58 ft_putchar.c
+-rw-r--r--  1 fcapocci  staff    970 Feb 26 21:58 ft_putchar_fd.c
+-rw-r--r--  1 fcapocci  staff    981 Feb 26 21:58 ft_putendl.c
+-rw-r--r--  1 fcapocci  staff   1006 Feb 26 21:58 ft_putendl_fd.c
+-rw-r--r--  1 fcapocci  staff   1151 Feb 26 21:58 ft_putnbr.c
+-rw-r--r--  1 fcapocci  staff   1190 Feb 26 21:58 ft_putnbr_fd.c
+-rw-r--r--  1 fcapocci  staff   1019 Feb 26 21:58 ft_putstr.c
+-rw-r--r--  1 fcapocci  staff   1029 Feb 26 21:58 ft_putstr_fd.c
+-rw-r--r--  1 fcapocci  staff   1111 Feb 26 21:58 ft_strcat.c
+-rw-r--r--  1 fcapocci  staff   1063 Feb 26 21:58 ft_strchr.c
+-rw-r--r--  1 fcapocci  staff    990 Feb 26 21:58 ft_strclr.c
+-rw-r--r--  1 fcapocci  staff   1191 Feb 26 21:58 ft_strcmp.c
+-rw-r--r--  1 fcapocci  staff   1065 Feb 26 21:58 ft_strcpy.c
+-rw-r--r--  1 fcapocci  staff    967 Feb 26 21:58 ft_strdel.c
+-rw-r--r--  1 fcapocci  staff   1054 Feb 26 21:58 ft_strdup.c
+-rw-r--r--  1 fcapocci  staff   1040 Feb 26 21:58 ft_strequ.c
+-rw-r--r--  1 fcapocci  staff   1027 Feb 26 21:58 ft_striter.c
+-rw-r--r--  1 fcapocci  staff   1040 Feb 26 21:58 ft_striteri.c
+-rw-r--r--  1 fcapocci  staff   1296 Feb 26 21:58 ft_strjoin.c
+-rw-r--r--  1 fcapocci  staff   1335 Feb 26 21:58 ft_strlcat.c
+-rw-r--r--  1 fcapocci  staff   1013 Feb 26 21:58 ft_strlen.c
+-rw-r--r--  1 fcapocci  staff   1172 Feb 26 21:58 ft_strmap.c
+-rw-r--r--  1 fcapocci  staff   1190 Feb 26 21:58 ft_strmapi.c
+-rw-r--r--  1 fcapocci  staff   1115 Feb 26 21:58 ft_strncat.c
+-rw-r--r--  1 fcapocci  staff   1249 Feb 26 21:58 ft_strncmp.c
+-rw-r--r--  1 fcapocci  staff   1116 Feb 26 21:58 ft_strncpy.c
+-rw-r--r--  1 fcapocci  staff   1203 Feb 26 21:58 ft_strndup.c
+-rw-r--r--  1 fcapocci  staff   1101 Feb 26 21:58 ft_strnequ.c
+-rw-r--r--  1 fcapocci  staff   1097 Feb 26 21:58 ft_strnew.c
+-rw-r--r--  1 fcapocci  staff   1237 Feb 26 21:58 ft_strnstr.c
+-rw-r--r--  1 fcapocci  staff   1111 Feb 26 21:58 ft_strrchr.c
+-rw-r--r--  1 fcapocci  staff   1708 Feb 26 21:58 ft_strsplit.c
+-rw-r--r--  1 fcapocci  staff   1202 Feb 26 21:58 ft_strstr.c
+-rw-r--r--  1 fcapocci  staff   1199 Feb 26 21:58 ft_strsub.c
+-rw-r--r--  1 fcapocci  staff   1337 Feb 26 21:58 ft_strtrim.c
+-rw-r--r--  1 fcapocci  staff   1003 Feb 26 21:58 ft_tolower.c
+-rw-r--r--  1 fcapocci  staff   1004 Feb 26 21:58 ft_toupper.c
+-rw-r--r--  1 fcapocci  staff   2733 Feb 26 21:58 get_next_line.c
+-rw-r--r--  1 fcapocci  staff  55736 Feb 27 14:58 libft.a
+-rw-r--r--  1 fcapocci  staff   4013 Feb 26 21:58 libft.h
+
+../get_next_line:
+total 48
+-rw-r--r--   1 fcapocci  staff     9 Feb 26 21:58 auteur
+-rw-r--r--   1 fcapocci  staff  3358 Feb 26 21:58 flo_get_next_line.c
+-rw-r--r--   1 fcapocci  staff  2741 Feb 26 21:58 get_next_line.c
+-rw-r--r--   1 fcapocci  staff  1197 Feb 26 21:58 get_next_line.h
+drwxr-xr-x  65 fcapocci  staff  2210 Feb 26 21:58 libft
+-rw-r--r--   1 fcapocci  staff  1890 Feb 26 21:58 safe_get_next_line.c
+-rw-r--r--   1 fcapocci  staff  1158 Feb 26 21:58 safe_get_next_line.h
+
+../get_next_line/libft:
+total 600
+-rw-r--r--  1 fcapocci  staff   1934 Feb 26 21:58 Makefile
+-rw-r--r--  1 fcapocci  staff      9 Feb 26 21:58 auteur
+-rw-r--r--  1 fcapocci  staff   1279 Feb 26 21:58 ft_atoi.c
+-rw-r--r--  1 fcapocci  staff   1045 Feb 26 21:58 ft_bzero.c
+-rw-r--r--  1 fcapocci  staff   1049 Feb 26 21:58 ft_isalnum.c
+-rw-r--r--  1 fcapocci  staff   1025 Feb 26 21:58 ft_isalpha.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_isascii.c
+-rw-r--r--  1 fcapocci  staff    998 Feb 26 21:58 ft_isdigit.c
+-rw-r--r--  1 fcapocci  staff    999 Feb 26 21:58 ft_isprint.c
+-rw-r--r--  1 fcapocci  staff   1531 Feb 26 21:58 ft_itoa.c
+-rw-r--r--  1 fcapocci  staff   1002 Feb 26 21:58 ft_lstadd.c
+-rw-r--r--  1 fcapocci  staff   1152 Feb 26 21:58 ft_lstdel.c
+-rw-r--r--  1 fcapocci  staff   1073 Feb 26 21:58 ft_lstdelone.c
+-rw-r--r--  1 fcapocci  staff   1018 Feb 26 21:58 ft_lstiter.c
+-rw-r--r--  1 fcapocci  staff   1226 Feb 26 21:58 ft_lstmap.c
+-rw-r--r--  1 fcapocci  staff   1260 Feb 26 21:58 ft_lstnew.c
+-rw-r--r--  1 fcapocci  staff   1076 Feb 26 21:58 ft_memalloc.c
+-rw-r--r--  1 fcapocci  staff   1182 Feb 26 21:58 ft_memccpy.c
+-rw-r--r--  1 fcapocci  staff   1133 Feb 26 21:58 ft_memchr.c
+-rw-r--r--  1 fcapocci  staff   1165 Feb 26 21:58 ft_memcmp.c
+-rw-r--r--  1 fcapocci  staff   1124 Feb 26 21:58 ft_memcpy.c
+-rw-r--r--  1 fcapocci  staff    967 Feb 26 21:58 ft_memdel.c
+-rw-r--r--  1 fcapocci  staff   1225 Feb 26 21:58 ft_memmove.c
+-rw-r--r--  1 fcapocci  staff   1059 Feb 26 21:58 ft_memset.c
+-rw-r--r--  1 fcapocci  staff    978 Feb 26 21:58 ft_putchar.c
+-rw-r--r--  1 fcapocci  staff    970 Feb 26 21:58 ft_putchar_fd.c
+-rw-r--r--  1 fcapocci  staff    981 Feb 26 21:58 ft_putendl.c
+-rw-r--r--  1 fcapocci  staff   1006 Feb 26 21:58 ft_putendl_fd.c
+-rw-r--r--  1 fcapocci  staff   1118 Feb 26 21:58 ft_putnbr.c
+-rw-r--r--  1 fcapocci  staff   1157 Feb 26 21:58 ft_putnbr_fd.c
+-rw-r--r--  1 fcapocci  staff   1019 Feb 26 21:58 ft_putstr.c
+-rw-r--r--  1 fcapocci  staff   1029 Feb 26 21:58 ft_putstr_fd.c
+-rw-r--r--  1 fcapocci  staff   1111 Feb 26 21:58 ft_strcat.c
+-rw-r--r--  1 fcapocci  staff   1063 Feb 26 21:58 ft_strchr.c
+-rw-r--r--  1 fcapocci  staff    990 Feb 26 21:58 ft_strclr.c
+-rw-r--r--  1 fcapocci  staff   1238 Feb 26 21:58 ft_strcmp.c
+-rw-r--r--  1 fcapocci  staff   1065 Feb 26 21:58 ft_strcpy.c
+-rw-r--r--  1 fcapocci  staff    967 Feb 26 21:58 ft_strdel.c
+-rw-r--r--  1 fcapocci  staff   1054 Feb 26 21:58 ft_strdup.c
+-rw-r--r--  1 fcapocci  staff   1040 Feb 26 21:58 ft_strequ.c
+-rw-r--r--  1 fcapocci  staff   1027 Feb 26 21:58 ft_striter.c
+-rw-r--r--  1 fcapocci  staff   1040 Feb 26 21:58 ft_striteri.c
+-rw-r--r--  1 fcapocci  staff   1296 Feb 26 21:58 ft_strjoin.c
+-rw-r--r--  1 fcapocci  staff   1335 Feb 26 21:58 ft_strlcat.c
+-rw-r--r--  1 fcapocci  staff   1013 Feb 26 21:58 ft_strlen.c
+-rw-r--r--  1 fcapocci  staff   1172 Feb 26 21:58 ft_strmap.c
+-rw-r--r--  1 fcapocci  staff   1190 Feb 26 21:58 ft_strmapi.c
+-rw-r--r--  1 fcapocci  staff   1115 Feb 26 21:58 ft_strncat.c
+-rw-r--r--  1 fcapocci  staff   1249 Feb 26 21:58 ft_strncmp.c
+-rw-r--r--  1 fcapocci  staff   1116 Feb 26 21:58 ft_strncpy.c
+-rw-r--r--  1 fcapocci  staff   1203 Feb 26 21:58 ft_strndup.c
+-rw-r--r--  1 fcapocci  staff   1101 Feb 26 21:58 ft_strnequ.c
+-rw-r--r--  1 fcapocci  staff   1097 Feb 26 21:58 ft_strnew.c
+-rw-r--r--  1 fcapocci  staff   1237 Feb 26 21:58 ft_strnstr.c
+-rw-r--r--  1 fcapocci  staff   1111 Feb 26 21:58 ft_strrchr.c
+-rw-r--r--  1 fcapocci  staff   1708 Feb 26 21:58 ft_strsplit.c
+-rw-r--r--  1 fcapocci  staff   1202 Feb 26 21:58 ft_strstr.c
+-rw-r--r--  1 fcapocci  staff   1199 Feb 26 21:58 ft_strsub.c
+-rw-r--r--  1 fcapocci  staff   1337 Feb 26 21:58 ft_strtrim.c
+-rw-r--r--  1 fcapocci  staff   1003 Feb 26 21:58 ft_tolower.c
+-rw-r--r--  1 fcapocci  staff   1004 Feb 26 21:58 ft_toupper.c
+-rw-r--r--  1 fcapocci  staff  52944 Feb 26 21:58 libft.a
+-rw-r--r--  1 fcapocci  staff   3834 Feb 26 21:58 libft.h
+
+../html_css:
+total 8
+-rw-r--r--  1 fcapocci  staff    0 Feb 26 21:58 style.css
+-rw-r--r--  1 fcapocci  staff  636 Feb 26 21:58 test.html
+
+../libft:
+total 504
+-rw-r--r--  1 fcapocci  staff  1954 Feb 26 21:58 Makefile
+-rw-r--r--  1 fcapocci  staff     9 Feb 26 21:58 auteur
+-rw-r--r--  1 fcapocci  staff  1279 Feb 26 21:58 ft_atoi.c
+-rw-r--r--  1 fcapocci  staff  1045 Feb 26 21:58 ft_bzero.c
+-rw-r--r--  1 fcapocci  staff  1049 Feb 26 21:58 ft_isalnum.c
+-rw-r--r--  1 fcapocci  staff  1025 Feb 26 21:58 ft_isalpha.c
+-rw-r--r--  1 fcapocci  staff   998 Feb 26 21:58 ft_isascii.c
+-rw-r--r--  1 fcapocci  staff   998 Feb 26 21:58 ft_isdigit.c
+-rw-r--r--  1 fcapocci  staff   999 Feb 26 21:58 ft_isprint.c
+-rw-r--r--  1 fcapocci  staff  1531 Feb 26 21:58 ft_itoa.c
+-rw-r--r--  1 fcapocci  staff  1002 Feb 26 21:58 ft_lstadd.c
+-rw-r--r--  1 fcapocci  staff  1152 Feb 26 21:58 ft_lstdel.c
+-rw-r--r--  1 fcapocci  staff  1073 Feb 26 21:58 ft_lstdelone.c
+-rw-r--r--  1 fcapocci  staff  1018 Feb 26 21:58 ft_lstiter.c
+-rw-r--r--  1 fcapocci  staff  1226 Feb 26 21:58 ft_lstmap.c
+-rw-r--r--  1 fcapocci  staff  1260 Feb 26 21:58 ft_lstnew.c
+-rw-r--r--  1 fcapocci  staff  1076 Feb 26 21:58 ft_memalloc.c
+-rw-r--r--  1 fcapocci  staff  1182 Feb 26 21:58 ft_memccpy.c
+-rw-r--r--  1 fcapocci  staff  1133 Feb 26 21:58 ft_memchr.c
+-rw-r--r--  1 fcapocci  staff  1165 Feb 26 21:58 ft_memcmp.c
+-rw-r--r--  1 fcapocci  staff  1124 Feb 26 21:58 ft_memcpy.c
+-rw-r--r--  1 fcapocci  staff   967 Feb 26 21:58 ft_memdel.c
+-rw-r--r--  1 fcapocci  staff  1225 Feb 26 21:58 ft_memmove.c
+-rw-r--r--  1 fcapocci  staff  1059 Feb 26 21:58 ft_memset.c
+-rw-r--r--  1 fcapocci  staff   978 Feb 26 21:58 ft_putchar.c
+-rw-r--r--  1 fcapocci  staff   970 Feb 26 21:58 ft_putchar_fd.c
+-rw-r--r--  1 fcapocci  staff   981 Feb 26 21:58 ft_putendl.c
+-rw-r--r--  1 fcapocci  staff  1006 Feb 26 21:58 ft_putendl_fd.c
+-rw-r--r--  1 fcapocci  staff  1151 Feb 26 21:58 ft_putnbr.c
+-rw-r--r--  1 fcapocci  staff  1190 Feb 26 21:58 ft_putnbr_fd.c
+-rw-r--r--  1 fcapocci  staff  1019 Feb 26 21:58 ft_putstr.c
+-rw-r--r--  1 fcapocci  staff  1029 Feb 26 21:58 ft_putstr_fd.c
+-rw-r--r--  1 fcapocci  staff  1111 Feb 26 21:58 ft_strcat.c
+-rw-r--r--  1 fcapocci  staff  1063 Feb 26 21:58 ft_strchr.c
+-rw-r--r--  1 fcapocci  staff   990 Feb 26 21:58 ft_strclr.c
+-rw-r--r--  1 fcapocci  staff  1238 Feb 26 21:58 ft_strcmp.c
+-rw-r--r--  1 fcapocci  staff  1065 Feb 26 21:58 ft_strcpy.c
+-rw-r--r--  1 fcapocci  staff   967 Feb 26 21:58 ft_strdel.c
+-rw-r--r--  1 fcapocci  staff  1054 Feb 26 21:58 ft_strdup.c
+-rw-r--r--  1 fcapocci  staff  1040 Feb 26 21:58 ft_strequ.c
+-rw-r--r--  1 fcapocci  staff  1027 Feb 26 21:58 ft_striter.c
+-rw-r--r--  1 fcapocci  staff  1040 Feb 26 21:58 ft_striteri.c
+-rw-r--r--  1 fcapocci  staff  1296 Feb 26 21:58 ft_strjoin.c
+-rw-r--r--  1 fcapocci  staff  1335 Feb 26 21:58 ft_strlcat.c
+-rw-r--r--  1 fcapocci  staff  1013 Feb 26 21:58 ft_strlen.c
+-rw-r--r--  1 fcapocci  staff  1172 Feb 26 21:58 ft_strmap.c
+-rw-r--r--  1 fcapocci  staff  1190 Feb 26 21:58 ft_strmapi.c
+-rw-r--r--  1 fcapocci  staff  1115 Feb 26 21:58 ft_strncat.c
+-rw-r--r--  1 fcapocci  staff  1249 Feb 26 21:58 ft_strncmp.c
+-rw-r--r--  1 fcapocci  staff  1116 Feb 26 21:58 ft_strncpy.c
+-rw-r--r--  1 fcapocci  staff  1203 Feb 26 21:58 ft_strndup.c
+-rw-r--r--  1 fcapocci  staff  1101 Feb 26 21:58 ft_strnequ.c
+-rw-r--r--  1 fcapocci  staff  1097 Feb 26 21:58 ft_strnew.c
+-rw-r--r--  1 fcapocci  staff  1237 Feb 26 21:58 ft_strnstr.c
+-rw-r--r--  1 fcapocci  staff  1111 Feb 26 21:58 ft_strrchr.c
+-rw-r--r--  1 fcapocci  staff  1708 Feb 26 21:58 ft_strsplit.c
+-rw-r--r--  1 fcapocci  staff  1202 Feb 26 21:58 ft_strstr.c
+-rw-r--r--  1 fcapocci  staff  1199 Feb 26 21:58 ft_strsub.c
+-rw-r--r--  1 fcapocci  staff  1337 Feb 26 21:58 ft_strtrim.c
+-rw-r--r--  1 fcapocci  staff  1003 Feb 26 21:58 ft_tolower.c
+-rw-r--r--  1 fcapocci  staff  1004 Feb 26 21:58 ft_toupper.c
+-rw-r--r--  1 fcapocci  staff  2733 Feb 26 21:58 get_next_line.c
+-rw-r--r--  1 fcapocci  staff  4013 Feb 26 21:58 libft.h
+
+../wong_kar_wai:
+total 88
+-rw-r--r--  1 fcapocci  staff  1604 Feb 26 21:58 Makefile
+-rw-r--r--  1 fcapocci  staff    18 Feb 26 21:58 auteur
+-rw-r--r--  1 fcapocci  staff  1909 Feb 26 21:58 check.c
+-rw-r--r--  1 fcapocci  staff  2668 Feb 26 21:58 collision.c
+-rw-r--r--  1 fcapocci  staff  1083 Feb 26 21:58 fill.c
+-rw-r--r--  1 fcapocci  staff  1151 Feb 26 21:58 ft_d_array.c
+-rw-r--r--  1 fcapocci  staff  1390 Feb 26 21:58 game.h
+-rw-r--r--  1 fcapocci  staff  1335 Feb 26 21:58 init.c
+-rw-r--r--  1 fcapocci  staff  2969 Feb 26 21:58 main.c
+-rw-r--r--  1 fcapocci  staff  2977 Feb 26 21:58 move.c
+-rw-r--r--  1 fcapocci  staff  1252 Feb 26 21:58 random.c

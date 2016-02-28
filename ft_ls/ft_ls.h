@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/26 17:23:29 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/28 16:00:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char				*manage_rep(int argc, char **argv);
 int					read_dir(t_opt *optl, t_dir **list, char *dirname);
 int					read_file(t_opt *op, t_dir **flist, t_dir **first, char *d);
 void				recursion(t_opt *optl, t_dir *start, t_dir *end);
+t_dir				*last_link(t_dir *list);
 
 char				*dating(const time_t *clock);
 char				*hide_path(char *entity);
@@ -81,10 +82,6 @@ t_arg				*sort_arg_time(t_opt *optl, t_arg *argument);
 t_arg				*sort_arg_nanotime(t_opt *optl, t_arg *argument);
 char				**sort_arg_lex(t_opt *optl, int argc, char **argv);
 void				sort_list(t_opt *op, t_dir ***lst, t_dir **slst, char *ent);
-t_dir				*swap_dir_content(t_dir *link1, t_dir *link2);
-t_dir				*sort_dir_lex(t_dir *list);
-t_dir				*sort_dir_time(t_dir *list);
-t_dir				*sort_dir_nanotime(t_dir *list);
 void				get_minor_major(int *minor, int *major, dev_t st_rdev);
 
 void				padd_nblink(t_dir *list, t_dir *start);
@@ -109,5 +106,20 @@ t_opt				*creat_elem(t_opt *optl, char o);
 int					take_option(t_opt **optl, int *argc, char ***argv);
 int					check_option(char o);
 int					op_ok(t_opt *optl, char o);
+
+t_dir				*ft_merge_sort(t_dir *list);
+t_dir				*ft_merge(t_dir *lista, t_dir *listb);
+void				ft_split(t_dir **list, int size);
+void				ft_splitlist(t_dir *list, t_dir **a, t_dir **b, int i);
+
+t_dir				*ft_merge_sort_time(t_dir *list);
+t_dir				*ft_merge_time(t_dir *lista, t_dir *listb);
+void				ft_split_time(t_dir **list, int size);
+void				ft_splitlist_time(t_dir *list, t_dir **a, t_dir **b, int i);
+
+t_dir				*ft_merge_sort_ntime(t_dir *list);
+t_dir				*ft_merge_ntime(t_dir *lista, t_dir *listb);
+void				ft_split_ntime(t_dir **list, int size);
+void				ft_splitlist_ntime(t_dir *l, t_dir **a, t_dir **b, int i);
 
 #endif

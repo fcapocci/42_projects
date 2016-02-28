@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/19 13:30:05 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/26 18:05:43 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/02/21 13:43:02 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/02/28 18:53:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+t_arg			*sort_arg_nanotime(t_opt *optl, t_arg *argument)
+{
+	t_arg			*start;
+	t_arg			*tmp;
+
+	tmp = (t_arg*)ft_memalloc(sizeof(t_arg));
+	start = argument;
+	while (argument && argument->next)
+	{
+		if ((!op_ok(optl, 'r') && argument->time == argument->next->time &&
+		argument->nanotime < argument->next->nanotime)
+		|| (op_ok(optl, 'r') && argument->time == argument->next->time &&
+		argument->nanotime > argument->next->nanotime))
+		{
+			tmp = swap_arg_content(tmp, argument);
+			argument = swap_arg_content(argument, argument->next);
+			argument->next = swap_arg_content(argument->next, tmp);
+			argument = start;
+		}
+		else
+			argument = argument->next;
+	}
+	ft_memdel((void**)&tmp);
+	return (start);
+}
 
 t_arg			*swap_arg_content(t_arg *link1, t_arg *link2)
 {
@@ -19,95 +45,4 @@ t_arg			*swap_arg_content(t_arg *link1, t_arg *link2)
 	link1->time = link2->time;
 	link1->nanotime = link2->nanotime;
 	return (link1);
-}
-
-t_dir			*swap_dir_content(t_dir *link1, t_dir *link2)
-{
-	link1->type = link2->type;
-	link1->modes = link2->modes;
-	link1->acl = link2->acl;
-	link1->nblink = link2->nblink;
-	link1->owner = link2->owner;
-	link1->grp = link2->grp;
-	link1->tall = link2->tall;
-	link1->minor = link2->minor;
-	link1->major = link2->major;
-	link1->date = link2->date;
-	link1->numdate = link2->numdate;
-	link1->nano_numdate = link2->nano_numdate;
-	link1->blksize = link2->blksize;
-	link1->name = link2->name;
-	return (link1);
-}
-
-t_dir			*sort_dir_lex(t_dir *list)
-{
-	t_dir			*start;
-	t_dir			*tmp;
-
-	tmp = (t_dir*)ft_memalloc(sizeof(t_dir));
-	start = list;
-	while (list && list->next)
-	{
-		if (ft_strcmp(list->next->name, list->name) <= 0)
-		{
-			ft_putstr(list->next->name);
-			ft_putchar('\n');
-			tmp = swap_dir_content(tmp, list);
-			list = swap_dir_content(list, list->next);
-			list->next = swap_dir_content(list->next, tmp);
-			list = start;
-		}
-		else
-			list = list->next;
-	}
-	ft_memdel((void**)&tmp);
-	return (start);
-}
-
-t_dir			*sort_dir_time(t_dir *list)
-{
-	t_dir			*start;
-	t_dir			*tmp;
-
-	tmp = (t_dir*)ft_memalloc(sizeof(t_dir));
-	start = list;
-	while (list && list->next)
-	{
-		if (list->numdate < list->next->numdate)
-		{
-			tmp = swap_dir_content(tmp, list);
-			list = swap_dir_content(list, list->next);
-			list->next = swap_dir_content(list->next, tmp);
-			list = start;
-		}
-		else
-			list = list->next;
-	}
-	ft_memdel((void**)&tmp);
-	return (start);
-}
-
-t_dir			*sort_dir_nanotime(t_dir *list)
-{
-	t_dir			*start;
-	t_dir			*tmp;
-
-	tmp = (t_dir*)ft_memalloc(sizeof(t_dir));
-	start = list;
-	while (list && list->next)
-	{
-		if ((list->numdate == list->next->numdate) &&
-		(list->nano_numdate < list->next->nano_numdate))
-		{
-			tmp = swap_dir_content(tmp, list);
-			list = swap_dir_content(list, list->next);
-			list->next = swap_dir_content(list->next, tmp);
-			list = start;
-		}
-		else
-			list = list->next;
-	}
-	ft_memdel((void**)&tmp);
-	return (start);
 }

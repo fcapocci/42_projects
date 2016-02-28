@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 18:30:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 20:15:26 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/28 19:32:43 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ t_opt	*creat_elem(t_opt *optl, char o)
 		}
 		new->c = o;
 		new->next = NULL;
-		if (o == 'n')
+		if (o == 'n' || o == 'f')
 		{
-			new->next = creat_elem(new->next, 'l');
+			new->next = (o == 'n' ? creat_elem(new->next, 'l') :
+			creat_elem(new->next, 'a'));
 			return (new);
 		}
 	}
@@ -75,7 +76,7 @@ int		check_option(char o)
 		return (1);
 	if (o == 'r')
 		return (1);
-	if (o == 't')
+	if (o == 't' || o == 'f')
 		return (1);
 	if (o == 'a')
 		return (1);
