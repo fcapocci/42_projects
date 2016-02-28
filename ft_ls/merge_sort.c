@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 23:30:31 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/27 14:50:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/28 20:58:44 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_dir		*ft_merge(t_dir *a, t_dir *b)
 		return (b);
 	if (b == NULL)
 		return (a);
-	tmp = (strcmp(a->name, b->name) < 0 && (i = 1)) ? a : b;
+	tmp = (ft_strcmp(a->name, b->name) < 0 && (i = 1)) ? a : b;
 	tmp->next = (i) ? ft_merge(a->next, b) : ft_merge(a, b->next);
 	tmp->next->prev = tmp;
 	return (tmp);
