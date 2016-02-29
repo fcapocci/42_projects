@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 23:30:31 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/29 11:24:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 17:52:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_dir		*ft_merge_ntime(t_dir *a, t_dir *b)
 		return (b);
 	if (b == NULL)
 		return (a);
-	tmp = (a->numdate == b->numdate && a->nano_numdate > b->nano_numdate
-	&& (i = 1)) ? a : b;
+	i = (a->numdate == b->numdate && a->nano_numdate > b->nano_numdate) ? 1 : 0;
+	tmp = (i == 1) ? a : b;
 	tmp->next = (i) ? ft_merge_ntime(a->next, b) : ft_merge_ntime(a, b->next);
 	tmp->next->prev = tmp;
 	return (tmp);

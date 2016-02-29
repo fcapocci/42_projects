@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 22:16:11 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/26 17:33:06 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 18:21:53 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void		print_path(char *dirname, int save, t_dir *flist)
 
 	if (save > 1 && (loop > 0 || flist))
 	{
+		if (dirname[1] && dirname[0] == '/' && dirname[1] == '/')
+			dirname++;
 		ft_putchar('\n');
 		ft_putstr(dirname);
 		ft_putstr(":\n");
 	}
 	else if (save > 2 && (loop == 0 || flist))
 	{
+		if (dirname[1] && dirname[0] == '/' && dirname[1] == '/')
+			dirname++;
 		ft_putstr(dirname);
 		ft_putstr(":\n");
 	}

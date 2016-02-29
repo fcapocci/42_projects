@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/25 19:13:00 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 18:16:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_arg			*read_arg(t_opt *optl, int argc, char **argv)
 
 	arg[0] = NULL;
 	arg[1] = NULL;
-	argv = sort_arg_lex(optl, argc, argv);
+	argv = (!op_ok(optl, 'f') ? sort_arg_lex(optl, argc, argv) : argv);
 	while (argc-- > 1)
 	{
 		if (!arg[0])

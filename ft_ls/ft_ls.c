@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/29 11:31:14 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 18:08:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int			manage_read(int argc, char **argv, t_opt *op)
 	flist[0] = NULL;
 	if ((arg[0] = read_arg(op, argc, argv)) == NULL)
 		exit(0);
-	arg[0] = (op_ok(op, 't') == 1 ? sort_arg_time(op, arg[0]) : arg[0]);
-	arg[0] = (op_ok(op, 't') == 1 ? sort_arg_nanotime(op, arg[0]) : arg[0]);
+	arg[0] = manage_sort_arg(op, arg[0]);
 	arg[1] = arg[0];
 	while (arg[0])
 	{
@@ -121,9 +120,9 @@ t_dir		*get_content(t_opt *op, char *entity)
 	list->modes = take_modes(stats.st_mode);
 	list->acl = take_acl_el(entity);
 	list->nblink = stats.st_nlink;
-	list->owner = !op_ok(op, 'n') ? getpwuid(stats.st_uid)->pw_name
+	list->owner = !op_ok(op, 'n') ? ft_strdup(getpwuid(stats.st_uid)->pw_name)
 	: ft_itoa(stats.st_uid);
-	list->grp = !op_ok(op, 'n') ? getgrgid(stats.st_gid)->gr_name
+	list->grp = !op_ok(op, 'n') ? ft_strdup(getgrgid(stats.st_gid)->gr_name)
 	: ft_itoa(stats.st_gid);
 	list->tall = stats.st_size;
 	get_minor_major(&list->minor, &list->major, stats.st_rdev);
