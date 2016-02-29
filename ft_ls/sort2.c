@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 13:43:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/28 18:53:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 11:09:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ t_arg			*swap_arg_content(t_arg *link1, t_arg *link2)
 	link1->time = link2->time;
 	link1->nanotime = link2->nanotime;
 	return (link1);
+}
+
+t_dir			*manage_sort(t_opt *optl, t_dir *list)
+{
+	t_dir			*slist;
+
+	slist = NULL;
+	if (!op_ok(optl, 'f'))
+	{
+		slist = ft_merge_sort(list);
+		slist = (op_ok(optl, 't') ? ft_merge_sort_time(slist) : (slist));
+		slist = (op_ok(optl, 't') ? ft_merge_sort_ntime(slist) : (slist));
+	}
+	else
+		slist = list;
+	return (slist);
 }

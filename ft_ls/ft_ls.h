@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/28 16:00:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/02/29 10:48:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ t_opt				*creat_elem(t_opt *optl, char o);
 int					take_option(t_opt **optl, int *argc, char ***argv);
 int					check_option(char o);
 int					op_ok(t_opt *optl, char o);
+
+t_dir				*manage_sort(t_opt *optl, t_dir *list);
 
 t_dir				*ft_merge_sort(t_dir *list);
 t_dir				*ft_merge(t_dir *lista, t_dir *listb);
