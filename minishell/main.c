@@ -6,14 +6,14 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/01 22:36:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/02 15:02:42 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	pid_t		father;
 
@@ -22,8 +22,8 @@ int main(int argc, char **argv)
 	{
 		if (father > 0)
 		{
-			printf("processus pere");
 			wait(&father);
+			printf("processus pere");
 		}
 		if (father == 0)
 		{
