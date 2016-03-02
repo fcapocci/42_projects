@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/02 17:25:56 by fcapocci         ###   ########.fr       */
+/*   Created: 2015/11/24 16:45:41 by fcapocci          #+#    #+#             */
+/*   Updated: 2015/12/02 14:33:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <unistd.h>
-# include <sys/wait.h>
+char	*ft_strdup(const char *str)
+{
+	char	*dup;
 
-#endif
+	dup = ft_strnew(ft_strlen(str));
+	if (dup)
+		return (ft_strcpy(dup, str));
+	return (NULL);
+}

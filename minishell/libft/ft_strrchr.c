@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/02 17:25:56 by fcapocci         ###   ########.fr       */
+/*   Created: 2015/11/24 15:40:39 by fcapocci          #+#    #+#             */
+/*   Updated: 2015/12/03 13:38:49 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <unistd.h>
-# include <sys/wait.h>
+char	*ft_strrchr(const char *str, int c)
+{
+	char	*tmp;
 
-#endif
+	tmp = (NULL);
+	while (*str != '\0')
+	{
+		if (*str == c)
+			tmp = (char*)str;
+		str++;
+	}
+	if (*str == c)
+		tmp = (char*)str;
+	return (tmp);
+}
