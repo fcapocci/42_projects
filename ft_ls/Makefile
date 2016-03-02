@@ -6,7 +6,7 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/02/28 18:53:59 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/03/02 15:13:11 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FILESC = main.c display.c ft_ls.c modif_content.c option.c\
 
 FILESO = $(FILESC:.c=.o)
 
-INCLUDES = fillit.h libft/libft.h
+INCLUDES = ft_ls.h libft/libft.h
 
 LIB = libft
 
