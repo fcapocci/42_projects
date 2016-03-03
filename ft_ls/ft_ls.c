@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/03 11:30:39 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/03 11:48:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			manage(int argc, char **argv, t_opt *optl)
 	}
 	if (argv[0] && argv[0][0] == '\0')
 	{
-		ft_putstr("ls: fts_open: No such file or directory");
+		ft_putstr("ls: fts_open: No such file or directory\n");
 		exit(0);
 	}
 	else

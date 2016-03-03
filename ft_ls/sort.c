@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 12:50:51 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/29 18:16:02 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/03 11:53:49 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ t_arg			*get_arg_content(char *entity)
 	t_arg			*arg;
 	struct stat		stats;
 
+	if (entity[0] == '\0')
+	{
+		ft_putstr("ls: fts_open: No such file or directory\n");
+		exit(0);
+	}
 	if ((arg = (t_arg*)ft_memalloc(sizeof(t_dir))) == NULL)
 		return (NULL);
 	if ((lstat(entity, &stats)) == -1)
