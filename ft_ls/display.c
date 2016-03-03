@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:34:20 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/28 19:21:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:42:46 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		illegal_option(char c)
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putstr("usage: ft_ls [-GRafglnort] [file ...]");
+	ft_putstr("usage: ft_ls [-GRafglnort] [file ...]\n");
 }
 
 void		get_link(char *file)
