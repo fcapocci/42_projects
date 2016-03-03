@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/03 11:48:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:36:37 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			manage_read(int argc, char **argv, t_opt *op)
 	if ((sub_manage(argc, op, arg[1], flist[1])) == -1)
 		return (-1);
 	ft_memdel((void**)arg);
-	ft_memdel((void**)flist);
+	free_list(flist);
 	return (0);
 }
 
@@ -108,7 +108,7 @@ int			read_dir(t_opt *optl, t_dir **list, char *dirname)
 	slist = ((*list) ? last_link((*list)) : slist);
 	printing(optl, (*list), slist);
 	recursion(optl, (*list), slist);
-	ft_memdel((void**)list);
+	free_list(list);
 	return (0);
 }
 

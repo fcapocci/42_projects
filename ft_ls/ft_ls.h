@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 20:38:25 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/29 17:33:19 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/03 13:52:57 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,7 @@ t_dir				*ft_merge_sort_ntime(t_dir *list);
 t_dir				*ft_merge_ntime(t_dir *lista, t_dir *listb);
 void				ft_split_ntime(t_dir **list, int size);
 void				ft_splitlist_ntime(t_dir *l, t_dir **a, t_dir **b, int i);
+
+void				free_list(t_dir **list);
 
 #endif
