@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/03 15:36:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:53:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,10 @@ t_dir		*get_content(t_opt *op, char *entity)
 	list->modes = take_modes(stats.st_mode);
 	list->acl = take_acl_el(entity);
 	list->nblink = stats.st_nlink;
-	list->owner = !op_ok(op, 'n') ? ft_strdup(getpwuid(stats.st_uid)->pw_name)
-	: ft_itoa(stats.st_uid);
-	list->grp = !op_ok(op, 'n') ? ft_strdup(getgrgid(stats.st_gid)->gr_name)
-	: ft_itoa(stats.st_gid);
+	list->owner = ((!op_ok(op, 'n') && (getpwuid(stats.st_gid) != NULL))
+	? ft_strdup(getpwuid(stats.st_uid)->pw_name) : ft_itoa(stats.st_uid));
+	list->grp = ((!op_ok(op, 'n') && (getgrgid(stats.st_gid) != NULL))
+	? ft_strdup(getgrgid(stats.st_gid)->gr_name) : ft_itoa(stats.st_gid));
 	list->tall = stats.st_size;
 	get_minor_major(&list->minor, &list->major, stats.st_rdev);
 	list->date = dating(&stats.st_mtime);

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 17:31:33 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/03 14:22:09 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:13:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void		recursion(t_opt *optl, t_dir *start, t_dir *end)
 			r = read_dir(optl, &newlist,
 			(!op_ok(optl, 'r') ? start->name : end->name));
 		}
-		if (!op_ok(optl, 'r'))
-			start = start->next;
-		else if (op_ok(optl, 'r'))
-			end = end->prev;
+		start = (!op_ok(optl, 'r') ? start->next : start);
+		end = (!op_ok(optl, 'r') ? end : end->prev);
 	}
 }
