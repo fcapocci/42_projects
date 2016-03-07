@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/07 04:36:53 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/03/07 22:45:17 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		prompt(void)
+int				get_cmd(char *line, char **env)
 {
-	ft_putstr("\033[32m");
-	ft_putstr("minishell");
-	ft_putstr("\033[0m > ");
-}
+	t_env		*vlist;
+	t_env		*start;
+	char		*cmd;
 
-int			main(int argc, char **argv, char **env)
-{
-	char		*line;
-
-	if (argc >= 1 || argv)
-	{
-		while (42)
-		{
-			prompt();
-			get_next_line(0, &line);
-			if (!ft_strcmp(line, "exit"))
-				exit(0);
-			if (get_cmd(line, env) == -1)
-				exit(0);
-			//if (get_builtins() == -1)
-			//	exit(0);
-		}
-	}
+	if (!(vlist = creat_list(env)))
+		return (-1);
+	start = vlist;
+	while (ft_strcmp(vlist->vname, "PATH") != 0)
+		vlist = vlist->next;
+	cmd = ft_strjoin(vlist->vcntt, line);
+	if (!ft_strcmp(cmd, vlist->vcntt))
+		execute_cmd(cmd, env);
+	ft_memdel((void**)&cmd);
+	free_vlist(start);
 	return (0);
 }
