@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/07 04:56:32 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/08 13:33:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,11 @@ void			free_vlist(t_env *vlist)
 		ft_memdel((void**)&vlist);
 		vlist = tmp;
 	}
+}
+
+void			quit(t_env **vlist, char **line)
+{
+	free_vlist((*vlist));
+	ft_memdel((void**)line);
+	exit(0);
 }

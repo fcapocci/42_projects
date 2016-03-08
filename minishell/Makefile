@@ -6,13 +6,13 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/03/07 04:56:57 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/03/08 11:02:22 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-FILESC = main.c list.c cmd.c free.c
+FILESC = main.c list.c cmd.c free.c execute.c
 
 FILESO = $(FILESC:.c=.o)
 

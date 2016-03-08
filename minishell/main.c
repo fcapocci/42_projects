@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/07 04:36:53 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/08 13:34:09 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,22 @@ void		prompt(void)
 int			main(int argc, char **argv, char **env)
 {
 	char		*line;
+	t_env		*vlist;
 
 	if (argc >= 1 || argv)
 	{
 		while (42)
 		{
+			if (!(vlist = creat_list(env)))
+				return (-1);
 			prompt();
 			get_next_line(0, &line);
 			if (!ft_strcmp(line, "exit"))
-				exit(0);
-			if (get_cmd(line, env) == -1)
-				exit(0);
+				quit(&vlist, &line);
+			if (get_cmd(line, vlist, env) == -1)
+				quit(&vlist, &line);
 			//if (get_builtins() == -1)
-			//	exit(0);
+			//	quit(&vlist, &line);
 		}
 	}
 	return (0);
