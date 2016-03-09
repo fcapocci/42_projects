@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:38:23 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/04 12:53:39 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/09 12:10:49 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ t_dir		*get_content(t_opt *op, char *entity)
 	list->modes = take_modes(stats.st_mode);
 	list->acl = take_acl_el(entity);
 	list->nblink = stats.st_nlink;
-	list->owner = ((!op_ok(op, 'n') && (getpwuid(stats.st_gid) != NULL))
+	list->owner = (!op_ok(op, 'n')
 	? ft_strdup(getpwuid(stats.st_uid)->pw_name) : ft_itoa(stats.st_uid));
 	list->grp = ((!op_ok(op, 'n') && (getgrgid(stats.st_gid) != NULL))
 	? ft_strdup(getgrgid(stats.st_gid)->gr_name) : ft_itoa(stats.st_gid));
