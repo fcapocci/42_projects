@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/09 14:49:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/09 16:14:34 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void						quit(t_env **list, char **line);
 **	execute.c
 */
 
-int							execute_cmd(char **args, char **env);
+char						**split_env_list(t_env *vlist);
+int							execute_cmd(char **args, t_env *list);
 
 #endif
