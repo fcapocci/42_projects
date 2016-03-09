@@ -5,97 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 11:21:34 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/21 11:01:04 by fcapocci         ###   ########.fr       */
+/*   Created: 2015/12/17 17:18:45 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/03/07 01:16:26 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-static int		savebuffer(int const fd, char **save)
+static char			*save_line(char **buff)
 {
-	char			buff[BUFF_SIZE + 1];
-	char			*tmp;
-	int				ret;
+	char		*adr;
+	char		*line;
+	char		*new_buff;
 
-	ft_bzero(buff, BUFF_SIZE + 1);
-	while (!ft_strchr(buff, '\n'))
-	{
-		if ((ret = read(fd, buff, BUFF_SIZE)) <= 0)
-			return (ret);
-		buff[ret] = '\0';
-		if ((tmp = ft_strjoin(*save, buff)) == NULL)
-			return (-1);
-		ft_memdel((void**)save);
-		*save = tmp;
-	}
-	return (1);
-}
-
-static int		add_maill(int fd, t_files **start, t_files **files)
-{
-	t_files			*new;
-
-	if ((new = (t_files*)ft_memalloc(sizeof(t_files))) == NULL)
-		return (-1);
-	if ((savebuffer(fd, &new->buff)) == -1)
-	{
-		ft_memdel((void**)&new);
-		return (-1);
-	}
-	if (new->buff == NULL)
-	{
-		ft_memdel((void**)&new);
-		return (0);
-	}
-	new->save = fd;
-	new->next = (*start);
-	(*start) = new;
-	(*files) = new;
-	return (1);
-}
-
-static char		*save_line(char **buff)
-{
-	char			*new_line;
-	char			*ptr;
-	char			*tmp;
-
-	if ((ptr = ft_strchr((*buff), '\n')) == NULL)
-		new_line = ft_strdup((*buff));
+	if ((adr = ft_strchr((*buff), '\n')) == NULL)
+		line = ft_strdup((*buff));
 	else
-		new_line = ft_strsub((*buff), 0, ptr - (*buff));
-	if ((tmp = ft_strsub((*buff), (ptr == NULL) ? ft_strlen(new_line) :
-		ft_strlen(new_line) + 1, ft_strlen(*buff))) == NULL)
+		line = ft_strsub((*buff), 0, adr - (*buff));
+	if ((new_buff = ft_strsub((*buff), (adr == NULL) ? ft_strlen(line) :
+		ft_strlen(line) + 1, ft_strlen((*buff)))) == NULL)
 		return (NULL);
 	ft_memdel((void**)buff);
-	(*buff) = tmp;
-	return (new_line);
+	(*buff) = new_buff;
+	return (line);
 }
 
-int				get_next_line(int const fd, char **line)
+static int			save_buff(int fd, char **buff)
 {
-	static t_files	*start_files;
-	t_files			*files;
+	char	*adr;
+	char	*tmp;
+	char	mem[BUFF_SIZE + 1];
+	int		count;
+
+	adr = NULL;
+	while (adr == NULL)
+	{
+		if ((count = read(fd, mem, BUFF_SIZE)) <= 0)
+			return (count);
+		mem[count] = '\0';
+		if ((tmp = ft_strjoin((*buff), mem)) == NULL)
+			return (-1);
+		ft_memdel((void**)buff);
+		(*buff) = tmp;
+		adr = ft_strchr(mem, '\n');
+	}
+	return (1);
+}
+
+static int			add_file(int fd, t_file **lst, t_file **bloc)
+{
+	t_file		*new;
+
+	if ((new = (t_file*)ft_memalloc(sizeof(t_file))) == NULL)
+		return (-1);
+	if ((save_buff(fd, &new->l)) == -1)
+	{
+		ft_memdel((void**)&new);
+		return (-1);
+	}
+	if (new->l == NULL)
+	{
+		ft_memdel((void**)&new);
+		return (0);
+	}
+	new->next = (*lst);
+	new->fd = fd;
+	new->nb_file = ((*lst) == NULL) ? 0 : (*lst)->nb_file + 1;
+	(*lst) = new;
+	(*bloc) = new;
+	return (1);
+}
+
+static int			del_file(t_file **file, t_file *obj)
+{
+	t_file *tmp1;
+	t_file *tmp2;
+	t_file *tmp3;
+
+	if (obj == NULL)
+		return (-1);
+	tmp1 = (*file);
+	tmp2 = (*file);
+	tmp3 = (*file);
+	if ((*file) == obj)
+		tmp1 = (*file)->next;
+	else
+	{
+		while (tmp2 != obj)
+		{
+			tmp3 = tmp2;
+			tmp2 = tmp2->next;
+		}
+		tmp3->next = tmp2->next;
+	}
+	ft_memdel((void**)&tmp2->l);
+	ft_memdel((void**)&tmp2);
+	(*file) = tmp1;
+	return (0);
+}
+
+int					get_next_line(int fd, char **line)
+{
+	static t_file	*adr_file;
+	t_file			*file;
 	int				retour;
 
+	file = adr_file;
 	if (fd < 0 || line == NULL)
 		return (-1);
-	files = start_files;
-	while (files != NULL)
+	while (file != NULL)
 	{
-		if (files->save == fd)
+		if (file->fd == fd)
 			break ;
-		files = files->next;
+		file = file->next;
 	}
-	if (files == NULL)
-		if ((retour = add_maill(fd, &start_files, &files)) <= 0)
-			return ((retour == 0) ? 0 : -1);
-	if ((savebuffer(fd, &files->buff)) == -1)
-		return (-1);
-	if ((files->buff == NULL) || (ft_strlen(files->buff) == 0))
-		return (0);
-	if (((*line) = save_line(&files->buff)) == NULL)
+	if (file)
+		if (save_buff(fd, &file->l) == -1)
+			return (-1);
+	if (file == NULL)
+		if ((retour = add_file(fd, &adr_file, &file)) <= 0)
+			return ((retour == 0) ? 0 : del_file(&adr_file, NULL));
+	if (ft_strlen(file->l) == 0)
+		return (del_file(&adr_file, file));
+	if (((*line) = save_line(&file->l)) == NULL)
 		return (-1);
 	return (1);
 }

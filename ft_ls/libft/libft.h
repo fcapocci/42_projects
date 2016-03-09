@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:46:30 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 11:29:20 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/06 23:54:59 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# define BUFF_SIZE 42
+# define BUFF_SIZE 1
 
-typedef struct		s_files
+typedef struct		s_file
 {
-	char			*buff;
-	int				save;
-	struct s_files	*next;
-}					t_files;
+	int				fd;
+	char			*l;
+	unsigned int	nb_file;
+	struct s_file	*next;
+}					t_file;
 
 typedef struct		s_list
 {
