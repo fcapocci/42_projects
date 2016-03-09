@@ -6,45 +6,51 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/03/08 11:02:22 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/03/02 15:13:11 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
+CC = gcc
+
+FLAGS = -Wall -Wextra -Werror
+
+SRCS = main.c cmd.c execute.c free.c list.c
+
+HEADS = minishell.h
+
+LIBS = libft/libft.a
+
+OTHERS = libft Makefile auteur
+
+OBJS = $(SRCS:.c=.o)
+
 NAME = minishell
 
-FILESC = main.c list.c cmd.c free.c execute.c
+LOGFILE = $(LOGPATH) `date +'%d/%m/%y %H:%M:%S'`
 
-FILESO = $(FILESC:.c=.o)
-
-INCLUDES = minishell.h libft/libft.h
-
-LIB = libft
-
-CC = gcc -Wall -Werror -Wextra
-
-all: $(NAME)
+all : $(NAME)
 
 $(NAME):
-	@make -C $(LIB)
-	@$(CC) -c $(FILESC) -g
-	@echo "\033[1;36m[\033[0mFILES/libft .c \033[1;32mSUCCESSFULLY\033[0m \
-	COMPILED\033[1;36m]\033[0m"
-	@$(CC) -o $(NAME) $(FILESO) -L $(LIB) libft/libft.a
-	@echo "\033[1;36m[\033[0m$(NAME) \033[1;32mSUCCESSFULLY\033[0m \
-	CREATED\033[1;36m]\033[0m"
+	make -C libft/ all
+	$(CC) -c -g $(FLAGS) $(SRCS)
+	$(CC) $(FLAGS) -o $(NAME) -g $(OBJS) $(LIBS)
 
-libft:
-	@make -C libft fclean
-	@make -C libft
+clean : $(OBJS)
+	rm -rf $(OBJS)
 
-clean:
-	@rm -rf $(FILESO)
-	@make -C libft clean
-	@echo "\033[1;36m[\033[0mFILES/libft .o \033[0;31mDELETED\033[1;36m]\033[0m"
+fclean : clean
+	make -C libft/ fclean
+	rm -rf $(NAME)
+	rm -rf $(NAME).dSYM
 
-fclean: clean
-	@rm -rf libft/libft.a
-	@rm -rf $(NAME)
-	@echo "\033[1;36m[\033[0m$(NAME)/libft.a \033[0;31mDELETED\033[1;36m]\033[0m"
+push : fclean
+	git add $(SRCS) $(HEADS) $(OTHERS)
+	git commit -m "$(LOGFILE)"
+	git push
 
-re: fclean all
+re : fclean all
+
+exe : re
+	./$(NAME)
+
+.PHONY: all clean fclean re exe push

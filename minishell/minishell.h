@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/08 23:08:43 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/09 14:49:10 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,32 @@ typedef struct				s_env
 	struct s_env			*next;
 }							t_env;
 
-/* ** list.c ** */
+/*
+**	list.c
+*/
 
 t_env						*creat_list(char **env);
 t_env						*new_link(char *env);
 
-/* ** cmd.c ** */
+/*
+**	cmd.c
+*/
 
 int							check_path(char ***args, char **path);
 char						*sup_tab(char *line);
-int							get_cmd(char *line, t_env *env_list, char **env);
+int							get_cmd(char *line, t_env *env_list);
 
-/* ** free.c ** */
+/*
+**	free.c
+*/
 
-void						free_vlist(t_env *vlist);
+int							free_get_cmd(char ***arg, char ***pat, char **line);
+void						quit(t_env **list, char **line);
 
-/* ** execute.c ** */
+/*
+**	execute.c
+*/
 
 int							execute_cmd(char **args, char **env);
-void						quit(t_env **list, char **line);
 
 #endif

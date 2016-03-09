@@ -6,11 +6,30 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/09 00:17:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/09 15:05:03 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int				check_path(char ***args, char **path)
+{
+	char		*cmd;
+
+	while (*path)
+	{
+		cmd = ft_strjoin(*path, (*args)[0]);
+		if (!ft_strcmp(*path, cmd))
+		{
+			(*args)[0] = cmd;
+			ft_memdel((void**)&cmd);
+			return (0);
+		}
+		path++;
+	}
+	ft_memdel((void**)&cmd);
+	return (-1);
+}
 
 char			*sup_tab(char *line)
 {
@@ -40,7 +59,7 @@ char			*sup_tab(char *line)
 	return (new_line);
 }
 
-int				get_cmd(char *line, t_env *vlist, char **env)
+int				get_cmd(char *line, t_env *vlist)
 {
 	char		**args;
 	char		**path;
@@ -50,10 +69,12 @@ int				get_cmd(char *line, t_env *vlist, char **env)
 	while (ft_strcmp(vlist->vname, "PATH"))
 		vlist = vlist->next;
 	path = ft_strsplit(vlist->vcntt, ':');
-	//if (!check_path(&args, path))
-	//	execute_cmd(args, env);
-	ft_memdel((void**)args);
-	ft_memdel((void**)path);
+	if (check_path(&args, path))
+		return (free_get_cmd(&args, &path, &line));
+	//execute_cmd(args, env);
+	//	return (free_get_cmd(&args, &path, &line));
+	ft_free_strsplit(&args);
+	ft_free_strsplit(&path);
 	ft_memdel((void**)&line);
 	return (0);
 }
