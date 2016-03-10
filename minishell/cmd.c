@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/09 16:47:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/10 12:19:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,6 @@ int				check_path(char ***args, char **path)
 	}
 	ft_memdel((void**)&cmd);
 	return (-1);
-}
-
-char			*sup_tab(char *line)
-{
-	char		*new_line;
-	size_t		i;
-	size_t		p;
-	char		tmp;
-
-	new_line = ft_strnew(ft_strlen(line));
-	i = 0;
-	p = 0;
-	while (i <= ft_strlen(line))
-	{
-		if (i == 0 && (line[i] == ' ' || line[i] == 9))
-			while (line[i] == ' ' || line[i] == 9)
-				i++;
-		if (line[i] == 9)
-			tmp = ' ';
-		else
-			tmp = line[i];
-		new_line[p++] = tmp;
-		while (line[i + 1] && (line[i] == ' ' || line[i] == 9) &&
-		(line[i + 1] == ' ' || line[i + 1] == 9))
-			i++;
-		i++;
-	}
-	return (new_line);
 }
 
 int				get_cmd(char *line, t_env *vlist)
