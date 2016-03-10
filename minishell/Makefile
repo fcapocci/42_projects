@@ -14,7 +14,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c cmd.c execute.c free.c list.c
+SRCS = main.c cmd.c execute.c free.c list.c modif_content.c
 
 HEADS = minishell.h
 

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/10 12:18:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/10 14:36:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@ typedef struct				s_env
 	struct s_env			*next;
 }							t_env;
 
+typedef struct				s_path
+{
+	char					*ppath;
+	char					*pname;
+	struct s_path			*next;
+}							t_path;
+
 /*
 **	list.c
 */
 
+t_path						*creat_plist(char *path);
 t_env						*creat_list(char **env);
 t_env						*new_link(char *env);
 
@@ -43,6 +51,7 @@ char						*sup_tab(char *line);
 
 int							check_path(char ***args, char **path);
 int							get_cmd(char *line, t_env *env_list);
+t_path						**tab_list(char **path);
 
 /*
 **	free.c
