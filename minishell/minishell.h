@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/10 14:36:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/10 14:43:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct				s_path
 **	list.c
 */
 
-t_path						*creat_plist(char *path);
 t_env						*creat_list(char **env);
 t_env						*new_link(char *env);
+t_path						*creat_plist(char *path);
+t_path						*new_plink(char *path, char *d_name);
 
 /*
 **	modif_content.c

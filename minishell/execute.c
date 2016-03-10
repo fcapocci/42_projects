@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/09 16:44:53 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:34:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ char			**split_env_list(t_env *vlist)
 	while (vlist)
 	{
 		line = ft_strjoin(ft_strjoin(vlist->vname, "="), vlist->vcntt);
-		env[nb++] = ft_strnew(ft_strlen(line));
+		env[nb++] = ft_strdup(line);
 		vlist = vlist->next;
 		ft_memdel((void**)&line);
 	}
-	env[nb] = NULL;
+	env[nb + 1] = NULL;
 	return (env);
 }
 
@@ -49,16 +49,16 @@ int				execute_cmd(char **args, t_env *vlist)
 
 	env = split_env_list(vlist);
 	cmd = args[0];
-	args++;
 	pid = fork();
 	if (pid < 0)
 	{
-
+		ft_free_strsplit(&env);
 		return (-1);
 	}
 	if (pid > 0)
 		wait(&nb);
 	if (pid == 0)
 		execve(cmd, args, env);
+	ft_free_strsplit(&env);
 	return (0);
 }
