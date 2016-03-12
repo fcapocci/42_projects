@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/10 16:13:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 01:31:33 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_path			**tab_list(char **path)
 		cmpt++;
 	if (!(tab_list = (t_path**)ft_memalloc(sizeof(t_path*) * (cmpt + 1))))
 		return (NULL);
-	while (i <= cmpt)
+	while (i < cmpt)
 	{
-		tab_list[i] = creat_plist(*path);
+		if ((tab_list[i] = creat_plist(*path)))
+			i++;
 		path++;
-		i++;
 	}
-	tab_list[i] = NULL;
+	tab_list[i + 1] = NULL;
 	return (tab_list);
 }
 
