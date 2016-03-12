@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/12 03:57:46 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 04:02:28 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int				free_tab_list(t_path ***tab_list, int nb)
 			tmp = (*tab_list)[i]->next;
 			ft_memdel((void**)&(*tab_list)[i]->ppath);
 			ft_memdel((void**)&(*tab_list)[i]->pname);
-			ft_memdel((void**)tab_list[i]);
+			ft_memdel((void**)(*tab_list)[i]);
 			(*tab_list)[i] = tmp;
 		}
+		ft_memdel((void**)(*tab_list)[i]);
 		i++;
 	}
 	ft_memdel((void**)*tab_list);
