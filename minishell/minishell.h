@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/10 14:43:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 03:51:58 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ t_path						**tab_list(char **path);
 **	free.c
 */
 
-int							free_get_cmd(char ***arg, char ***pat, char **line);
+int							free_get_cmd(char ***args, char ***path,
+							char **line, int nb);
 void						quit(t_env **list, char **line);
+int							free_tab_list(t_path ***tab_list, int nb);
 
 /*
 **	execute.c
@@ -67,5 +69,11 @@ void						quit(t_env **list, char **line);
 
 char						**split_env_list(t_env *vlist);
 int							execute_cmd(char **args, t_env *list);
+
+/*
+**	error.c
+*/
+
+void						no_cmd(char *name);
 
 #endif

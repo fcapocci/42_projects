@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/11 14:29:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 03:35:48 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			main(int argc, char **argv, char **env)
 {
 	char		*line;
 	t_env		*vlist;
+	int			r;
 
 	if (argc >= 1 || argv)
 	{
@@ -36,10 +37,8 @@ int			main(int argc, char **argv, char **env)
 			{
 				if (!ft_strcmp(line, "exit"))
 					quit(&vlist, &line);
-				if (get_cmd(line, vlist) == -1)
-					quit(&vlist, &line);
-				//if (get_builtins() == -1)
-				//	quit(&vlist, &line);
+				if ((r = get_cmd(line, vlist)) <= 0)
+					(r == 0 ? no_cmd(line) : quit(&vlist, &line));
 			}
 		}
 	}

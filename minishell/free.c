@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/09 16:02:42 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 03:57:46 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,32 @@ void			quit(t_env **vlist, char **line)
 	exit(0);
 }
 
-int				free_get_cmd(char ***args, char ***path, char **line)
+int				free_get_cmd(char ***args, char ***path, char **line, int nb)
 {
 	ft_free_strsplit(args);
 	ft_free_strsplit(path);
 	ft_memdel((void**)&(*line));
-	return (-1);
+	return (nb);
+}
+
+int				free_tab_list(t_path ***tab_list, int nb)
+{
+	t_path		*tmp;
+	int			i;
+
+	i = 0;
+	while ((*tab_list)[i])
+	{
+		while ((*tab_list)[i])
+		{
+			tmp = (*tab_list)[i]->next;
+			ft_memdel((void**)&(*tab_list)[i]->ppath);
+			ft_memdel((void**)&(*tab_list)[i]->pname);
+			ft_memdel((void**)tab_list[i]);
+			(*tab_list)[i] = tmp;
+		}
+		i++;
+	}
+	ft_memdel((void**)*tab_list);
+	return (nb);
 }
