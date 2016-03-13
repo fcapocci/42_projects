@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/12 03:35:48 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/13 02:27:48 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ int			main(int argc, char **argv, char **env)
 			get_next_line(0, &line);
 			if (ft_strcmp(line, "\0"))
 			{
-				if (!ft_strcmp(line, "exit"))
-					quit(&vlist, &line);
-				if ((r = get_cmd(line, vlist)) <= 0)
-					(r == 0 ? no_cmd(line) : quit(&vlist, &line));
+				if ((r = get_builtins(line)) != 0)
+					(r < 0 ? quit(&vlist, &line) : exe_builtins(line, &vlist));
+				else
+					if ((r = get_cmd(line, vlist)) <= 0)
+						(r == 0 ? no_cmd(line) : quit(&vlist, &line));
 			}
+			ft_memdel((void**)&line);
 		}
 	}
 	return (0);

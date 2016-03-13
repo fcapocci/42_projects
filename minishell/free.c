@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/12 04:02:28 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/12 23:02:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ int				free_tab_list(t_path ***tab_list, int nb)
 		i++;
 	}
 	ft_memdel((void**)*tab_list);
+	return (nb);
+}
+
+int				is_builts(char **line, char ***args, int nb)
+{
+	ft_memdel((void**)&(*line));
+	ft_free_strsplit(&(*args));
 	return (nb);
 }

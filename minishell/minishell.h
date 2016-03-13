@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/12 03:51:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/13 02:18:58 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int							get_cmd(char *line, t_env *env_list);
 t_path						**tab_list(char **path);
 
 /*
+**	builtins.c
+*/
+
+int							get_builtins(char *line);
+
+/*
 **	free.c
 */
 
@@ -62,6 +68,7 @@ int							free_get_cmd(char ***args, char ***path,
 							char **line, int nb);
 void						quit(t_env **list, char **line);
 int							free_tab_list(t_path ***tab_list, int nb);
+int							is_builts(char **line, char ***args, int nb);
 
 /*
 **	execute.c
@@ -69,11 +76,13 @@ int							free_tab_list(t_path ***tab_list, int nb);
 
 char						**split_env_list(t_env *vlist);
 int							execute_cmd(char **args, t_env *list);
+int							exe_builtins(char *line, t_env **vlist);
 
 /*
-**	error.c
+**	print.c
 */
 
 void						no_cmd(char *name);
+int							print_env(t_env *vlist, int nb);
 
 #endif

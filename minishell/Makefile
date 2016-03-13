@@ -6,7 +6,7 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/03/12 03:25:21 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/03/13 02:17:39 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c cmd.c execute.c free.c list.c modif_content.c error.c
+SRCS = main.c cmd.c execute.c free.c list.c modif_content.c print.c builtins.c
 
 HEADS = minishell.h
 
