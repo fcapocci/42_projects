@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 03:11:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/13 02:16:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/13 17:26:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			no_cmd(char *name)
 	ft_putendl(name);
 }
 
-int				print_env(t_env *vlist, int nb)
+void			print_env(t_env *vlist)
 {
 	while (vlist)
 	{
@@ -27,5 +27,4 @@ int				print_env(t_env *vlist, int nb)
 		ft_putendl(vlist->vcntt);
 		vlist = vlist->next;
 	}
-	return (nb);
 }

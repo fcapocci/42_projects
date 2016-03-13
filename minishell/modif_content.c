@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/10 12:17:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/13 20:47:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,48 @@ char			*sup_tab(char *line)
 	}
 	return (new_line);
 }
+
+t_env			*insert_cntt(t_env *vlist, char *cntt, int rp)
+{
+	if (rp > 0)
+	{
+		ft_memdel((void**)&vlist->vcntt);
+		vlist->vcntt = ft_strdup(cntt);
+	}
+	return (vlist);
+}
+
+t_env			*set_env(t_env *vlist, char *name, char *cntt, int rp)
+{
+	t_env		*nvlist;
+
+	nvlist = vlist;
+	if (!name)
+		return (nvlist);
+	while (vlist && ft_strcmp(name, vlist->vname))
+		vlist = vlist->next;
+	if (!ft_strcmp(name, vlist->vname))
+		vlist = insert_cntt(vlist, cntt, rp);
+	else
+		{
+			if ((vlist->next = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
+				return (NULL);
+			vlist->next->vname = ft_strdup(name);
+			vlist->next->vcntt = (rp == 0 ? ft_strdup("\0") : ft_strdup(cntt));
+			vlist->next->next = NULL;
+		}
+	return (nvlist);
+}
+/*
+t_env			*unset_env(t_env *vlist, char *name)
+{
+	t_env		*nvlist;
+	return (nvlist);
+}
+
+t_env			*cd_env(t_env *vlist, char *name)
+{
+	t_env		*nvlist;
+	return (nvlist);
+}
+*/
