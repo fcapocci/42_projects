@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/13 20:47:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:31:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*sup_tab(char *line)
 		else
 			tmp = line[i];
 		new_line[p++] = tmp;
-		while (line[i + 1] && (line[i] == ' ' || line[i] == 9) &&
+		while (line[i] && (line[i] == ' ' || line[i] == 9) &&
 		(line[i + 1] == ' ' || line[i + 1] == 9))
 			i++;
 		i++;
