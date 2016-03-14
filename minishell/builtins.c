@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 22:07:05 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/13 17:28:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:08:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int				get_builtins(char *line)
 	char		**args;
 
 	line = sup_tab(line);
-	args = ft_strsplit(line, ' ');
+	if ((args = ft_strsplit(line, ' ')) == NULL)
+	{
+		ft_memdel((void**)&line);
+		return (0);
+	}
 	if (!ft_strcmp(args[0], "cd"))
 		return (is_builts(&line, &args, 1));
 	if (!ft_strcmp(args[0], "setenv"))

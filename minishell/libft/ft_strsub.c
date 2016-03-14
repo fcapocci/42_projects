@@ -5,29 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 11:44:03 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/01/18 14:45:22 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/03/14 14:24:29 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/03/14 14:24:32 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char		*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	char	*s2;
-	size_t	i;
+	char			*new_s;
+	unsigned int	i;
 
-	i = 0;
-	if (start > ft_strlen(s))
-		return (NULL);
-	s2 = ft_strnew(len);
-	if (!s2)
-		return (NULL);
-	while (i < len)
+	new_s = NULL;
+	if (start <= ft_strlen(s))
 	{
-		s2[i] = (s) ? s[start + i] : '\0';
-		i++;
+		if ((new_s = (char*)ft_memalloc(sizeof(*new_s) * len + 1)) == NULL)
+			return (NULL);
+		i = 0;
+		while (s[start + i] != '\0' && i < len)
+		{
+			new_s[i] = s[start + i];
+			i++;
+		}
+		new_s[i] = '\0';
 	}
-	s2[i] = '\0';
-	return (s2);
+	return (new_s);
 }
