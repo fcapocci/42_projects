@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 19:26:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:12:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,28 @@ int				check_path(char ***args, char **path)
 {
 	t_path		**tablst_path;
 	t_path		**start;
+	t_path		*tmp;
+	int			i;
 
+	i = 0;
 	tablst_path = tab_list(path);
 	start = tablst_path;
-	while (*start)
+	while (start[i])
 	{
-		while (*start)
+		tmp = start[i];
+		while (tmp)
 		{
-			if (!ft_strcmp((*start)->pname, (*args)[0]))
+			if (!ft_strcmp(tmp->pname, (*args)[0]))
 			{
 				ft_memdel((void**)&(*args)[0]);
-				(*args)[0] = ft_strjoin((*start)->ppath, (*start)->pname);
-				free_tab_list(&tablst_path, 1);
-				return (1);
+				(*args)[0] = ft_strjoin(tmp->ppath, tmp->pname);
+				return (free_tab_list(&tablst_path, 1));
 			}
-			(*start) = (*start)->next;
+			tmp = tmp->next;
 		}
-		start++;
+		i++;
 	}
-	free_tab_list(&tablst_path, 0);
-	return (0);
+	return (free_tab_list(&tablst_path, 0));
 }
 
 int				get_cmd(char *line, t_env *vlist)

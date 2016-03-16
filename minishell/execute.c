@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 18:35:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:06:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,19 @@ char			**split_env_list(t_env *vlist)
 {
 	char		**env;
 	char		*line;
+	char		*tmp;
 	size_t		nb;
-	t_env		*tmp;
 
-	tmp = vlist;
 	nb = 0;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		nb++;
-	}
+	nb = ft_count_list((t_list*)vlist);
 	if (!(env = (char**)ft_memalloc((sizeof(char*) * (nb + 1)))))
 		return (NULL);
 	nb = 0;
 	while (vlist)
 	{
-		line = ft_strjoin(ft_strjoin(vlist->vname, "="), vlist->vcntt);
+		tmp = ft_strjoin(vlist->vname, "=");
+		line = ft_strjoin(tmp, vlist->vcntt);
+		ft_memdel((void**)&tmp);
 		env[nb++] = ft_strdup(line);
 		vlist = vlist->next;
 		ft_memdel((void**)&line);
@@ -73,11 +70,11 @@ int				exe_builtins(char *line, t_env **vlist)
 		print_env(*vlist);
 	if (!ft_strcmp("setenv", args[0]))
 		(*vlist) = set_env((*vlist), args[1], args[2], ft_strlen(args[2]));
-	//if (!ft_strcmp("unsetenv", args[0]))
-	//	(*vlist) = unset_env((*vlist), args[1]);
-	//if (!ft_strcmp("cd", args[0]))
-	//	(*vlist) = cd_env((*vlist), args[1]);
-	//return (quit_builts(&line, &args));
+//	if (!ft_strcmp("unsetenv", args[0]))
+//		(*vlist) = unset_env((*vlist), args[1]);
+//	if (!ft_strcmp("cd", args[0]))
+//		(*vlist) = cd_env((*vlist), args[1]);
+//	return (quit_builts(&line, &args));
 	ft_free_strsplit(&args);
 	ft_memdel((void**)&line);
 	return (0);

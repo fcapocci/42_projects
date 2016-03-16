@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 13:46:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:26:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,38 @@ int				free_get_cmd(char ***args, char ***path, char **line, int nb)
 	return (nb);
 }
 
-int				free_tab_list(t_path ***tab_list, int nb)
+void			free_plist(t_path **plist)
 {
 	t_path		*tmp;
+
+	if (*plist)
+	{
+		while (*plist)
+		{
+			tmp = (*plist)->next;
+			ft_memdel((void**)&(*plist)->ppath);
+			ft_memdel((void**)&(*plist)->pname);
+			ft_memdel((void**)plist);
+			(*plist) = tmp;
+		}
+		ft_memdel((void**)plist);
+	}
+}
+
+int				free_tab_list(t_path ***tab_list, int nb)
+{
 	int			i;
+	t_path		**tmp;
 
 	i = 0;
+	tmp = *tab_list;
 	while ((*tab_list)[i])
 	{
-		while ((*tab_list)[i])
-		{
-			tmp = (*tab_list)[i]->next;
-			ft_memdel((void**)&(*tab_list)[i]->ppath);
-			ft_memdel((void**)&(*tab_list)[i]->pname);
-			ft_memdel((void**)&(*tab_list)[i]);
-			(*tab_list)[i] = tmp;
-		}
-		ft_memdel((void**)&(*tab_list)[i]);
+		free_plist(&tmp[i]);
 		i++;
 	}
-	ft_memdel((void**)*tab_list);
+	free_plist(&tmp[i]);
+	ft_memdel((void**)&tmp);
 	return (nb);
 }
 

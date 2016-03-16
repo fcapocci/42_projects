@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 18:31:07 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/16 10:44:32 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ t_env			*set_env(t_env *vlist, char *name, char *cntt, int rp)
 	if (!ft_strcmp(name, vlist->vname))
 		vlist = insert_cntt(vlist, cntt, rp);
 	else
-		{
-			if ((vlist->next = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
-				return (NULL);
-			vlist->next->vname = ft_strdup(name);
-			vlist->next->vcntt = (rp == 0 ? ft_strdup("\0") : ft_strdup(cntt));
-			vlist->next->next = NULL;
-		}
+	{
+		if ((vlist = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
+			return (NULL);
+		vlist->vname = ft_strdup(name);
+		vlist->vcntt = (rp == 0 ? ft_strdup("\0") : ft_strdup(cntt));
+		vlist->next = NULL;
+	}
 	return (nvlist);
 }
 /*
