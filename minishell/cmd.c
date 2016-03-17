@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/16 16:12:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/17 15:25:10 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_path			**tab_list(char **path)
 	{
 		if ((tab_list[i] = creat_plist(*path)))
 			i++;
+		else
+			break ;
 		path++;
 	}
 	tab_list[i] = NULL;
@@ -42,7 +44,8 @@ int				check_path(char ***args, char **path)
 	int			i;
 
 	i = 0;
-	tablst_path = tab_list(path);
+	if ((tablst_path = tab_list(path)) == NULL)
+		return (free_tab_list(&tablst_path, 0));
 	start = tablst_path;
 	while (start[i])
 	{
@@ -69,6 +72,7 @@ int				get_cmd(char *line, t_env *vlist)
 	t_env		*start;
 	int			nb;
 
+	nb = 0;
 	start = vlist;
 	line = sup_tab(line);
 	if ((args = ft_strsplit(line, ' ')) == NULL)
@@ -78,10 +82,12 @@ int				get_cmd(char *line, t_env *vlist)
 	}
 	while (ft_strcmp(vlist->vname, "PATH"))
 		vlist = vlist->next;
-	path = ft_strsplit(vlist->vcntt, ':');
-	vlist = start;
-	if ((nb = check_path(&args, path)) != 0)
-		if (execute_cmd(args, vlist))
-			return (free_get_cmd(&args, &path, &line, -1));
+	if ((path = ft_strsplit(vlist->vcntt, ':')) != NULL)
+	{
+		vlist = start;
+		if ((nb = check_path(&args, path)) != 0)
+			if (execute_cmd(args, vlist))
+				return (free_get_cmd(&args, &path, &line, -1));
+	}
 	return (free_get_cmd(&args, &path, &line, nb));
 }

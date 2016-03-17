@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:46:30 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/16 12:54:15 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/17 14:38:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 void				ft_free_strsplit(char ***tab);
+size_t				len_y(char **tab);
 
 #endif

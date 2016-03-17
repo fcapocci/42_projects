@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/16 10:44:32 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/17 18:23:34 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,47 +40,19 @@ char			*sup_tab(char *line)
 	return (new_line);
 }
 
-t_env			*insert_cntt(t_env *vlist, char *cntt, int rp)
-{
-	if (rp > 0)
-	{
-		ft_memdel((void**)&vlist->vcntt);
-		vlist->vcntt = ft_strdup(cntt);
-	}
-	return (vlist);
-}
-
-t_env			*set_env(t_env *vlist, char *name, char *cntt, int rp)
+t_env			*unset_env(t_env *vlist, char **args)
 {
 	t_env		*nvlist;
 
 	nvlist = vlist;
-	if (!name)
-		return (nvlist);
-	while (vlist && ft_strcmp(name, vlist->vname))
+	while ((ft_strcmp(args[0], vlist->vname) && vlist->next))
 		vlist = vlist->next;
-	if (!ft_strcmp(name, vlist->vname))
-		vlist = insert_cntt(vlist, cntt, rp);
-	else
+	if (!ft_strcmp(args[0], vlist->vname))
 	{
-		if ((vlist = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
-			return (NULL);
-		vlist->vname = ft_strdup(name);
-		vlist->vcntt = (rp == 0 ? ft_strdup("\0") : ft_strdup(cntt));
-		vlist->next = NULL;
+		if (vlist->vname)
+			ft_memdel((void**)&vlist->vname);
+		if (vlist->vcntt)
+			ft_memdel((void**)&vlist->vcntt);
 	}
 	return (nvlist);
 }
-/*
-t_env			*unset_env(t_env *vlist, char *name)
-{
-	t_env		*nvlist;
-	return (nvlist);
-}
-
-t_env			*cd_env(t_env *vlist, char *name)
-{
-	t_env		*nvlist;
-	return (nvlist);
-}
-*/

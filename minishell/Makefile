@@ -14,7 +14,8 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c cmd.c execute.c free.c list.c modif_content.c print.c builtins.c
+SRCS = main.c cmd.c execute.c free.c list.c modif_content.c print.c\
+	   builtins.c setenv.c
 
 HEADS = minishell.h
 
@@ -37,6 +38,7 @@ $(NAME):
 
 clean : $(OBJS)
 	rm -rf $(OBJS)
+	make -C libft/ clean
 
 fclean : clean
 	make -C libft/ fclean

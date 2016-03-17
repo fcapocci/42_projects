@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:51:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/16 16:26:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/17 18:25:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void			quit(t_env **vlist, char **line)
 	while (*vlist)
 	{
 		tmp = (*vlist)->next;
-		ft_memdel((void**)&(*vlist)->vname);
-		ft_memdel((void**)&(*vlist)->vcntt);
+		if ((*vlist)->vname)
+			ft_memdel((void**)&(*vlist)->vname);
+		if ((*vlist)->vcntt)
+			ft_memdel((void**)&(*vlist)->vcntt);
 		ft_memdel((void**)vlist);
 		(*vlist) = tmp;
 	}
@@ -60,15 +62,18 @@ int				free_tab_list(t_path ***tab_list, int nb)
 	int			i;
 	t_path		**tmp;
 
-	i = 0;
-	tmp = *tab_list;
-	while ((*tab_list)[i])
+	if ((*tab_list))
 	{
+		i = 0;
+		tmp = *tab_list;
+		while ((*tab_list)[i])
+		{
+			free_plist(&tmp[i]);
+			i++;
+		}
 		free_plist(&tmp[i]);
-		i++;
+		ft_memdel((void**)&tmp);
 	}
-	free_plist(&tmp[i]);
-	ft_memdel((void**)&tmp);
 	return (nb);
 }
 
