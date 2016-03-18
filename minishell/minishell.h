@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/17 17:43:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 00:19:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_path						*new_plink(char *path, char *d_name);
 */
 
 char						*sup_tab(char *line);
-t_env						*unset_env(t_env *vlist, char **args);
+void						unset_env(t_env ***vlist, char **args);
+t_env						*save_link(t_env *list, char *arg);
 
 /*
 **	setenv.c
@@ -78,6 +79,12 @@ int							free_get_cmd(char ***args, char ***path,
 void						quit(t_env **list, char **line);
 int							free_tab_list(t_path ***tab_list, int nb);
 int							is_builts(char **line, char ***args, int nb);
+
+/*
+**	free2.c
+*/
+
+void						free_link(t_env **vlist, int in);
 int							quit_builts(char **line, char ***args);
 
 /*

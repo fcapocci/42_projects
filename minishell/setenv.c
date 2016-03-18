@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:25:56 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/17 18:45:05 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/18 22:36:32 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_env			*set_env(t_env *vlist, char **ag, int rp)
 
 	len = len_y(ag);
 	nvlist = vlist;
-	if (len < 2 || (len > 3) || (ft_strchr(ag[1], '=') && len > 2))
+	if (len < 2 || (len > 3) || (ft_strchr(ag[1], '=') && len > 2)
+	|| (!ft_strchr(ag[1], '=') && len == 2) || (ag[1][0] == '='))
 		return (nvlist);
 	tmp = (ft_strchr(ag[1], '=') ? ft_strsplit(ag[1], '=') : NULL);
 	while ((ft_strcmp((tmp ? tmp[0] : ag[1]), vlist->vname) && vlist->next))

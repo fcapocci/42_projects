@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/17 18:27:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 00:22:53 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				exe_builtins(char *line, t_env **vlist)
 	if (!ft_strcmp("setenv", args[0]))
 		(*vlist) = set_env((*vlist), args, 0);
 	if (!ft_strcmp("unsetenv", args[0]))
-		(*vlist) = unset_env((*vlist), args);
+		unset_env(&vlist, args);
 //	if (!ft_strcmp("cd", args[0]))
 //		(*vlist) = cd_env((*vlist), args[1]);
 //	return (quit_builts(&line, &args));

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/17 18:23:34 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 00:27:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,26 @@ char			*sup_tab(char *line)
 	return (new_line);
 }
 
-t_env			*unset_env(t_env *vlist, char **args)
+void			unset_env(t_env ***vlist, char **args)
 {
-	t_env		*nvlist;
+	int			len;
+	t_env		*cp;
 
-	nvlist = vlist;
-	while ((ft_strcmp(args[0], vlist->vname) && vlist->next))
-		vlist = vlist->next;
-	if (!ft_strcmp(args[0], vlist->vname))
+	len = len_y(args);
+	cp = (**vlist);
+	if (len == 2)
 	{
-		if (vlist->vname)
-			ft_memdel((void**)&vlist->vname);
-		if (vlist->vcntt)
-			ft_memdel((void**)&vlist->vcntt);
+		if (cp->next && (!ft_strcmp(args[1], cp->vname)))
+		{
+			free_link(&cp, 1);
+			(**vlist) = cp;
+		}
+		else
+		{
+			while ((ft_strcmp(args[1], cp->next->vname) && cp->next->vname))
+				cp = cp->next;
+			if (ft_strcmp(args[1], cp->next->vname) == 0)
+				free_link(&cp, 0);
+		}
 	}
-	return (nvlist);
 }
