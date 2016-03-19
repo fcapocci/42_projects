@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/17 15:25:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 01:55:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ t_path			**tab_list(char **path)
 	{
 		if ((tab_list[i] = creat_plist(*path)))
 			i++;
-		else
-			break ;
 		path++;
 	}
 	tab_list[i] = NULL;
@@ -45,12 +43,15 @@ int				check_path(char ***args, char **path)
 
 	i = 0;
 	if ((tablst_path = tab_list(path)) == NULL)
+	{
+		
 		return (free_tab_list(&tablst_path, 0));
+	}
 	start = tablst_path;
 	while (start[i])
 	{
 		tmp = start[i];
-		while (tmp)
+		while (tmp && tmp->pname)
 		{
 			if (!ft_strcmp(tmp->pname, (*args)[0]))
 			{
@@ -80,7 +81,7 @@ int				get_cmd(char *line, t_env *vlist)
 		ft_memdel((void**)&line);
 		return (0);
 	}
-	while (ft_strcmp(vlist->vname, "PATH"))
+	while (ft_strcmp(vlist->vname, "PATH") && vlist->next)
 		vlist = vlist->next;
 	if ((path = ft_strsplit(vlist->vcntt, ':')) != NULL)
 	{

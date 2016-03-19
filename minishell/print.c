@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 03:11:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/13 17:26:35 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 02:08:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void			no_cmd(char *name)
 {
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(name);
+	if (*name != '\0')
+	{
+		ft_putstr("minishell: command not found: ");
+		ft_putendl(name);
+	}
 }
 
 void			print_env(t_env *vlist)

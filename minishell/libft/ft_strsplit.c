@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 10:22:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 12:10:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 01:35:26 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ char		**ft_strsplit(char const *s, char c)
 	int		nb_word;
 
 	i = 0;
-	if ((nb_word = ft_wordcmpt(s, c)) == 0)
-		return (NULL);
+	if ((s == NULL) || (*s == '\0'))
+		return(NULL);
+	nb_word = ft_wordcmpt(s, c);
 	tabs = (char**)malloc(sizeof(char*) * (nb_word + 1));
 	if (!tabs)
 		return (NULL);

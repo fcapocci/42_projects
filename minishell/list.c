@@ -6,24 +6,12 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 19:25:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/12 01:32:58 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/19 00:48:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <dirent.h>
-
-t_path			*new_plink(char *path, char *d_name)
-{
-	t_path			*plink;
-
-	if ((plink = (t_path*)ft_memalloc(sizeof(t_path))) == NULL)
-		return (NULL);
-	plink->ppath = ft_strjoin(path, "/");
-	plink->pname = ft_strdup(d_name);
-	plink->next = NULL;
-	return (plink);
-}
 
 t_env			*new_link(char *env)
 {
@@ -63,6 +51,18 @@ t_env			*creat_list(char **env)
 	return (list[1]);
 }
 
+t_path			*new_plink(char *path, char *d_name)
+{
+	t_path			*plink;
+
+	if ((plink = (t_path*)ft_memalloc(sizeof(t_path))) == NULL)
+		return (NULL);
+	plink->ppath = ft_strjoin(path, "/");
+	plink->pname = (d_name != NULL ? ft_strdup(d_name) : NULL);
+	plink->next = NULL;
+	return (plink);
+}
+
 t_path			*creat_plist(char *path)
 {
 	DIR				*rep;
@@ -72,7 +72,7 @@ t_path			*creat_plist(char *path)
 	plist[1] = NULL;
 	plist[0] = NULL;
 	if ((rep = opendir(path)) == NULL)
-		return (NULL);
+		return (new_plink(path, NULL));
 	while ((dir = readdir(rep)))
 	{
 		if (!plist[0])
