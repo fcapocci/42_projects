@@ -42,3 +42,9 @@ void			free_link(t_env **vlist, int in)
 		ft_memdel((void**)&tmp);
 	}
 }
+
+int				quit_char(char **ptr, int nb)
+{
+	ft_memdel((void**)&(*ptr));
+	return (nb);
+}

@@ -72,7 +72,7 @@ int				exe_builtins(char *line, t_env **vlist)
 		(*vlist) = set_env((*vlist), args, 0);
 	if (!ft_strcmp("unsetenv", args[0]))
 		unset_env(&vlist, args);
-//	if (!ft_strcmp("cd", args[0]))
-//		(*vlist) = cd_env((*vlist), args[1]);
+	if (!ft_strcmp("cd", args[0]))
+		(*vlist) = cd_env((*vlist), args);
 	return (quit_builts(&line, &args, 0));
 }

@@ -71,6 +71,14 @@ t_path						**tab_list(char **path);
 int							get_builtins(char *line);
 
 /*
+**	cd.c
+*/
+
+int							move_ok(t_env *vlist, char *rep);
+t_env						*change_pwd(t_env *vlist, char *rep);
+t_env						*cd_env(t_env *vlist, char **args);
+
+/*
 **	free.c
 */
 
@@ -86,6 +94,7 @@ int							is_builts(char **line, char ***args, int nb);
 
 void						free_link(t_env **vlist, int in);
 int							quit_builts(char **line, char ***args, int nb);
+int							quit_char(char **ptr, int nb);
 
 /*
 **	execute.c
