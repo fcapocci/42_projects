@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/19 00:27:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/28 22:56:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ char			*sup_tab(char *line)
 	return (new_line);
 }
 
-void			unset_env(t_env ***vlist, char **args)
+void			unset_env(t_env **vlist, char **args)
 {
 	int			len;
 	t_env		*cp;
 
 	len = len_y(args);
-	cp = (**vlist);
+	cp = (*vlist);
 	if (len == 2)
 	{
 		if (cp->next && (!ft_strcmp(args[1], cp->vname)))
 		{
 			free_link(&cp, 1);
-			(**vlist) = cp;
+			(*vlist) = cp;
 		}
 		else
 		{

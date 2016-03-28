@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/19 02:18:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/28 22:55:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_path						*new_plink(char *path, char *d_name);
 */
 
 char						*sup_tab(char *line);
-void						unset_env(t_env ***vlist, char **args);
+void						unset_env(t_env **vlist, char **args);
 t_env						*save_link(t_env *list, char *arg);
 
 /*
@@ -74,9 +74,18 @@ int							get_builtins(char *line);
 **	cd.c
 */
 
+void						new_path(char **path, char *rep);
 int							move_ok(t_env *vlist, char *rep);
 t_env						*change_pwd(t_env *vlist, char *rep);
+void						replace_line(char **line, char *new_line);
 t_env						*cd_env(t_env *vlist, char **args);
+
+/*
+**	cd2.c
+*/
+
+int							error_cd(char *str, char *path, int nb);
+int							check_droit(char *path);
 
 /*
 **	free.c

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/19 02:02:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/28 18:37:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void		prompt(void)
 {
+	char		mem[256];
+
+	getcwd(mem, 256);
 	ft_putstr("\033[32m");
-	ft_putstr("minishell");
+	ft_putstr(mem);
 	ft_putstr("\033[0m > ");
 }
 
