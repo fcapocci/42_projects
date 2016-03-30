@@ -3,30 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/29 12:20:47 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/29 12:20:50 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/03/31 00:42:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int				move_ok(t_env *vlist, char *rep)
+int				error_cd(char *str, char *path, int nb)
 {
-	char		*path;
-	char		*tmp;
+	ft_putstr(str);
+	ft_putendl(path);
+	return (nb);
+}
 
-	while (ft_strcmp(vlist->vname, "PWD") != 0 && vlist->next)
+int				check_droit(char *path)
+{
+	if (access(path, F_OK) == -1)
+		return (error_cd("cd: no such file or directory: ", path, -1));
+	if (chdir(path) == -1)
+		return (error_cd("cd: permission denied: ", path, -1));
+	return (1);
+}
+
+int				get_home_old(t_env *vlist, char *type)
+{
+	while (vlist)
+	{
+		if (ft_strcmp(vlist->vname, type) == 0)
+		{
+			if (ft_strcmp(type, "OLDPWD") == 0)
+				ft_putendl(vlist->vcntt);
+			if (chdir(vlist->vcntt) == -1)
+				return (error_cd("cd: no such file or directory: ",
+				vlist->vcntt, -1));
+			return (-1);
+		}
 		vlist = vlist->next;
-	path = ft_strcmp(rep, "/") ? ft_strjoin(vlist->vcntt, "/") : ft_strdup("/");
-	tmp = path;
-	path = ft_strjoin(path, rep);
-	ft_memdel((void**)&tmp);
-	if (ft_strcmp(vlist->vname, "PWD"))
-		return (quit_char(&path, -1));
-	if (!chdir((!ft_strcmp(rep, "/") || !ft_strcmp(rep, "~")) ? rep : path) && !
-	access(((!ft_strcmp(rep, "/") || !ft_strcmp(rep, "~")) ? rep : path), F_OK))
-		return (quit_char(&path, 1));
-	return (quit_char(&path, 0));
+	}
+	return (error_cd("cd: no such file or directory: ", vlist->vcntt, -1));
+}
+
+int				change_directory(char *path, t_env **vlist)
+{
+	if ((path == NULL || path == '\0'))
+		get_home_old(*vlist, "HOME");
+	else if (ft_strcmp(path, "~") == 0 || ft_strcmp(path, "-") == 0)
+		get_home_old(*vlist, path[0] == '~' ? "HOME" : "OLDPWD");
+	else
+	{
+		if (check_droit(path) == -1)
+		return (-1);
+	}
+	return (0);
+}
+
+t_env			*cd_env(t_env *vlist, char **args)
+{
+	char		mem[256];
+	char		*line;
+	char		**split;
+
+	split = NULL;
+	if (len_y(args) != 2)
+		return (vlist);
+	getcwd(mem, 256);
+	if (change_directory(args[1], &vlist) == -1)
+		return (vlist);
+	line = ft_strjoin("unsetenv ", "OLDPWD");
+	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
+	ft_free_strsplit(&split);
+	ft_memdel((void**)&line);
+	line = ft_strjoin("setenv OLDPWD=", mem);
+	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
+	ft_free_strsplit(&split);
+	ft_memdel((void**)&line);
+	getcwd(mem, 256);
+	line = ft_strjoin("unsetenv ", "PWD");
+	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
+	ft_free_strsplit(&split);
+	ft_memdel((void**)&line);
+	line = ft_strjoin("setenv PWD=", mem);
+	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
+	ft_free_strsplit(&split);
+	ft_memdel((void**)&line);
+	return (vlist);
 }

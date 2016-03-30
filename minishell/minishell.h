@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/28 22:55:35 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 00:35:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ t_env						*cd_env(t_env *vlist, char **args);
 **	cd2.c
 */
 
+int							get_home_old(t_env *env, char *type);
+int							change_directory(char *path, t_env **vlist);
 int							error_cd(char *str, char *path, int nb);
 int							check_droit(char *path);
 
