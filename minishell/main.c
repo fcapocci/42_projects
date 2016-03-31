@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 06:01:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/01 00:20:11 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,27 @@
 
 void		prompt(void)
 {
-	char		mem[256];
+	char		*str;
+	char		*tmp;
 
-	getcwd(mem, 256);
-	ft_putstr("\033[32m");
-	ft_putstr(mem);
-	ft_putstr("\033[0m > ");
+	str = ft_strnew(255);
+	getcwd(str, 255);
+	tmp = str;
+	if (str[0] == '/' && str[1] != '\0')
+	{
+		while (ft_strchr(str, '/'))
+		{
+			str = ft_strchr(str, '/');
+			str++;
+		}
+	}
+	ft_putstr("\033[36m");
+	ft_putstr("[minishell]->");
+	ft_putstr("\033[31m");
+	ft_putstr(str);
+	ft_putstr("\033[33m > ");
+	ft_putstr("\033[0m");
+	ft_memdel((void**)&tmp);
 }
 
 int			main(int argc, char **argv, char **env)
