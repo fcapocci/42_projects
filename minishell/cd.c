@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 00:42:35 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 03:44:17 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,16 @@ t_env			*cd_env(t_env *vlist, char **args)
 		return (vlist);
 	line = ft_strjoin("unsetenv ", "OLDPWD");
 	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
-	ft_free_strsplit(&split);
-	ft_memdel((void**)&line);
+	quit_builts(&line, &split);
 	line = ft_strjoin("setenv OLDPWD=", mem);
 	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
-	ft_free_strsplit(&split);
-	ft_memdel((void**)&line);
+	quit_builts(&line, &split);
 	getcwd(mem, 256);
 	line = ft_strjoin("unsetenv ", "PWD");
 	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
-	ft_free_strsplit(&split);
-	ft_memdel((void**)&line);
+	quit_builts(&line, &split);
 	line = ft_strjoin("setenv PWD=", mem);
 	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
-	ft_free_strsplit(&split);
-	ft_memdel((void**)&line);
+	quit_builts(&line, &split);
 	return (vlist);
 }

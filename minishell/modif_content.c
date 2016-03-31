@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/28 22:56:22 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 03:17:49 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			unset_env(t_env **vlist, char **args)
 		}
 		else
 		{
-			while ((ft_strcmp(args[1], cp->next->vname) && cp->next->vname))
+			while (cp->next->next && (ft_strcmp(args[1], cp->next->vname)))
 				cp = cp->next;
 			if (ft_strcmp(args[1], cp->next->vname) == 0)
 				free_link(&cp, 0);

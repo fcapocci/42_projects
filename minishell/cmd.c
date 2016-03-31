@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/19 01:55:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 02:58:06 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int				check_path(char ***args, char **path)
 
 	i = 0;
 	if ((tablst_path = tab_list(path)) == NULL)
-	{
-		
 		return (free_tab_list(&tablst_path, 0));
-	}
 	start = tablst_path;
 	while (start[i])
 	{

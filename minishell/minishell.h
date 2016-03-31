@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 00:35:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 03:35:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int							is_builts(char **line, char ***args, int nb);
 */
 
 void						free_link(t_env **vlist, int in);
-int							quit_builts(char **line, char ***args, int nb);
+void						quit_builts(char **line, char ***args);
 int							quit_char(char **ptr, int nb);
 
 /*
