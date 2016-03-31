@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 02:58:06 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/03/31 05:43:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int				check_path(char ***args, char **path)
 			{
 				ft_memdel((void**)&(*args)[0]);
 				(*args)[0] = ft_strjoin(tmp->ppath, tmp->pname);
+				if (access((*args)[0], X_OK) != 0)
+					return (free_tab_list(&tablst_path, 0));
 				return (free_tab_list(&tablst_path, 1));
 			}
 			tmp = tmp->next;
