@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 03:35:24 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/01 17:48:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int							exe_builtins(char *line, t_env **vlist);
 **	print.c
 */
 
+void						not_perms(char *name);
 void						no_cmd(char *name);
 void						print_env(t_env *vlist);
 
