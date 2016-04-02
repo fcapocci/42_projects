@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 03:44:17 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/02 03:42:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				get_home_old(t_env *vlist, char *type)
 		}
 		vlist = vlist->next;
 	}
-	return (error_cd("cd: no such file or directory: ", vlist->vcntt, -1));
+	return (error_cd("cd: no such file or directory: ", type, -1));
 }
 
 int				change_directory(char *path, t_env **vlist)
@@ -55,7 +55,7 @@ int				change_directory(char *path, t_env **vlist)
 	else
 	{
 		if (check_droit(path) == -1)
-		return (-1);
+			return (-1);
 	}
 	return (0);
 }

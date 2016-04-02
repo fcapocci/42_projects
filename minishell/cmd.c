@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/02 01:29:56 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/02 03:04:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ int				check_path(char ***args, char **path)
 	while (start[i])
 	{
 		tmp = start[i];
-		while (tmp && tmp->pname)
+		while (tmp && tmp->pname && tmp->ppath)
 		{
-			if (!ft_strcmp(tmp->pname, (*args)[0]))
+			//if (cmp_rpl(&args, tmp) == 0)
+			if (!ft_strcmp(ft_strjoin(tmp->ppath, tmp->pname), (*args)[0])
+			|| !ft_strcmp(tmp->pname, (*args)[0]))
 			{
 				ft_memdel((void**)&(*args)[0]);
 				(*args)[0] = ft_strjoin(tmp->ppath, tmp->pname);
