@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/03 23:40:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/04 22:11:04 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,32 @@ t_path			**tab_list(char **path)
 	return (tab_list);
 }
 
+int				cmp_rpl(t_path *tmp, char ****args)
+{
+	char		*line_path;
+
+	line_path = ft_strjoin(tmp->ppath, tmp->pname);
+	if ((!ft_strcmp(line_path, (**args)[0])
+	|| !ft_strcmp(tmp->pname, (**args)[0])) &&
+	ft_strcmp("..", (**args)[0]) && ft_strcmp(".", (**args)[0]))
+	{
+		ft_memdel((void**)&(**args)[0]);
+		(**args)[0] = ft_strjoin(tmp->ppath, tmp->pname);
+		if (!access((**args)[0], X_OK))
+			return (quit_char(&line_path, 1));
+		else
+			return (quit_char(&line_path, -2));
+	}
+	return (quit_char(&line_path, 0));
+}
+
 int				check_path(char ***args, char **path)
 {
 	t_path		**tp;
 	t_path		**start;
 	t_path		*tmp;
 	int			i;
+	int			ret;
 
 	i = 0;
 	if ((tp = tab_list(path)) == NULL)
@@ -50,15 +70,8 @@ int				check_path(char ***args, char **path)
 		tmp = start[i];
 		while (tmp && tmp->pname && tmp->ppath)
 		{
-			//if (cmp_rpl(&args, tmp) == 0)
-			if ((!ft_strcmp(ft_strjoin(tmp->ppath, tmp->pname), (*args)[0])
-			|| !ft_strcmp(tmp->pname, (*args)[0])) &&
-			ft_strcmp("..", (*args)[0]) && ft_strcmp(".", (*args)[0]))
-			{
-				ft_memdel((void**)&(*args)[0]);
-				(*args)[0] = ft_strjoin(tmp->ppath, tmp->pname);
-				return (free_tab_list(&tp, !access((*args[0]), X_OK) ? 1 : -2));
-			}
+			if ((ret = cmp_rpl(tmp, &args)) != 0)
+				return (free_tab_list(&tp, ret));
 			tmp = tmp->next;
 		}
 		i++;
