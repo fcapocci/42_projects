@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/05 12:37:42 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/05 12:41:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int				get_home_old(t_env *vlist, char *type)
 			if (chdir(vlist->vcntt) == -1)
 				return (error_cd("cd: no such file or directory: ",
 				vlist->vcntt, -1));
+			else
+				return (-1);
 		}
 		vlist = vlist->next;
 	}
