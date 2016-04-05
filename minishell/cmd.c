@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/04 22:27:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/05 12:25:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,31 @@ int				cmp_rpl(t_path *tmp, char ****args)
 	return (quit_char(&line_path, 0));
 }
 
+int				cmp_rpl2(char ****args)
+{
+	char		*buff;
+	char		*tmp;
+	char		*line_path;
+
+	buff = ft_strnew(255);
+	getcwd(buff, 255);
+	tmp = (**args)[0];
+	tmp++;
+	line_path = ft_strjoin(buff, tmp);
+	tmp++;
+	if (!access(line_path, F_OK))
+	{
+		ft_memdel((void**)&(**args)[0]);
+		(**args)[0] = ft_strdup(line_path);
+		ft_memdel((void**)&line_path);
+		if (!access((**args)[0], X_OK))
+			return (quit_char(&buff, 1));
+		else
+			return (quit_char(&buff, -2));
+	}
+	return (quit_char(&buff, 0));
+}
+
 int				check_path(char ***args, char **path)
 {
 	t_path		**tp;
@@ -62,6 +87,9 @@ int				check_path(char ***args, char **path)
 	int			ret;
 
 	i = 0;
+	if ((*args)[0][0] == '.' && (*args)[0][1] == '/')
+		if ((ret = cmp_rpl2(&args)) != 0)
+			return (ret);
 	if ((tp = tab_list(path)) == NULL)
 		return (free_tab_list(&tp, 0));
 	start = tp;
