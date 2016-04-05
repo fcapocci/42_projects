@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 19:25:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/19 00:48:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/05 15:05:05 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,23 @@ t_path			*creat_plist(char *path)
 	struct dirent	*dir;
 	t_path			*plist[2];
 
-	plist[1] = NULL;
 	plist[0] = NULL;
 	if ((rep = opendir(path)) == NULL)
 		return (new_plink(path, NULL));
 	while ((dir = readdir(rep)))
 	{
-		if (!plist[0])
+		if (ft_strcmp(dir->d_name, ".") && ft_strcmp(dir->d_name, ".."))
 		{
-			plist[0] = new_plink(path, dir->d_name);
-			if (!plist[1])
+			if (!plist[0])
+			{
+				plist[0] = new_plink(path, dir->d_name);
 				plist[1] = plist[0];
-		}
-		else
-		{
-			plist[0]->next = new_plink(path, dir->d_name);
-			plist[0] = plist[0]->next;
+			}
+			else
+			{
+				plist[0]->next = new_plink(path, dir->d_name);
+				plist[0] = plist[0]->next;
+			}
 		}
 	}
 	closedir(rep);

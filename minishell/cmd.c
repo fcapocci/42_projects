@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/05 12:25:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/05 15:10:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int				cmp_rpl2(char ****args)
 	tmp = (**args)[0];
 	tmp++;
 	line_path = ft_strjoin(buff, tmp);
-	tmp++;
 	if (!access(line_path, F_OK))
 	{
 		ft_memdel((void**)&(**args)[0]);
