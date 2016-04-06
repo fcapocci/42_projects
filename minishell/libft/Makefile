@@ -6,7 +6,7 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 10:40:38 by fcapocci          #+#    #+#              #
-#    Updated: 2016/03/17 14:30:52 by fcapocci         ###   ########.fr        #
+#*   Updated: 2016/04/06 15:23:22 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_C = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	  ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c\
 	  ft_putendl_fd.c ft_strclr.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c\
 	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_strndup.c get_next_line.c\
-	  ft_free_strsplit.c ft_count_list.c len_y.c
+	  ft_free_strsplit.c ft_count_list.c len_y.c ft_typefile.c
 
 SRC_O = $(SRC_C:.c=.o)
 
