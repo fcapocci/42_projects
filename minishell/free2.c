@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 23:04:03 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 03:34:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 14:07:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,12 @@ void			free_link(t_env **vlist, int in)
 int				quit_char(char **ptr, int nb)
 {
 	ft_memdel((void**)&(*ptr));
+	return (nb);
+}
+
+int				quit_dubblechar(char **ptr, char **str, int nb)
+{
+	ft_memdel((void**)&(*ptr));
+	ft_memdel((void**)&(*str));
 	return (nb);
 }

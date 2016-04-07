@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/07 11:36:31 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 14:17:47 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_env						*cd_env(t_env *vlist, char **args);
 int							free_get_cmd(char ***args, char ***path,
 							char **line, int nb);
 void						quit(t_env **list, char **line);
+void						free_plist(t_path **plist);
 int							free_tab_list(t_path ***tab_list, int nb);
 int							is_builts(char **line, char ***args, int nb);
 
@@ -98,6 +99,7 @@ int							is_builts(char **line, char ***args, int nb);
 void						free_link(t_env **vlist, int in);
 void						quit_builts(char **line, char ***args);
 int							quit_char(char **ptr, int nb);
+int							quit_dubblechar(char **ptr, char **str, int nb);
 
 /*
 **	execute.c
