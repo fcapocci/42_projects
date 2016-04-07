@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/07 14:17:47 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 15:45:19 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,13 @@ void						free_link(t_env **vlist, int in);
 void						quit_builts(char **line, char ***args);
 int							quit_char(char **ptr, int nb);
 int							quit_dubblechar(char **ptr, char **str, int nb);
+
+/*
+**	signal.c
+*/
+
+void						print_sign(int signal);
+void						print_status(void);
 
 /*
 **	execute.c

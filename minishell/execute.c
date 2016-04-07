@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 05:40:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 16:46:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int				execute_cmd(char **args, t_env *vlist)
 		return (-1);
 	}
 	if (pid > 0)
-		wait(&nb);
+	{
+		waitpid(pid, &nb, WUNTRACED);
+		print_status();
+	}
 	if (pid == 0)
 		execve(cmd, args, env);
 	ft_free_strsplit(&env);
