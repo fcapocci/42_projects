@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/06 16:08:11 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:36:31 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,10 @@ int							get_builtins(char *line);
 **	cd.c
 */
 
-void						new_path(char **path, char *rep);
-int							move_ok(t_env *vlist, char *rep);
-t_env						*change_pwd(t_env *vlist, char *rep);
-void						replace_line(char **line, char *new_line);
-t_env						*cd_env(t_env *vlist, char **args);
-
-/*
-**	cd2.c
-*/
-
 int							get_home_old(t_env *env, char *type);
 int							change_directory(char *path, t_env **vlist);
-int							error_cd(char *str, char *path, int nb);
 int							check_droit(char *path);
+t_env						*cd_env(t_env *vlist, char **args);
 
 /*
 **	free.c
@@ -124,5 +114,6 @@ int							exe_builtins(char *line, t_env **vlist);
 void						not_perms(char *name);
 void						no_cmd(char *name);
 void						print_env(t_env *vlist);
+int							error_cd(char *str, char *path, int nb);
 
 #endif

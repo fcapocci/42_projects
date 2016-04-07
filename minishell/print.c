@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 03:11:16 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/01 18:15:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:34:43 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,11 @@ void			print_env(t_env *vlist)
 		ft_putendl(vlist->vcntt);
 		vlist = vlist->next;
 	}
+}
+
+int				error_cd(char *str, char *path, int nb)
+{
+	ft_putstr(str);
+	ft_putendl(path);
+	return (nb);
 }

@@ -6,18 +6,13 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/05 12:41:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:53:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int				error_cd(char *str, char *path, int nb)
-{
-	ft_putstr(str);
-	ft_putendl(path);
-	return (nb);
-}
+#define SP (split = ft_strsplit(line, ' '))
 
 int				check_droit(char *path)
 {
@@ -77,14 +72,14 @@ t_env			*cd_env(t_env *vlist, char **args)
 	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
 	quit_builts(&line, &split);
 	line = ft_strjoin("setenv OLDPWD=", mem);
-	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
+	vlist = set_env(vlist, SP, 0);
 	quit_builts(&line, &split);
 	getcwd(mem, 256);
 	line = ft_strjoin("unsetenv ", "PWD");
 	unset_env(&vlist, (split = ft_strsplit(line, ' ')));
 	quit_builts(&line, &split);
 	line = ft_strjoin("setenv PWD=", mem);
-	vlist = set_env(vlist, (split = ft_strsplit(line, ' ')), 0);
+	vlist = set_env(vlist, SP, 0);
 	quit_builts(&line, &split);
 	return (vlist);
 }
