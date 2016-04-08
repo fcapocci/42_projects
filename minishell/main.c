@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/07 16:46:23 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/08 16:18:03 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void		prompt(t_env *vlist)
 	ft_memdel((void**)&tmp);
 }
 
+void		sig_handler(int signo)
+{
+	int			i;
+
+	i = 0;
+	i -= signo;
+	ft_putchar('\n');
+	return ;
+}
+
 int			main(int argc, char **argv, char **env)
 {
 	char		*line;
@@ -51,6 +61,7 @@ int			main(int argc, char **argv, char **env)
 		return (-1);
 	while (42)
 	{
+		signal(SIGINT, sig_handler);
 		prompt(vlist);
 		get_next_line(0, &line);
 		if (ft_strcmp(line, "\0"))
