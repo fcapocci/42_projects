@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/08 16:18:03 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/12 12:17:19 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,16 @@ void		sig_handler(int signo)
 
 	i = 0;
 	i -= signo;
-	ft_putchar('\n');
 	return ;
+}
+
+void		welcome(void)
+{
+	write(1, "\n******************************\n", 32);
+	write(1, "*                            *\n", 31);
+	write(1, "*    welcome to minishell    *\n", 31);
+	write(1, "*                            *\n", 31);
+	write(1, "******************************\n\n", 32);
 }
 
 int			main(int argc, char **argv, char **env)
@@ -55,13 +63,14 @@ int			main(int argc, char **argv, char **env)
 	t_env		*vlist;
 	int			r;
 
+	signal(SIGINT, sig_handler);
 	if (argc < 1 || !argv)
 		return (0);
 	if (!(vlist = creat_list(env)))
 		return (-1);
+	welcome();
 	while (42)
 	{
-		signal(SIGINT, sig_handler);
 		prompt(vlist);
 		get_next_line(0, &line);
 		if (ft_strcmp(line, "\0"))
