@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/13 19:08:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/14 17:38:11 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,24 @@ char			*srch_tld(char *line, char *vcntt)
 
 	tmp = line;
 	new_line = line;
-	if ((line = ft_strchr(line, '~')) != NULL && vcntt != NULL)
+	if (line[0] == '~' && vcntt != NULL)
 	{
 		line++;
 		new_line = ft_strjoin(vcntt, line);
 		ft_memdel((void**)&tmp);
 	}
 	return (new_line);
+}
+
+void			rp_shlvl(t_env **vlist)
+{
+	t_env		*tmp;
+
+	tmp = *vlist;
+	while (tmp && ft_strcmp(tmp->vname, "SHLVL"))
+		tmp = tmp->next;
+	if (tmp && !ft_strcmp(tmp->vname, "SHLVL"))
+		tmp->vcntt[0] += 1;
 }
 
 void			unset_env(t_env **vlist, char **args)

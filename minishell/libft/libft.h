@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:46:30 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/06 15:27:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/14 16:20:26 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				ft_typefile(char *path);
+
+char				**join_tab2d_str(char **tab, char *str, int where);
+char				**join_2_tabs_2d(char **tab1, char **tab2);
+char				**ft_strsplit_guil(char *s, char c);
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *b, int c, size_t len);

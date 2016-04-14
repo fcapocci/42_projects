@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/13 18:56:47 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/14 17:46:10 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int				execute_cmd(char **args, t_env *vlist)
 	char		*cmd;
 	int			nb;
 
+	if (!ft_strcmp(args[0], "minishell") || !ft_strcmp(args[0], "/nfs/2015/f/fcapocci/github/minishell/minishell"))
+		rp_shlvl(&vlist);
 	env = split_env_list(vlist);
 	cmd = args[0];
 	args = scan_tld(args, vlist);
@@ -66,7 +68,7 @@ int				exe_builtins(char *line, t_env **vlist)
 	char		**args;
 
 	line = sup_tab(line);
-	args = ft_strsplit(line, ' ');
+	args = ft_strsplit_guil(line, ' ');
 	if (!ft_strcmp("env", args[0]))
 		print_env(*vlist);
 	if (!ft_strcmp("setenv", args[0]))
