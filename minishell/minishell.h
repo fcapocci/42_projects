@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/08 16:05:30 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/13 19:00:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_path						*new_plink(char *path, char *d_name);
 */
 
 char						*sup_tab(char *line);
+char						*srch_tld(char *line, char *vcntt);
+char						**scan_tld(char **args, t_env *vlist);
 void						unset_env(t_env **vlist, char **args);
 t_env						*save_link(t_env *list, char *arg);
 

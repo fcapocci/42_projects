@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/31 03:17:49 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/13 19:08:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,43 @@ char			*sup_tab(char *line)
 		(line[i + 1] == ' ' || line[i + 1] == 9))
 			i++;
 		i++;
+	}
+	return (new_line);
+}
+
+char			**scan_tld(char **args, t_env *vlist)
+{
+	int			i;
+	int			y;
+
+	y = 1;
+	i = 0;
+	while (vlist && ft_strcmp(vlist->vname, "HOME"))
+		vlist = vlist->next;
+	if (vlist == NULL)
+		return (args);
+	i = len_y(args);
+	while (i != 1)
+	{
+		args[y] = srch_tld(args[y], vlist->vcntt);
+		i--;
+		y++;
+	}
+	return (args);
+}
+
+char			*srch_tld(char *line, char *vcntt)
+{
+	char		*new_line;
+	char		*tmp;
+
+	tmp = line;
+	new_line = line;
+	if ((line = ft_strchr(line, '~')) != NULL && vcntt != NULL)
+	{
+		line++;
+		new_line = ft_strjoin(vcntt, line);
+		ft_memdel((void**)&tmp);
 	}
 	return (new_line);
 }

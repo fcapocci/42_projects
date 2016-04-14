@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/08 16:06:23 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/13 18:56:47 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				execute_cmd(char **args, t_env *vlist)
 
 	env = split_env_list(vlist);
 	cmd = args[0];
+	args = scan_tld(args, vlist);
 	pid = fork();
 	if (pid < 0)
 	{
