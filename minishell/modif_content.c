@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/14 17:38:11 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/18 01:10:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,29 @@ char			*srch_tld(char *line, char *vcntt)
 	return (new_line);
 }
 
-void			rp_shlvl(t_env **vlist)
+char			**rp_shlvl(char **env)
 {
-	t_env		*tmp;
+	char		*tmp;
+	int			i;
+	int			end;
+	char		**tmp_tab;
 
-	tmp = *vlist;
-	while (tmp && ft_strcmp(tmp->vname, "SHLVL"))
-		tmp = tmp->next;
-	if (tmp && !ft_strcmp(tmp->vname, "SHLVL"))
-		tmp->vcntt[0] += 1;
+	end = len_y(env);
+	i = 0;
+	tmp = env[i];
+	while (i != end && tmp &&
+	ft_strcmp((tmp_tab = ft_strsplit(tmp, '='))[0] , "SHLVL"))
+	{
+		i++;
+		tmp = env[i];
+		ft_free_strsplit(&tmp_tab);
+	}
+	if (tmp)
+	{
+		tmp[ft_strlen(tmp) - 1] += 1;
+		ft_free_strsplit(&tmp_tab);
+	}
+	return (env);
 }
 
 void			unset_env(t_env **vlist, char **args)

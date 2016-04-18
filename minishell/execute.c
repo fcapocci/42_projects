@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/14 17:46:10 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/18 23:55:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,24 @@ int				execute_cmd(char **args, t_env *vlist)
 {
 	pid_t		pid;
 	char		**env;
-	char		*cmd;
+	char		rep[256];
+	char		*tmp;
 	int			nb;
 
-	if (!ft_strcmp(args[0], "minishell") || !ft_strcmp(args[0], "/nfs/2015/f/fcapocci/github/minishell/minishell"))
-		rp_shlvl(&vlist);
 	env = split_env_list(vlist);
-	cmd = args[0];
+	getcwd(rep, 256);
+	tmp = ft_strjoin(rep, "/minishell");
+	if (!ft_strcmp(args[0], tmp))
+		env = rp_shlvl(env);
 	args = scan_tld(args, vlist);
 	pid = fork();
 	if (pid < 0)
-	{
-		ft_free_strsplit(&env);
-		return (-1);
-	}
+		return (is_builts(&tmp, &env, -1));
 	if (pid > 0)
 		wait(&nb);
 	if (pid == 0)
-		execve(cmd, args, env);
-	ft_free_strsplit(&env);
-	return (0);
+		execve(args[0], args, env);
+	return (is_builts(&tmp, &env, 0));
 }
 
 int				exe_builtins(char *line, t_env **vlist)
