@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:46:30 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/02/10 11:29:20 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/14 16:20:26 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# define BUFF_SIZE 42
+# define BUFF_SIZE 1
 
-typedef struct		s_files
+typedef struct		s_file
 {
-	char			*buff;
-	int				save;
-	struct s_files	*next;
-}					t_files;
+	int				fd;
+	char			*l;
+	unsigned int	nb_file;
+	struct s_file	*next;
+}					t_file;
 
 typedef struct		s_list
 {
@@ -40,6 +41,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstadd(t_list **alst, t_list *newlst);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+size_t				ft_count_list(t_list *lst);
 
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
@@ -89,6 +91,11 @@ char				*ft_strsub(char const *s1, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+char				ft_typefile(char *path);
+
+char				**join_tab2d_str(char **tab, char *str, int where);
+char				**join_2_tabs_2d(char **tab1, char **tab2);
+char				**ft_strsplit_guil(char *s, char c);
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
@@ -99,5 +106,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
+void				ft_free_strsplit(char ***tab);
+size_t				len_y(char **tab);
 
 #endif

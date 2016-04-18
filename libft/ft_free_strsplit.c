@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_free_strsplit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/14 14:24:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 14:24:32 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/03/09 14:52:13 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/03/17 11:31:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strsub(const char *s, unsigned int start, size_t len)
+void		ft_free_strsplit(char ***tab)
 {
-	char			*new_s;
-	unsigned int	i;
+	unsigned int	y;
 
-	new_s = NULL;
-	if (start <= ft_strlen(s))
+	y = 0;
+	if ((*tab) != NULL)
 	{
-		if ((new_s = (char*)ft_memalloc(sizeof(*new_s) * len + 1)) == NULL)
-			return (NULL);
-		i = 0;
-		while (s[start + i] != '\0' && i < len)
+		while ((*tab)[y] != NULL)
 		{
-			new_s[i] = s[start + i];
-			i++;
+			free((*tab)[y]);
+			(*tab)[y++] = NULL;
 		}
-		new_s[i] = '\0';
+		free(*tab);
+		*tab = NULL;
 	}
-	return (new_s);
 }

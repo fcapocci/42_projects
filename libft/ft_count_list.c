@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_count_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/14 14:24:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/03/14 14:24:32 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/03/16 11:47:22 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/04/07 14:20:10 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strsub(const char *s, unsigned int start, size_t len)
+size_t			ft_count_list(t_list *lst)
 {
-	char			*new_s;
-	unsigned int	i;
+	size_t		len;
 
-	new_s = NULL;
-	if (start <= ft_strlen(s))
+	len = 0;
+	if (!lst)
+		return (len);
+	while (lst)
 	{
-		if ((new_s = (char*)ft_memalloc(sizeof(*new_s) * len + 1)) == NULL)
-			return (NULL);
-		i = 0;
-		while (s[start + i] != '\0' && i < len)
-		{
-			new_s[i] = s[start + i];
-			i++;
-		}
-		new_s[i] = '\0';
+		len++;
+		lst = lst->next;
 	}
-	return (new_s);
+	return (len);
 }
