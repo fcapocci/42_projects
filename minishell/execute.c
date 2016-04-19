@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/18 23:55:18 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/19 12:06:33 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,14 @@ int				execute_cmd(char **args, t_env *vlist)
 int				exe_builtins(char *line, t_env **vlist)
 {
 	char		**args;
+	char		*tmp;
 
-	line = sup_tab(line);
+	if (ft_strcmp(line = sup_tab(line), "cd") == 0)
+	{
+		tmp = line;
+		line = ft_strjoin(line, " ~");
+		ft_memdel((void**)&tmp);
+	}
 	args = ft_strsplit_guil(line, ' ');
 	if (!ft_strcmp("env", args[0]))
 		print_env(*vlist);

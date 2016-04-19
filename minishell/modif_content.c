@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/18 01:10:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/19 14:29:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char			*sup_tab(char *line)
 			i++;
 		i++;
 	}
+	ft_putstr(new_line);
+	ft_putendl("<<");
 	return (new_line);
 }
 
@@ -88,7 +90,7 @@ char			**rp_shlvl(char **env)
 	i = 0;
 	tmp = env[i];
 	while (i != end && tmp &&
-	ft_strcmp((tmp_tab = ft_strsplit(tmp, '='))[0] , "SHLVL"))
+	ft_strcmp((tmp_tab = ft_strsplit(tmp, '='))[0], "SHLVL"))
 	{
 		i++;
 		tmp = env[i];

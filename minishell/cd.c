@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/07 11:53:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/19 11:48:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_env			*cd_env(t_env *vlist, char **args)
 	char		**split;
 
 	split = NULL;
+	args = scan_tld(args, vlist);
 	if (len_y(args) != 2)
 		return (vlist);
 	getcwd(mem, 256);
