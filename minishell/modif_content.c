@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/19 14:29:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/19 14:37:51 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char			*sup_tab(char *line)
 			i++;
 		i++;
 	}
-	ft_putstr(new_line);
-	ft_putendl("<<");
 	return (new_line);
 }
 
