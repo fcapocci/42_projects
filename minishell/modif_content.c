@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/19 14:37:51 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/20 02:29:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,28 @@ char			*sup_tab(char *line)
 	size_t		i;
 	size_t		p;
 	char		tmp;
+	int			loop;
 
 	new_line = ft_strnew(ft_strlen(line));
+	loop = 0;
 	i = 0;
 	p = 0;
 	while (i <= ft_strlen(line))
 	{
-		if (i == 0 && (line[i] == ' ' || line[i] == 9))
-			while (line[i] == ' ' || line[i] == 9)
-				i++;
-		if (line[i] == 9)
-			tmp = ' ';
-		else
-			tmp = line[i];
-		new_line[p++] = tmp;
-		while (line[i] && (line[i] == ' ' || line[i] == 9) &&
-		(line[i + 1] == ' ' || line[i + 1] == 9))
+		while ((line[i] == ' ' || line[i] == 9) && (line[i + 1] == ' ' ||
+		line[i + 1] == 9 || line[i + 1] == '\0'))
 			i++;
+		if ((line[i] == 9 || line[i] == ' ') && loop != 0)
+			tmp = ' ';
+		else if (line[i] != 9 && line[i] != ' ')
+			tmp = line[i];
+		if (tmp)
+			new_line[p++] = tmp;
+		loop = 1;
 		i++;
 	}
+	ft_putstr(new_line);
+	ft_putendl("<<");
 	return (new_line);
 }
 
