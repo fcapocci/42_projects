@@ -6,11 +6,12 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/20 02:29:24 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/20 19:16:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#define INIT i = 0; p = 0; loop = 0; tmp = 0;
 
 char			*sup_tab(char *line)
 {
@@ -21,9 +22,7 @@ char			*sup_tab(char *line)
 	int			loop;
 
 	new_line = ft_strnew(ft_strlen(line));
-	loop = 0;
-	i = 0;
-	p = 0;
+	INIT;
 	while (i <= ft_strlen(line))
 	{
 		while ((line[i] == ' ' || line[i] == 9) && (line[i + 1] == ' ' ||
@@ -38,8 +37,6 @@ char			*sup_tab(char *line)
 		loop = 1;
 		i++;
 	}
-	ft_putstr(new_line);
-	ft_putendl("<<");
 	return (new_line);
 }
 

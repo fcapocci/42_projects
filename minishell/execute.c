@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/19 12:06:33 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/20 19:29:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				exe_builtins(char *line, t_env **vlist)
 		ft_memdel((void**)&tmp);
 	}
 	args = ft_strsplit_guil(line, ' ');
-	if (!ft_strcmp("env", args[0]))
+	if (!ft_strcmp("env", args[0]) && len_y(args) == 1)
 		print_env(*vlist);
 	if (!ft_strcmp("setenv", args[0]))
 		(*vlist) = set_env((*vlist), args, 0);
