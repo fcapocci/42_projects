@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:25:56 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/14 17:21:21 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:16:18 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,19 @@ t_env			*set_env(t_env *vlist, char **ag, int rp)
 	|| (!ft_strchr(ag[1], '=') && len == 2) || (ag[1][0] == '='))
 		return (nvlist);
 	tmp = (ft_strchr(ag[1], '=') ? ft_strsplit_guil(ag[1], '=') : NULL);
-	while ((ft_strcmp((tmp ? tmp[0] : ag[1]), vlist->vname) && vlist->next))
+	while (vlist->vname && (ft_strcmp((tmp ? tmp[0] : ag[1]), vlist->vname)
+	&& vlist->next))
 		vlist = vlist->next;
 	rp = (tmp ? ft_strlen(tmp[1]) : ft_strlen(ag[2]));
-	if (!ft_strcmp((tmp ? tmp[0] : ag[1]), vlist->vname))
+	if (vlist->vname && !ft_strcmp((tmp ? tmp[0] : ag[1]), vlist->vname))
 		vlist = insert_cntt(vlist, (tmp ? tmp[1] : ag[2]), rp);
 	else
 		vlist->next = creat_link_env((tmp ? tmp : ag), rp);
 	ft_free_strsplit(&tmp);
+	if (vlist->vname == NULL && vlist->vcntt == NULL)
+	{
+		nvlist = vlist->next;
+		ft_memdel((void**)&vlist);
+	}
 	return (nvlist);
 }

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/20 19:16:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 13:32:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char			**scan_tld(char **args, t_env *vlist)
 
 	y = 1;
 	i = 0;
-	while (vlist && ft_strcmp(vlist->vname, "HOME"))
+	while (vlist && vlist->vname && ft_strcmp(vlist->vname, "HOME"))
 		vlist = vlist->next;
 	if (vlist == NULL)
 		return (args);
@@ -109,19 +109,22 @@ void			unset_env(t_env **vlist, char **args)
 
 	len = len_y(args);
 	cp = (*vlist);
-	if (len == 2)
+	if (len == 2 && cp && cp->vname)
 	{
-		if (cp->next && (!ft_strcmp(args[1], cp->vname)))
+		if (cp && (!ft_strcmp(args[1], cp->vname)))
 		{
 			free_link(&cp, 1);
 			(*vlist) = cp;
 		}
 		else
 		{
-			while (cp->next->next && (ft_strcmp(args[1], cp->next->vname)))
+			while (cp->next && cp->next->next
+			&& (ft_strcmp(args[1], cp->next->vname)))
 				cp = cp->next;
-			if (ft_strcmp(args[1], cp->next->vname) == 0)
+			if (cp->next && ft_strcmp(args[1], cp->next->vname) == 0)
 				free_link(&cp, 0);
 		}
 	}
+	if ((*vlist) == NULL)
+		(*vlist) = new_link(NULL);
 }

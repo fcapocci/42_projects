@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 19:25:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/05 15:05:05 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 11:20:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,23 @@ t_env			*new_link(char *env)
 	t_env			*link;
 	int				len;
 
-	len = ft_strlen(env) - ft_strlen(ft_strchr(env, '='));
-	if ((link = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
-		return (NULL);
-	link->vname = ft_strsub(env, 0, len);
-	link->vcntt = ft_strsub(env, len + 1, ft_strlen(env) - len);
-	link->next = NULL;
+	if (env == NULL)
+	{
+		if ((link = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
+			return (NULL);
+		link->vname = NULL;
+		link->vcntt = NULL;
+		link->next = NULL;
+	}
+	else
+	{
+		len = ft_strlen(env) - ft_strlen(ft_strchr(env, '='));
+		if ((link = (t_env*)ft_memalloc(sizeof(t_env))) == NULL)
+			return (NULL);
+		link->vname = ft_strsub(env, 0, len);
+		link->vcntt = ft_strsub(env, len + 1, ft_strlen(env) - len);
+		link->next = NULL;
+	}
 	return (link);
 }
 
@@ -33,17 +44,22 @@ t_env			*creat_list(char **env)
 
 	list[0] = NULL;
 	list[1] = NULL;
+	if (len_y(env) == 0)
+		if ((list[1] = new_link(NULL)) == NULL)
+			return (NULL);
 	while (*env)
 	{
 		if (!list[0])
 		{
-			list[0] = new_link(*env);
+			if ((list[0] = new_link(*env)) == NULL)
+				return (NULL);
 			if (!list[1])
 				list[1] = list[0];
 		}
 		else
 		{
-			list[0]->next = new_link(*env);
+			if ((list[0]->next = new_link(*env)) == NULL)
+				return (NULL);
 			list[0] = list[0]->next;
 		}
 		env++;

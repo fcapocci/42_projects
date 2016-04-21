@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/12 12:17:19 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 11:35:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void		prompt(t_env *vlist)
 	if (str[0] == '/' && str[1] != '\0')
 		while (ft_strchr(str, '/'))
 			str++;
-	while (vlist && ft_strcmp(vlist->vname, "HOME"))
+	while (vlist && vlist->vname && ft_strcmp(vlist->vname, "HOME"))
 		vlist = vlist->next;
-	if (vlist && !ft_strcmp(vlist->vname, "HOME"))
+	if (vlist && vlist->vname && !ft_strcmp(vlist->vname, "HOME"))
 		home = vlist->vcntt;
 	ft_putstr("\033[36m");
 	ft_putstr("[minishell]=> ");

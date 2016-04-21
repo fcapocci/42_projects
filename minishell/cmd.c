@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/12 23:43:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:49:10 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int				get_cmd(char *line, t_env *vlist)
 	line = sup_tab(line);
 	if ((args = ft_strsplit(line, ' ')) == NULL)
 		return (quit_char(&line, 0));
-	while (ft_strcmp(vlist->vname, "PATH") && vlist->next)
+	while (vlist && vlist->vname && ft_strcmp(vlist->vname, "PATH")
+	&& vlist->next)
 		vlist = vlist->next;
 	if ((path = ft_strsplit(vlist->vcntt, ':')) != NULL)
 	{

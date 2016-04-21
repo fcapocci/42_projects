@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 21:50:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/19 11:48:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 13:32:28 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				check_droit(char *path)
 
 int				get_home_old(t_env *vlist, char *type)
 {
-	while (vlist)
+	while (vlist && vlist->vname)
 	{
 		if (ft_strcmp(vlist->vname, type) == 0)
 		{

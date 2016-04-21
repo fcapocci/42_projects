@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/20 19:29:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/21 11:37:06 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			**split_env_list(t_env *vlist)
 	if (!(env = (char**)ft_memalloc((sizeof(char*) * (nb + 1)))))
 		return (NULL);
 	nb = 0;
-	while (vlist)
+	while (vlist && vlist->vname)
 	{
 		tmp = ft_strjoin(vlist->vname, "=");
 		line = ft_strjoin(tmp, vlist->vcntt);
