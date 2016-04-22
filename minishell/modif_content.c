@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 12:03:29 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/21 13:32:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/23 00:24:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ char			**scan_tld(char **args, t_env *vlist)
 	int			i;
 	int			y;
 
-	y = 1;
+	if (args == NULL)
+		return (NULL);
+	y = 0;
 	i = 0;
 	while (vlist && vlist->vname && ft_strcmp(vlist->vname, "HOME"))
 		vlist = vlist->next;
 	if (vlist == NULL)
 		return (args);
 	i = len_y(args);
-	while (i != 1)
+	while (i > 0)
 	{
 		args[y] = srch_tld(args[y], vlist->vcntt);
 		i--;

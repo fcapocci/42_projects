@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 18:07:32 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/18 00:37:14 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/23 00:37:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ t_env						*set_env(t_env *vlst, char **args, int rp);
 **	cmd.c
 */
 
+int							check_line(char **args);
 int							check_path(char ***args, char **path);
 int							get_cmd(char *line, t_env *env_list);
 int							cmp_rpl(t_path *tmp, char ****args);
-int							cmp_rpl2(char ****args);
 t_path						**tab_list(char **path);
 
 /*
@@ -115,6 +115,7 @@ int							exe_builtins(char *line, t_env **vlist);
 **	print.c
 */
 
+void						error_cmd(int nb, char *cmd);
 void						not_perms(char *name);
 void						no_cmd(char *name);
 void						print_env(t_env *vlist);

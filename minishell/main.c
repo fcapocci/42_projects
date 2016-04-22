@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/21 11:35:16 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/22 23:58:04 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			main(int argc, char **argv, char **env)
 		{
 			if ((r = get_builtins(line)) != 0)
 				(r < 0 ? quit(&vlist, &line) : exe_builtins(line, &vlist));
-			else if ((r = get_cmd(line, vlist)) == -1)
+			else if ((r = get_cmd(sup_tab(line), vlist)) == -1)
 				quit(&vlist, &line);
 		}
 		ft_memdel((void**)&line);

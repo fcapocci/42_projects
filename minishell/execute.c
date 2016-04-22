@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 21:52:35 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/21 11:37:06 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/23 00:09:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ int				execute_cmd(char **args, t_env *vlist)
 	env = split_env_list(vlist);
 	getcwd(rep, 256);
 	tmp = ft_strjoin(rep, "/minishell");
-	if (!ft_strcmp(args[0], tmp))
+	if (!ft_strcmp(args[0], tmp) || !ft_strcmp(args[0], "./minishell"))
 		env = rp_shlvl(env);
-	args = scan_tld(args, vlist);
 	pid = fork();
 	if (pid < 0)
 		return (is_builts(&tmp, &env, -1));
