@@ -14,7 +14,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = parsing.c
+SRCS = main.c parcing.c error.c
 
 HEADS = fdf.h
 
