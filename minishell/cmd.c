@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 04:19:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/23 01:09:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/26 11:30:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@ int				cmp_rpl(t_path *tmp, char ****args)
 	char		*line_path;
 
 	line_path = ft_strjoin(tmp->ppath, tmp->pname);
-	//ft_putstr("line_path == ");
-	//ft_putendl(line_path);
-//	ft_putstr("args[0] == ");
-//	ft_putendl((**args)[0]);
 	if ((!ft_strcmp(tmp->pname, (**args)[0])) && ft_typefile(line_path) == 'd')
 		return (quit_char(&line_path, -2));
 	if ((!ft_strcmp(tmp->pname, (**args)[0])) && ft_typefile(line_path) != 'd')
@@ -54,7 +50,7 @@ int				cmp_rpl(t_path *tmp, char ****args)
 		else
 			return (quit_char(&line_path, -2));
 	}
-	return (0);
+	return (quit_char(&line_path, 0));
 }
 
 int				check_line(char **args)
