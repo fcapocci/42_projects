@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/26 21:28:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/04/27 21:18:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,31 @@ t_data			*creat_elem(int x, int y, int h)
 	return (elem);
 }
 
-t_data			*creat_list(char **data_tab, int y)
+t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 {
-	t_data		*data_list[2];
+	t_data		*tmp_list;
 	size_t			x;
 
-	data_list[0] = NULL;
-	data_list[1] = NULL;
+	tmp_list = data_list;
 	x = 0;
-	while (x != len_y(data_tab))
+	while (x != len_y(d_tab))
 	{
-		if (data_list[0] == NULL)
+		if (data_list == NULL)
+			if (!(data_list = tmp_list = creat_elem(x, y, ft_atoi(d_tab[x]))))
+				return (NULL);
+		if (tmp_list)
 		{
-			if (!(data_list[0] = creat_elem(x, y, ft_atoi(data_tab[x]))))
+			while (tmp_list->next)
+				tmp_list = tmp_list->next;
+			if (!(tmp_list->next = creat_elem(x, y, ft_atoi(d_tab[x]))))
 				return (NULL);
-			if (data_list[1] == NULL)
-				data_list[1] = data_list[0];
 		}
-		else
-			if (!(data_list[0]->next = creat_elem(x, y, ft_atoi(data_tab[x]))))
-				return (NULL);
-		data_list[0] = data_list[0]->next;
 		x++;
 	}
-	return (data_list[1]);
+	return (data_list);
 }
 
-t_data			*pars(char *files)
+t_data			*pars(char *files, int ret)
 {
 	t_data		*data_list;
 	char		**data_tab;
@@ -62,14 +60,18 @@ t_data			*pars(char *files)
 
 	if ((fd = open(files, O_RDONLY)) == -1)
 		return (NULL);
+	data_list = NULL;
 	y = 0;
-	while (get_next_line(fd, &line) != 0)
+	while (ret > 0)
 	{
+		if ((ret = get_next_line(fd, &line)) == -1)
+			return (NULL);
 		if ((data_tab = ft_strsplit(line, ' ')) == NULL)
 			return (NULL);
-		if ((data_list = creat_list(data_tab, y)) == NULL)
+		if ((data_list = creat_list(data_list, data_tab, y)) == NULL)
 			return (NULL);
 		y++;
+		//ft_memdel((void**)&line);
 		ft_free_strsplit(&data_tab);
 	}
 	close(fd);
