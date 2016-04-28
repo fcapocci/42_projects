@@ -6,13 +6,15 @@
 #    By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:04:17 by fcapocci          #+#    #+#              #
-#*   Updated: 2016/04/28 22:36:50 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/04/28 23:48:04 by fcapocci         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
+
+OTHERS_FLAGS = -framework OpenGL -framework Appkit
 
 SRCS = main.c parcing.c manage_mlx.c error.c free.c
 
@@ -34,7 +36,7 @@ $(NAME):
 	make -C libft/ all
 	make -C minilibx_macos/ all
 	$(CC) -c -g $(FLAGS) $(SRCS)
-	$(CC) $(FLAGS) -o $(NAME) -g $(OBJS) $(LIBS)
+	$(CC) $(FLAGS) -o $(NAME) -g $(OBJS) $(LIBS) $(OTHERS_FLAGS)
 
 clean : $(OBJS)
 	rm -rf $(OBJS)
