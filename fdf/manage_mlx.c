@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 21:33:42 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/29 15:00:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:28:23 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,15 @@ int				manage_mlx(t_data *d_list)
 {
 	void		*mlx;
 	void		*window;
-	int			x;
-	int			y;
 
-	y = 260;
 	d_list = d_list ? d_list : NULL;
 	mlx = mlx_init();
 	window = mlx_new_window(mlx,1500 , 800, "fdf");
-	while (y < 520)
+	while (d_list)
 	{
-		x = 500;
-		while (x < 1000)
-		{
-			mlx_pixel_put(mlx, window, x, y, 0xFF0000);
-			x++;
-		}
-		y++;
+		mlx_pixel_put(mlx, window, d_list->x, d_list->y, 0xFF0000);
+		d_list = d_list->next;
 	}
-	sleep(10);
+	mlx_loop(mlx);
 	return (0);
 }

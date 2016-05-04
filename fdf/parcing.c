@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/27 21:18:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:14:43 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ t_data			*pars(char *files, int ret)
 		if ((ret = get_next_line(fd, &line)) == -1)
 			return (NULL);
 		if ((data_tab = ft_strsplit(line, ' ')) == NULL)
-			return (NULL);
+			break ;
 		if ((data_list = creat_list(data_list, data_tab, y)) == NULL)
 			return (NULL);
 		y++;
-		//ft_memdel((void**)&line);
+		ft_memdel((void**)&line);
 		ft_free_strsplit(&data_tab);
 	}
 	close(fd);
