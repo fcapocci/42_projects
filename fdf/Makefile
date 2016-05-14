@@ -16,13 +16,13 @@ FLAGS = -Wall -Wextra -Werror
 
 OTHERS_FLAGS = -framework OpenGL -framework Appkit
 
-SRCS = main.c parcing.c manage_mlx.c error.c free.c
+SRCS = main.c parcing.c manage_mlx.c modif.c colors.c error.c free.c
 
 HEADS = fdf.h
 
 LIBS = libft/libft.a minilibx_macos/libmlx.a
 
-OTHERS = libft minilibx_macos test Makefile auteur
+OTHERS = libft minilibx_macos Makefile test_maps auteur
 
 OBJS = $(SRCS:.c=.o)
 

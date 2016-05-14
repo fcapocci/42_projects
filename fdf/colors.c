@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/26 13:10:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/11 11:12:08 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/05/11 09:47:49 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/05/11 10:09:00 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				main(int argc, char **argv)
+int				color_pos(int h)
 {
-	t_data		*data_list;
-	char		*mem;
-
-	data_list = NULL;
-	if (argc != 2)
-		usage_error(argc);
+	if (h == 1)
+		return (0xfefee0);
+	if (h < 5)
+		return (0x7fdd4c);
+	if (h < 30)
+		return (0x149414);
+	if (h < 80)
+		return (0x22780f);
+	if (h < 100)
+		return (0xcecece);
 	else
-	{
-		if ((data_list = pars(argv[1], 1)) == NULL)
-			return (0);
-		if ((mem = ft_strrchr(argv[1], '/')) != NULL)
-			mem++;
-		else
-			mem = argv[1];
-		if (draw_map(data_list, mem) == -1)
-		{
-			free_list(&data_list);
-			return (0);
-		}
-	}
-	free_list(&data_list);
-	return (0);
+		return (0xffffff);
+}
+
+int				color_neg(int h)
+{
+	if (h > -1)
+		return (0x79f8f8);
+	if (h > -30)
+		return (0x74d0f1);
+	if (h > -150)
+		return (0x357ab7);
+	else
+		return (0x003366);
 }
