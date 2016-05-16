@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/14 17:45:00 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/16 23:16:59 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_data						*pars(char *files, int ret);
 
 int							*fillintab(t_data *d_list, t_mlx *m, int *intab);
 void						max_size(int max[2], t_data *d_list);
-t_mlx						*init_mlx(t_data *d_list, char *name);
+void						init_mlx(t_mlx *m, t_data *d_list, char *name);
 int							draw_map(t_data *data_list, char *name);
 
 /*
