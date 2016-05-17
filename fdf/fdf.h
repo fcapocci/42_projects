@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/16 23:16:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/17 13:43:20 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define WW 1380
 # define HW 850
+# define GAP 8;
 
 typedef struct				s_data
 {
@@ -26,6 +27,27 @@ typedef struct				s_data
 	int						h;
 	struct s_data			*next;
 }							t_data;
+
+typedef struct				s_brs
+{
+	int						ex;
+	int						ey;
+	int						dx;
+	int						dy;
+	int						gdx;
+	int						gdy;
+	int						i;
+	int						gxincr;
+	int						gyincr;
+}							t_brs;
+
+typedef struct				s_pos
+{
+	int						x1;
+	int						y1;
+	int						x2;
+	int						y2;
+}							t_pos;
 
 typedef struct				s_mlx
 {
@@ -66,6 +88,16 @@ void						init_mlx(t_mlx *m, t_data *d_list, char *name);
 int							draw_map(t_data *data_list, char *name);
 
 /*
+**	brasenham.c
+*/
+
+void						ft_put_pixels(int x, int y, t_mlx *m, int z);
+void						init_brs(t_brs *b, t_pos *p);
+void						trace_line(t_mlx *m, t_pos *p, int z);
+void						bresenham_x(t_mlx *m, t_data *d_list);
+void						bresenham_y(t_mlx *m, t_data *d_list);
+
+/*
 **	colors.c
 */
 
@@ -86,6 +118,7 @@ int							key(int key, t_mlx *m);
 */
 
 void						usage_error(int argc);
+void						file_invalid(char *name);
 
 /*
 **	free.c

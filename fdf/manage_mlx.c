@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 21:33:42 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/16 23:18:56 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/17 13:44:20 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void			init_mlx(t_mlx *m, t_data *d_list, char *name)
 	m->maxy = max[1];
 	m->imgx = 75;
 	m->imgy = 75;
-	m->gap = 10;
+	m->gap = GAP;
 	m->win = mlx_new_window(m->mlx, m->xsize, m->ysize, name);
 	m->img = mlx_new_image(m->mlx, m->xsize, m->ysize);
 	m->intab = fillintab(d_list, m, (int*)mlx_get_data_addr(m->img, &m->bits,

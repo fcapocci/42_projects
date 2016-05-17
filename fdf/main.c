@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 13:10:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/11 11:12:08 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/17 13:20:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int				main(int argc, char **argv)
 	else
 	{
 		if ((data_list = pars(argv[1], 1)) == NULL)
+		{
+			file_invalid(argv[1]);
 			return (0);
+		}
 		if ((mem = ft_strrchr(argv[1], '/')) != NULL)
 			mem++;
 		else

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/04 17:14:43 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/17 13:23:57 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_data			*pars(char *files, int ret)
 	if ((fd = open(files, O_RDONLY)) == -1)
 		return (NULL);
 	data_list = NULL;
+	line = NULL;
 	y = 0;
 	while (ret > 0)
 	{
