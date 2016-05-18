@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:02:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/17 12:48:33 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 13:43:53 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void			trace_line(t_mlx *m, t_pos *p, int z)
 	while (b.i++ <= b.gdx && b.gdx >= b.gdy)
 	{
 		ft_put_pixels(p->x1, p->y1, m, z);
-		p->y1 += b.gxincr;
-		b.ex -= b.dx;
+		p->x1 += b.gxincr;
+		b.ex -= b.dy;
 		if (b.ex < 0)
 		{
 			p->y1 += b.gyincr;
@@ -68,6 +68,8 @@ void			bresenham_x(t_mlx *m, t_data *d_list)
 	i = 0;
 	while (d_list && d_list->next)
 	{
+		if (d_list->x == 0)
+			i = 0;
 		p.x1 = i * m->gap - d_list->h * m->height;
 		p.y1 = d_list->y * m->gap - d_list->h * m->height;
 		p.x2 = (i + 1) * m->gap - d_list->next->h * m->height;

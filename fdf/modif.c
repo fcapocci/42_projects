@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 13:26:10 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/17 13:48:07 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 13:26:36 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ int				*zerotab(t_mlx *m)
 	return (m->intab);
 }
 
-void			other_events(int key, t_mlx *m)
+void			other_events(int keycode, t_mlx *m)
 {
-	if (key == 69 || (key == 78 && m->gap > 0) || key == 83 || key == 84 ||
-			key == 89 || key == 91 || key == 15)
+	if (keycode == 69 || (keycode == 78 && m->gap > 0) || keycode == 83
+			|| keycode == 84 || keycode == 89 || keycode == 91 || keycode == 15)
 	{
 		m->intab = zerotab(m);
 		fillintab(m->data, m, m->intab);
-		//bresenham_x(m, m->data);
-		//bresenham_y(m, m->data);
+		bresenham_x(m, m->data);
+		bresenham_y(m, m->data);
 	}
 }
 
@@ -58,27 +58,27 @@ void			direction(int key, t_mlx *m)
 		m->imgx -= 10;
 }
 
-int				key(int key, t_mlx *m)
+int				key(int keycode, t_mlx *m)
 {
-	if (key == 53)
+	if (keycode == 53)
 		exit(0);
-	direction(key, m);
-	if (key == 69 && m->maxx * (m->gap + 2) < m->xsize)
+	direction(keycode, m);
+	if (keycode == 69 && m->maxx * (m->gap + 2) < m->xsize)
 		m->gap++;
-	else if (key == 78 && m->gap > 0)
+	else if (keycode == 78 && m->gap > 0)
 		m->gap--;
-	else if (key == 83)
+	else if (keycode == 83)
 		m->color -= 512;
-	else if (key == 84)
+	else if (keycode == 84)
 		m->color += 512;
-	else if (key == 89 && m->height > -3)
+	else if (keycode == 89 && m->height > -3)
 		m->height--;
-	else if (key == 91 && m->height < 3)
+	else if (keycode == 91 && m->height < 3)
 		m->height++;
-	else if (key == 15)
+	else if (keycode == 15)
 		reset(m);
 	mlx_clear_window(m->mlx, m->win);
-	other_events(key, m);
+	other_events(keycode, m);
 	mlx_put_image_to_window(m->mlx, m->win, m->img, m->imgx, m->imgy);
 	return (0);
 }

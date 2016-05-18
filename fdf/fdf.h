@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/17 13:43:20 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 12:58:04 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define WW 1380
 # define HW 850
-# define GAP 8;
+# define GAP 1;
 
 typedef struct				s_data
 {

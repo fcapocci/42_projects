@@ -16,7 +16,7 @@ FLAGS = -Wall -Wextra -Werror
 
 OTHERS_FLAGS = -framework OpenGL -framework Appkit
 
-SRCS = main.c parcing.c manage_mlx.c bresenham.c modif.c colors.c error.c free.c
+SRCS = main.c parsing.c manage_mlx.c bresenham.c modif.c colors.c error.c free.c
 
 HEADS = fdf.h
 
