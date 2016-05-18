@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 12:58:04 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:34:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
-# define WW 1380
-# define HW 850
-# define GAP 1;
+# define WW 2048
+# define HW 1024
+# define GAP 8;
 
 typedef struct				s_data
 {

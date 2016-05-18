@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 21:33:42 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 13:44:20 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:37:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void			max_sizes(int max[2], t_data *d_list)
 	max[1] = 0;
 	while (d_list)
 	{
-		if (d_list->x > max[0])
-			max[0] = d_list->x;
+		if ((d_list->x + 1) > max[0])
+			max[0] = d_list->x + 1;
 		if (d_list->y > max[1])
 			max[1] = d_list->y;
 		d_list = d_list->next;
@@ -70,7 +70,7 @@ int				draw_map(t_data *d_list, char *name)
 	t_mlx			m;
 
 	init_mlx(&m, d_list, name);
-	bresenham_x(&m, d_list);
+	//bresenham_x(&m, d_list);
 	//bresenham_y(&m, d_list);
 	mlx_put_image_to_window(m.mlx, m.win, m.img, m.imgx, m.imgy);
 	mlx_hook(m.win, 2, 1, key, &m);

@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 13:26:10 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 13:26:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:31:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void			other_events(int keycode, t_mlx *m)
 	{
 		m->intab = zerotab(m);
 		fillintab(m->data, m, m->intab);
-		bresenham_x(m, m->data);
-		bresenham_y(m, m->data);
+		//bresenham_x(m, m->data);
+		//bresenham_y(m, m->data);
 	}
 }
 
