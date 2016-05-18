@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/01 16:49:50 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/04/22 23:58:04 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/18 13:55:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int			main(int argc, char **argv, char **env)
 	while (42)
 	{
 		prompt(vlist);
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) == -1)
+			quit(&vlist, &line);
 		if (ft_strcmp(line, "\0"))
 		{
 			if ((r = get_builtins(line)) != 0)
