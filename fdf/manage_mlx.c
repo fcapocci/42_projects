@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 21:33:42 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 17:37:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/22 23:18:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				draw_map(t_data *d_list, char *name)
 	t_mlx			m;
 
 	init_mlx(&m, d_list, name);
-	//bresenham_x(&m, d_list);
+	bresenham_x(&m, d_list);
 	//bresenham_y(&m, d_list);
 	mlx_put_image_to_window(m.mlx, m.win, m.img, m.imgx, m.imgy);
 	mlx_hook(m.win, 2, 1, key, &m);

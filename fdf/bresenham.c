@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:02:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 13:43:53 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/23 00:01:57 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			ft_put_pixels(int x, int y, t_mlx *m, int z)
 {
 	if ((x + y + 135300) >= 0)
-		m->intab[x + y + 135300 * m->xsize] = m->color - (z * 0x00FFFF / 10);
+		m->intab[x + 135300 + y * m->xsize] = m->color - (z * 0x00FFFF / 10);
 }
 
 void			init_brs(t_brs *b, t_pos *p)

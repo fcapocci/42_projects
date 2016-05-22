@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 13:26:10 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/18 17:31:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/22 23:25:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			other_events(int keycode, t_mlx *m)
 	{
 		m->intab = zerotab(m);
 		fillintab(m->data, m, m->intab);
-		//bresenham_x(m, m->data);
+		bresenham_x(m, m->data);
 		//bresenham_y(m, m->data);
 	}
 }
@@ -63,7 +63,7 @@ int				key(int keycode, t_mlx *m)
 	if (keycode == 53)
 		exit(0);
 	direction(keycode, m);
-	if (keycode == 69 && m->maxx * (m->gap + 2) < m->xsize)
+	if (keycode == 69 && m->maxx * (m->gap + 2) < 1300)
 		m->gap++;
 	else if (keycode == 78 && m->gap > 0)
 		m->gap--;
