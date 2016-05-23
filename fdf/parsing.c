@@ -6,12 +6,23 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/17 13:23:57 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/23 18:28:03 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
+
+int				next_line_val(t_data *d_list, int y, int x)
+{
+	while (d_list)
+	{
+		if (d_list->x == x && d_list->y == (y + 1))
+			return (d_list->h);
+		d_list = d_list->next;
+	}
+	return (-20000);
+}
 
 t_data			*creat_elem(int x, int y, int h)
 {

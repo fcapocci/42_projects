@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/21 18:24:13 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/23 17:26:53 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct				s_mlx
 t_data						*creat_elem(int x, int y, int c);
 t_data						*creat_list(t_data *d_list, char **data_tab, int y);
 t_data						*pars(char *files, int ret);
+int							next_line_val(t_data *d_list, int y, int x);
 
 /*
 **	manage_mlx.c
@@ -108,6 +109,7 @@ int							color_neg(int h);
 **	modif.c
 */
 
+void						reset(t_mlx *m);
 int							*zerotab(t_mlx *m);
 void						other_event(int key, t_mlx *m);
 void						direction(int key, t_mlx *m);

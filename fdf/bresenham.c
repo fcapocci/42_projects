@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:02:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/23 00:01:57 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/23 19:03:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			bresenham_x(t_mlx *m, t_data *d_list)
 	t_pos		p;
 
 	i = 0;
-	while (d_list && d_list->next)
+	while (d_list->next)
 	{
 		if (d_list->x == 0)
 			i = 0;
@@ -83,15 +83,18 @@ void			bresenham_x(t_mlx *m, t_data *d_list)
 void			bresenham_y(t_mlx *m, t_data *d_list)
 {
 	int			i;
+	int			val;
 	t_pos		p;
 
 	i = 0;
-	while (d_list && d_list->next)
+	while ((val = next_line_val(d_list, d_list->y, d_list->x)) != -20000)
 	{
+		if (d_list->x == 0)
+			i = 0;
 		p.x1 = i * m->gap - d_list->h * m->height;
-		p.y1 = d_list->y * m->gap - d_list->h * m->height;
-		p.x2 = i * m->gap - d_list->next->h * m->height;
-		p.y2 = (d_list->next->h * m->gap) - d_list->next->h * m->height;
+		p.y1 = (d_list->y * m->gap - d_list->h * m->height);
+		p.x2 = i * m->gap - val * m->height;
+		p.y2 = ((d_list->y + 1) * m->gap) - val * m->height;
 		trace_line(m, &p, d_list->h);
 		i++;
 		d_list = d_list->next;
