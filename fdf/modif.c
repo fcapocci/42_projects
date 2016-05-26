@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 13:26:10 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/23 18:40:55 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 10:32:41 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			direction(int key, t_mlx *m)
 int				key(int keycode, t_mlx *m)
 {
 	if (keycode == 53)
-		exit(0);
+		destroy(m);
 	direction(keycode, m);
 	if (keycode == 69 && m->maxx * (m->gap + 2) < 1300)
 		m->gap++;

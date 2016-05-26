@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/25 22:49:48 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 10:32:38 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void						file_invalid(char *name);
 */
 
 void						free_list(t_data **d_list);
+void						destroy(t_mlx *m);
 
 #endif

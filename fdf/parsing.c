@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/23 18:28:03 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 13:08:37 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_data			*creat_elem(int x, int y, int h)
 t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 {
 	t_data		*tmp_list;
-	size_t			x;
+	size_t		x;
 
 	tmp_list = data_list;
 	x = 0;
