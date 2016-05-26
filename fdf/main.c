@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 13:10:19 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/26 10:22:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:05:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				main(int argc, char **argv)
 		usage_error(argc);
 	else
 	{
-		if ((data_list = pars(argv[1], 1)) == NULL)
+		if ((data_list = pars(argv[1], 1, NULL)) == NULL)
 		{
 			file_invalid(argv[1]);
 			return (0);

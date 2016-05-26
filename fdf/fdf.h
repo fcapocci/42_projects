@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 12:02:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/26 10:32:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:52:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ typedef struct				s_mlx
 **	parsing.c
 */
 
+int							chek_lenline(char *line);
+int							next_line_val(t_data *d_list, int y, int x);
 t_data						*creat_elem(int x, int y, int c);
 t_data						*creat_list(t_data *d_list, char **data_tab, int y);
-t_data						*pars(char *files, int ret);
-int							next_line_val(t_data *d_list, int y, int x);
+t_data						*pars(char *files, int ret, char *line);
 
 /*
 **	manage_mlx.c

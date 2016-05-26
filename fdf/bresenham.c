@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:02:02 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/26 13:05:25 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 19:44:28 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ void			bresenham_x(t_mlx *m, t_data *d_list)
 	{
 		if (d_list->x == 0)
 			i = 0;
-		p.x1 = i * m->gap - d_list->h * m->height;
-		p.y1 = d_list->y * m->gap - d_list->h * m->height;
-		p.x2 = (i + 1) * m->gap - d_list->next->h * m->height;
-		p.y2 = d_list->y * m->gap - d_list->next->h * m->height;
-		trace_line(m, &p, d_list->h);
-		i++;
+		if (d_list->next->y == d_list->y)
+		{
+			p.x1 = i * m->gap - d_list->h * m->height;
+			p.y1 = d_list->y * m->gap - d_list->h * m->height;
+			p.x2 = (i + 1) * m->gap - d_list->next->h * m->height;
+			p.y2 = d_list->y * m->gap - d_list->next->h * m->height;
+			trace_line(m, &p, d_list->h);
+			i++;
+		}
 		d_list = d_list->next;
 	}
 }

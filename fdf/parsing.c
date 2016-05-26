@@ -6,12 +6,40 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/26 13:08:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:59:42 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
+
+#define POUET (data_list = tmp_list = creat_elem(x, y, ft_atoi(d_tab[x])))
+
+int				chek_lenline(char *line)
+{
+	static int	len[3];
+
+	len[1] = 0;
+	len[2] = 1;
+	if (!line)
+		return (-1);
+	while (*line)
+	{
+		if ((*line == '-' || (*line >= '0' && *line <= '9')) && len[2] == 1)
+		{
+			len[1]++;
+			len[2] = 0;
+		}
+		else if (*line == ' ')
+			len[2] = 1;
+		line++;
+	}
+	if (len[0] == 0)
+		len[0] = len[1];
+	if (len[1] != len[0])
+		return (-1);
+	return (0);
+}
 
 int				next_line_val(t_data *d_list, int y, int x)
 {
@@ -47,7 +75,7 @@ t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 	while (x != len_y(d_tab))
 	{
 		if (data_list == NULL)
-			if (!(data_list = tmp_list = creat_elem(x, y, ft_atoi(d_tab[x]))))
+			if (!POUET)
 				return (NULL);
 		if (tmp_list)
 		{
@@ -61,24 +89,22 @@ t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 	return (data_list);
 }
 
-t_data			*pars(char *files, int ret)
+t_data			*pars(char *files, int ret, char *line)
 {
 	t_data		*data_list;
 	char		**data_tab;
-	char		*line;
 	int			fd;
 	int			y;
 
 	if ((fd = open(files, O_RDONLY)) == -1)
 		return (NULL);
 	data_list = NULL;
-	line = NULL;
 	y = 0;
-	while (ret > 0)
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		if ((ret = get_next_line(fd, &line)) == -1)
+		if (ret == -1 || (chek_lenline(line)))
 			return (NULL);
-		if ((data_tab = ft_strsplit(line, ' ')) == NULL)
+		if (!(data_tab = ft_strsplit(line, ' ')))
 			break ;
 		if ((data_list = creat_list(data_list, data_tab, y)) == NULL)
 			return (NULL);
