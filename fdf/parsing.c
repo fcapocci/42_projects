@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:14:46 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/05/26 17:59:42 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/06/01 09:00:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 	x = 0;
 	while (x != len_y(d_tab))
 	{
-		if (data_list == NULL)
-			if (!POUET)
-				return (NULL);
 		if (tmp_list)
 		{
 			while (tmp_list->next)
@@ -84,6 +81,9 @@ t_data			*creat_list(t_data *data_list, char **d_tab, int y)
 			if (!(tmp_list->next = creat_elem(x, y, ft_atoi(d_tab[x]))))
 				return (NULL);
 		}
+		if (data_list == NULL)
+			if (!POUET)
+				return (NULL);
 		x++;
 	}
 	return (data_list);
