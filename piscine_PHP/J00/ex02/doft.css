@@ -2,3 +2,94 @@ body
 {
 	background-color: #505050;
 }
+
+.box
+{
+	background-color: rgb(144, 144, 144);
+	border-radius: 10px;
+	box-shadow: 10px 10px 10px black;
+}
+
+header
+{
+	background-image: url("resources/day_of_the_42.png");
+	background-repeat: no-repeat;
+	background-size: 500px;
+	width: 1000px;
+	height: 150px;
+	margin: auto;
+}
+
+.reload
+{
+	margin-top: 10px;
+	margin-left: 975px;
+	height: 15px;
+}
+
+.loupe
+{
+	margin-left: 704px;
+}
+
+.close
+{
+	position: relative;
+	margin-left: 975px;
+	bottom: 55px;
+	height: 15px;
+}
+
+nav
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100px;
+	padding: 10px;
+}
+
+.principal
+{
+	display: flex;
+	margin: 20px;
+	width: 950px;
+	margin: auto;
+}
+
+.nav_left
+{
+	margin: 20px 20px 20px 0px;
+}
+
+.nav_right
+{
+	margin: 20px 0px 20px 20px;
+}
+
+.nav_obj
+{
+	margin: 5px;
+	border-left: 45px;
+	height: 60px;
+	width: 60px;
+}
+
+.dyn:hover
+{
+	border: 4px red solid;
+	border-radius: 5px;
+}
+
+.img_center
+{
+	border: 5px rgb(144, 144, 144) solid;
+	border-radius: 5px;
+	width: 710px;
+}
+
+.center
+{
+	margin: auto;
+	margin-top: 20px;
+}

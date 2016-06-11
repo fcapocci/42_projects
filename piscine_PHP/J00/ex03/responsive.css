@@ -1,0 +1,143 @@
+body
+	{
+		background-color: #AAAAB7;
+	}
+
+	.titre
+	{
+		text-align: center;
+		font-size: 2.5em;
+		color: black;
+		font-weight: bold;
+	}
+
+	strong
+	{
+		font-style: italic;
+		font-weight: bold;
+	}
+
+	.intro
+	{
+		font-size: 1.5em;
+		text-align: justify;
+	}
+
+	.image
+	{
+		float: left;
+		border: 2px black solid;
+		margin: 0px 30px 10px 30px;
+	}
+
+	.stop_float
+	{
+		clear: both;
+	}
+
+	.copyright
+	{
+		font-size: 0.8em;
+		text-align: right;
+	}
+
+	.symbole
+	{
+		font-size: 2em;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.small
+	{
+		font-size: 1.3em;
+	}
+
+	.numero
+	{
+		padding: 3px;
+		text-align: left;
+		font-size: 0.7em;
+	}
+
+	.masse
+	{
+		padding: 3px;
+		text-align: right;
+		font-size: 0.7em;
+	}
+
+	td
+	{
+		width: 100px;
+		background: #D2B48C;
+		border: 1px black solid;
+		border-radius: 5px;
+	}
+
+	.post_transition_metals
+	{
+		background: #20B2AA;
+	}
+
+	.non_metaux
+	{
+		background: #7FFF00;
+	}
+
+	.metalloides
+	{
+		background: #66CD00;
+	}
+
+	.halogenes
+	{
+		background: #00FA9A;
+	}
+
+	.gaz_rares
+	{
+		background: #00BFFF;
+	}
+
+	.metaux_alcalins
+	{
+		background: #FFB90F;
+	}
+
+	.metaux_alcalino-terreux
+	{
+		background: #FFD700;
+	}
+
+	.lanthanides
+	{
+		background: #FFA07A;
+	}
+
+	.actinides
+	{
+		background: #FFB6C1;
+	}
+
+	.liquide
+	{
+		color: black;
+	}
+
+	.gaz
+	{
+		color: black;
+	}
+
+	.inconnu
+	{
+		color: black;
+	}
+
+	.empty
+	{
+		border-color: #AAAAB7;
+		background-color: #AAAAB7;
+		height: 30px;
+	}
