@@ -7,25 +7,38 @@
 	</head>
 	<body>
 		<header class="box">
-			<img src="resources/reload.png" class="reload" />
-			<img src="resources/loupe.png" class="loupe" />
-			<img src="resources/close.gif" class="close" />
+			<a href="https://www.disney.com"><img src="resources/reload.png" alt="reload" title="Recommencer au début" class="reload" /></a>
+			<img src="resources/loupe.png" alt="loupe" title="Rechercher" class="loupe" />
+			<a href="https://www.relaischateaux.com"><img src="resources/close.gif" alt="close" title="Déconnecter" class="close" /></a>
 		</header>
 		<div class="principal">
 			<nav class="nav_left box">
-				<img src="resources/arrow.png" class="dyn nav_obj" />
-				<img src="resources/main.png" class="dyn nav_obj" />
-				<img src="resources/oeil.png" class="dyn nav_obj" />
-				<img src="resources/outil.png" class="dyn nav_obj" />
-				<img src="resources/chat-icon.png" class="dyn nav_obj" />
+				<img src="resources/arrow.png" alt="arrow" title="Avancer" class="nav_obj" />
+				<img src="resources/main.png" alt="main" title="Prendre" class="nav_obj" />
+				<img src="resources/oeil.png" alt="oeil" title="Regarder" class="dyn nav_obj" />
+				<img src="resources/outil.png" alt="outil" title="Utiliser" class="nav_obj" />
+				<img src="resources/chat-icon.png" alt="chat" title="Parler" class="nav_obj" />
 			</nav>
-			<div class="center box">
-				<img src="resources/cluster.jpg" class="img_center" />
+			<div class="center">
+				<img usemap="#mymap" src="resources/cluster.jpg" alt="cluster" title="Domaine" class="img_center" />
+					<map name="mymap">
+                    	<area shape="rect" coords="300,330,400,550" title="Envie d'une chaise?" href="https://www.ikea.com">
+                    	<area shape="rect" coords="700,320,900,450" title="Envie d'etre un pigeon?" href="https://www.apple.com">
+                    </map>
+                <div class="dial_box" >
+					<p class="texte">Vous <span class="special1">entrez</span> alors dans une grande piece remplie</br>
+					d'<span class="special2">ordinateurs</span>...</br>
+					<span class="dial">- Bonjour, vous êtes nouveau ici ?</span></br>
+					<span class="reponse"></span>
+					<input class="input" type="text" name="dial_barr">
+					<input class="input1" type="submit" value="Repondre"></p>
+				</div>
 			</div>
+
 			<nav class="nav_right box">
-				<img src="resources/book.png" class="dyn nav_obj" />
-				<img src="resources/towel.png" class="dyn nav_obj" />
-				<img src="resources/brick.jpg" class="dyn nav_obj" />
+				<img src="resources/book.png" alt="book" title="Lire" class="nav_obj" />
+				<img src="resources/towel.png" alt="towel" title="Nétoyer" class="nav_obj" />
+				<div class="brick"></div>
 			</nav>
 		</div>
 	</body>

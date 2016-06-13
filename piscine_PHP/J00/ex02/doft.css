@@ -15,29 +15,30 @@ header
 	background-image: url("resources/day_of_the_42.png");
 	background-repeat: no-repeat;
 	background-size: 500px;
-	width: 1000px;
-	height: 150px;
+	width: 1350px;
+	height: 130px;
 	margin: auto;
 }
 
 .reload
 {
 	margin-top: 10px;
-	margin-left: 975px;
-	height: 15px;
+	margin-left: 1320px;
+	height: 20px;
 }
 
 .loupe
 {
-	margin-left: 704px;
+	margin-top: -30px;
+	margin-left: 1044px;
 }
 
 .close
 {
 	position: relative;
-	margin-left: 975px;
+	margin-left: 1320px;
 	bottom: 55px;
-	height: 15px;
+	height: 20px;
 }
 
 nav
@@ -45,7 +46,8 @@ nav
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100px;
+	width: 120px;
+	height: 400px;
 	padding: 10px;
 }
 
@@ -53,29 +55,30 @@ nav
 {
 	display: flex;
 	margin: 20px;
-	width: 950px;
+	width: 1250px;
+	height: 950px;
 	margin: auto;
 }
 
 .nav_left
 {
-	margin: 20px 20px 20px 0px;
+	margin: 20px 20px 0px 0px;
 }
 
 .nav_right
 {
-	margin: 20px 0px 20px 20px;
+	margin: 20px 0px 0px 20px;
 }
 
 .nav_obj
 {
 	margin: 5px;
 	border-left: 45px;
-	height: 60px;
-	width: 60px;
+	height:65px;
+	width: 65px;
 }
 
-.dyn:hover
+.dyn
 {
 	border: 4px red solid;
 	border-radius: 5px;
@@ -83,13 +86,66 @@ nav
 
 .img_center
 {
-	border: 5px rgb(144, 144, 144) solid;
+	border: 8px rgb(144, 144, 144) solid;
 	border-radius: 5px;
-	width: 710px;
+	box-shadow: 10px 10px 10px black;
+	width: 900px;
+	height: 550px;
 }
 
 .center
 {
 	margin: auto;
 	margin-top: 20px;
+}
+
+.brick
+{
+	width: 115px;
+	height: 70px;
+	background-image: url("resources/brick.jpg");
+}
+
+.dial_box
+{
+	background-color: #86fd87;
+	width: 510px;
+	height: 160px;
+	border-radius: 10px;
+	box-shadow: 10px 10px 10px black;
+	position: relative;
+	left: 15px;
+	bottom: 90px;
+	left: -260px;
+}
+
+.texte
+{
+	padding-top: 5px;
+	font-family: verdana;
+	margin-left: 10px;
+	font-size: 16px;
+}
+
+.dial
+{
+	font-style: italic;
+}
+
+.special1
+{
+	font-family: georgia;
+	font-style: bold;
+	font-size: 30px;
+}
+
+.special2
+{
+	text-shadow: 5px 4px 7px red;
+}
+
+.input
+{
+	width: 365px;
+	box-shadow: inset 1px 1px 3px;
 }
