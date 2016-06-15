@@ -21,6 +21,9 @@ function ft_split($str)
 $i = 1;
 $j = 0;
 $res;
+$res1;
+$res2;
+$res3;
 
 if ($argc > 1)
 {
@@ -28,10 +31,18 @@ if ($argc > 1)
 	{
 		$tab = ft_split($argv[$i]);
 		foreach ($tab as $elem)
-			$res[$j++] = $elem;
+			if (is_numeric($elem) == TRUE)
+				$res1[] = $elem;
+			else if(ctype_alpha($elem) == TRUE)
+				$res2[] = $elem;
+			else
+				$res3[] = $elem;
 		$i++;
 	}
-	sort($res);
+	sort($res1, SORT_STRING | SORT_FLAG_CASE);
+	sort($res2, SORT_STRING | SORT_FLAG_CASE);
+	sort($res3, SORT_STRING | SORT_FLAG_CASE);
+	$res = array_merge($res2, $res1, $res3);
 	foreach ($res as $elem)
 		echo $elem,"\n";
 }
