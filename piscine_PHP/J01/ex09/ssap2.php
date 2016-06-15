@@ -18,12 +18,20 @@ function ft_split($str)
 	return ($tab);
 }
 
+function is_alpha($str)
+{
+	$i = 0;
+	while ($i < strlen($str))
+	{
+		if (($str[$i] >= 'a' && $str[$i] <= 'z') || ($str[$i] >= 'A' && $str[$i] <= 'Z'))
+			$i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 $i = 1;
-$j = 0;
-$res;
-$res1;
-$res2;
-$res3;
 
 if ($argc > 1)
 {
@@ -33,7 +41,7 @@ if ($argc > 1)
 		foreach ($tab as $elem)
 			if (is_numeric($elem) == TRUE)
 				$res1[] = $elem;
-			else if(ctype_alpha($elem) == TRUE)
+			else if (is_alpha($elem))
 				$res2[] = $elem;
 			else
 				$res3[] = $elem;
