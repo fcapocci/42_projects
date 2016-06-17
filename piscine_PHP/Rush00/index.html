@@ -1,0 +1,40 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="menu.css" />
+		<title>Store</title>
+	</head>
+	<body>
+		<ul id="menu-bar">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Products</a>
+				<ul>
+					<li><a href="#">Products Sub Menu 1</a></li>
+					<li><a href="#">Products Sub Menu 2</a></li>
+					<li><a href="#">Products Sub Menu 3</a></li>
+					<li><a href="#">Products Sub Menu 4</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Services</a>
+				<ul>
+					<li><a href="#">Services Sub Menu 1</a></li>
+					<li><a href="#">Services Sub Menu 2</a></li>
+					<li><a href="#">Services Sub Menu 3</a></li>
+					<li><a href="#">Services Sub Menu 4</a></li>
+				</ul>
+			</li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact Us</a></li>
+			<form id="logform" action="#" methode="GET">
+				<input id="logbarre" type="text" name="login" />
+				<input id="logbarre" type="password" name="passwd" />
+				<input id="button" type="submit" name="submit" value="OK" />
+			</form>
+		</ul>
+	</body>
+</html>
