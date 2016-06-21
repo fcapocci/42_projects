@@ -1,14 +1,30 @@
+body
+{
+  margin: 0px;
+  background-color: #4d394b;
+}
+
+section
+{
+  border-radius: 10px;
+  background-color: #E6E6E6;
+  width: 70em;
+  height: 40em;
+  margin: auto;
+  padding: 100px;
+  border: 1px solid black;
+}
+
 #menu-bar
 {
-  width: 99%;
+  width: 100%;
   padding: 8px 6px 4px 6px;
+  margin: 0px;
   height: 40px;
   line-height: 100%;
   border-radius: 5px;
   background: #4c9689;
-  border: solid 1px #4d394b;
-  position:relative;
-  z-index:999;
+  position: absolute;
 }
 
 #menu-bar li
@@ -32,11 +48,6 @@
   display: block;
   padding: 6px 20px 6px 20px;
   margin-bottom: 6px;
-}
-
-#menu-bar li ul li a
-{
-  margin: 0;
 }
 
 #menu-bar .active a, #menu-bar li:hover > a
@@ -73,14 +84,8 @@
   display: none;
   width: 185px;
   position: absolute;
-  top: 31px;
   border: none;
   border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 3px #222222;
-  -moz-box-shadow: 2px 2px 3px #222222;
-  box-shadow: 2px 2px 3px #222222;
 }
 
 #menu-bar ul li
@@ -98,35 +103,6 @@
   font-weight: normal;
 }
 
-#menu-bar ul li:first-child > a
-{
-  border-top-left-radius: 10px;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  border-top-right-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -moz-border-radius-topright: 10px;
-}
-
-#menu-bar ul li:last-child > a
-{
-  border-bottom-left-radius: 10px;
-  -webkit-border-bottom-left-radius: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  border-bottom-right-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomright: 10px;
-}
-
-#menu-bar:after
-{
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
 
 #menu-bar
 {
@@ -135,7 +111,22 @@
 
 #logform
 {
-  padding: 10px 0px 0px 0px;
+  display: inline-block;
+  top: 10px;
+  margin-left: 70%;
+  position: relative;
+}
+
+#no_inscript
+{
+  position: relative;
+  display: inline-block;
+  font-weight: normal;
+  font-family: 'comic sans ms';
+  font-style: oblique;
+  font-size: 1vw;
+  text-decoration: none;
+  color: #FFFFFF;
 }
 
 #logbarre
@@ -151,16 +142,40 @@
   background-color: #edb431;
 }
 
-body
+table
 {
-  background-color: #4d394b;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 10px 1px;
 }
 
-html[xmlns] #menu-bar
+td
 {
-  display: block;
+  border-radius: 5px;
+  line-height: 0;
+  text-align: center;
+  padding: 5px;
+  border: 2px solid #BDBDBD;
+  background-color: white;
 }
 
-* html #menu-bar {
-  height: 1%;
+.error1
+{
+  font-size: 0.8em;
+  color: white;
 }
+
+.error2
+{
+  text-align: center;
+}
+
+#shop td
+{
+  border: 2px solid #BDBDBD;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 20px 5px;
+}
+
+

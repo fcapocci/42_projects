@@ -1,0 +1,7 @@
+nom=sprite:cat=boisson:prix=1.5;
+nom=oasis:cat=boisson:prix=1.3;
+nom=nestea:cat=boisson:prix=1.8;
+nom=ginger:type=boisson:prix=1;
+nom=biere:cat=alcool:prix=2;
+nom=mars:cat=gateau:prix=1.5;
+nom=snickers:cat=gateau:prix=1.5;
