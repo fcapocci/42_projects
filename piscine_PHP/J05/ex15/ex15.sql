@@ -1,0 +1,1 @@
+select reverse(substr(telephone, 2, 10)) as 'enohpelet' FROM distrib WHERE telephone LIKE '05%';
