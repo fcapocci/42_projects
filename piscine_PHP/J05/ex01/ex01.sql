@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS db_fpasquer.`ft_table`
+CREATE TABLE IF NOT EXISTS db_fcapocci.`ft_table`
 (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `login` varchar(8) NOT NULL DEFAULT 'toto',
