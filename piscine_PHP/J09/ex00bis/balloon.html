@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Javascript</title>
+		<style type="text/css">
+			.ball
+			{
+				overflow: hidden;
+				width: 200px;
+				height: 200px;
+				border-radius: 120px;
+				background-color: red;
+			}
+		</style>
+		<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous">
+	</script>
+	</head>
+	<body>
+		<div id="balloon" class="ball" onclick="clic_balloon()" onmouseout="on_balloon()"></div>
+		<script>
+	$('#balloon').click(function()
+	{
+		alert("test");
+	})
+	</script>
+	</body>
+</html>

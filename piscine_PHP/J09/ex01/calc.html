@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Is it over 9000 ??</title>
+</head>
+<body>
+	<input type="text" id="leftcase" name="leftcase"></input>
+	<select id="select" name="select">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+		<option value="%">%</option>
+	</select>
+	<input type="text" id="rightcase" name="rightcase"></input>
+	<input type="submit" id="subm" name="subm" value="Try me!" onclick="calc()"></input>
+	<script type="text/javascript">
+		setInterval("alert('Please, use me...');",30000);
+ 		function is_numeric(string)
+ 		{
+ 			var i = 0;
+ 			while (i < string.length)
+ 			{
+ 				if (isNaN(string[i]))
+ 					return false;
+ 				i++;
+ 			}
+ 			return true;
+ 		}
+
+ 		function calc()
+		{
+			var oper = document.getElementById('select').options[document.getElementById('select').selectedIndex].value;
+			var left = document.getElementById('leftcase').value;
+			var right = document.getElementById('rightcase').value;
+			var result;
+			if (is_numeric(left) && is_numeric(right) && parseInt(left) >= 0 && parseInt(right) >= 0)
+			{
+				if (oper == "+")
+					result = parseInt(left) + parseInt(right);
+				if (oper == "-")
+					result = parseInt(left) - parseInt(right);
+				if (oper == "*")
+					result = parseInt(left) * parseInt(right);
+				if (oper == "/")
+				{
+					if (parseInt(right) == 0)
+						result = "It's over 9000!";
+					else
+						result = parseInt(left) / parseInt(right);
+				}
+				if (oper == "%")
+				{
+					if (parseInt(right) == 0)
+						result = "It's over 9000!";
+					else
+						result = parseInt(left) % parseInt(right);
+				}
+			}
+			else
+				result = "Error :(";
+			console.log(result);
+			alert(result);
+		}
+ 	</script>
+</body>
+</html>

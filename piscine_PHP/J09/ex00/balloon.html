@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Javascript</title>
+		<style type="text/css">
+			.ball
+			{
+				overflow: hidden;
+				width: 200px;
+				height: 200px;
+				border-radius: 120px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="balloon" class="ball" onclick="clic_balloon()" onmouseout="on_balloon()"></div>
+		<script type="text/javascript">
+			function clic_balloon()
+			{
+				if (document.getElementById("balloon").style.backgroundColor == "red")
+					document.getElementById("balloon").style.backgroundColor = "green";
+				else if (document.getElementById("balloon").style.backgroundColor == "green")
+					document.getElementById("balloon").style.backgroundColor = "blue";
+				else
+					document.getElementById("balloon").style.backgroundColor = "red";
+				document.getElementById("balloon").style.width = (parseInt(document.getElementById("balloon").clientWidth)+ 10) + 'px';
+				document.getElementById("balloon").style.height = (parseInt(document.getElementById("balloon").clientHeight)+ 10) + 'px';
+				document.getElementById("balloon").style.borderRadius = (parseInt(document.getElementById("balloon").clientWidth)+ 10) + 'px';
+				if (parseInt(document.getElementById("balloon").clientWidth) >= 420)
+				{
+					document.getElementById("balloon").style.width = '200px';
+					document.getElementById("balloon").style.height = '200px';
+				}
+			}
+
+			function on_balloon()
+			{
+				if (document.getElementById("balloon").style.backgroundColor == "blue")
+					document.getElementById("balloon").style.backgroundColor = "green";
+				else if (document.getElementById("balloon").style.backgroundColor == "green")
+					document.getElementById("balloon").style.backgroundColor = "red";
+				else
+					document.getElementById("balloon").style.backgroundColor = "blue";
+				if (parseInt(document.getElementById("balloon").clientWidth) > 200)
+				{
+					document.getElementById("balloon").style.width = (parseInt(document.getElementById("balloon").clientWidth)- 5) + 'px';
+					document.getElementById("balloon").style.height = (parseInt(document.getElementById("balloon").clientHeight)- 5) + 'px';
+					document.getElementById("balloon").style.borderRadius = (parseInt(document.getElementById("balloon").clientWidth)- 5) + 'px';
+				}
+			}
+	</script>
+	</body>
+</html>

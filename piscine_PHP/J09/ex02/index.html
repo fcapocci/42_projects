@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To do or not to do</title>
+	<style type="text/css">
+		.bloc
+		{
+			width: 400px;
+			height: 100%;
+			margin: auto;
+			border: 2px solid rgb(30,205,151);
+			border-radius: 10px;
+		}
+		.ft_list
+		{
+			width: 350px;
+			height: 100%;
+			border: 2px solid rgb(30,205,151);
+			margin: auto;
+			border-radius: 10px;
+			text-align: center;
+		}
+		.title
+		{
+			width: 350px;
+			margin: auto;
+			border: 2px solid rgb(30,205,151);
+			border-radius: 40px;
+			font: normal 37px/70px "Advent Pro", Helvetica, sans-serif;
+		  	color: rgb(30, 205, 151);
+		  	text-align: center;
+		}
+		.enjoy-css
+		{
+		  width: 250px;
+		  height: 70px;
+		  cursor: pointer;
+		  margin: 0 auto;
+		  border: 2px solid rgb(30,205,151);
+		  border-radius: 40px;
+		  font: normal 37px/70px "Advent Pro", Helvetica, sans-serif;
+		  color: rgb(30, 205, 151);
+		  text-align: center;
+		  letter-spacing: 1px;
+		  transition: background-color 0.3s, color 0.3s, width 0.3s, border-width 0.3s, border-color 0.3s;
+		}
+		.enjoy-css:hover
+		{
+		  color: rgba(255,255,255,1);
+		  background: rgb(30, 205, 151);
+		}
+		.enjoy-css:active
+		{
+		  border: 2px solid rgba(33,224,163,1);
+		  background: rgba(33,224,163,1);
+		}
+	</style>
+</head>
+<body onload="load()">
+	<script src="todo.js"></script>
+	<div id="block" class="bloc">
+		</br>
+		<div id="title" class="title">TO DO LIST</div>
+		</br>
+		<div id="ft_list" class="ft_list"></div>
+		</br>
+		<div id="subm" class="enjoy-css" onclick="test()">New</div>
+		</br>
+	</div>
+</body>
+</html>
