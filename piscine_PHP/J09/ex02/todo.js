@@ -34,6 +34,24 @@ function getCookie(cname)
     return "";
 }
 
+function delCookie(cname)
+{
+	var index = -1;
+	for(i = 0; i<list.length; i++)
+	{
+		if(list[i] == cname)
+		{	
+			index = i;
+			break;
+		}
+	}
+	if(index > -1)
+	{
+		delete list[index];
+		setCookie('cook', list, 1);
+	}
+}
+
 function add(todo)
 {
 	var newdiv = document.createElement("div");
@@ -42,7 +60,10 @@ function add(todo)
 	newdiv.onclick = function()
 	{
 		if (confirm("Do you really want to delete that ? Seems important to me ? Did you even try'ed to do it ?"))
+		{
 			newdiv.parentNode.removeChild(newdiv);
+			delCookie(todo);
+		}
 	}
 	verif = document.getElementById("ft_list");
 	document.getElementById("ft_list").insertBefore(newdiv, verif.firstChild);

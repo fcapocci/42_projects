@@ -8,7 +8,7 @@
 				overflow: hidden;
 				width: 200px;
 				height: 200px;
-				border-radius: 120px;
+				border-radius: 250px;
 				background-color: red;
 			}
 		</style>
@@ -16,12 +16,64 @@
 	</script>
 	</head>
 	<body>
-		<div id="balloon" class="ball" onclick="clic_balloon()" onmouseout="on_balloon()"></div>
+		<div id="balloon" class="ball"></div>
 		<script>
-	$('#balloon').click(function()
-	{
-		alert("test");
-	})
+		var ww = 200;
+		var hh = 200;
+		$('#balloon').on('click',function(){
+				var b = $("#balloon").css('background-color');
+				var w = $("#balloon").css('width');
+				var h = $("#balloon").css('height');
+				if (b == "rgb(255, 0, 0)")
+				{
+					$("#balloon").css('background-color', 'green');
+				}
+				else if (b == "rgb(0, 128, 0)")
+				{
+					$("#balloon").css('background-color', 'blue');
+				}
+				else if (b == "rgb(0, 0, 255)")
+				{
+					$("#balloon").css('background-color', 'red');
+				}
+				if (ww + 10 >= 420)
+				{
+					ww = 200;
+					hh = 200;
+				}
+				else
+				{
+					ww += 10;
+					hh += 10;
+				}
+				$("#balloon").css('width', (ww));
+				$("#balloon").css('height', (hh));
+		})
+
+		$('#balloon').on('mouseleave',function(){
+			var b = $("#balloon").css('background-color');
+				var w = $("#balloon").css('width');
+				var h = $("#balloon").css('height');
+				if (b == "rgb(255, 0, 0)")
+				{
+					$("#balloon").css('background-color', 'blue');
+				}
+				else if (b == "rgb(0, 128, 0)")
+				{
+					$("#balloon").css('background-color', 'red');
+				}
+				else if (b == "rgb(0, 0, 255)")
+				{
+					$("#balloon").css('background-color', 'green');
+				}
+				if ((ww -5) > 200)
+				{
+					ww -= 5;
+					hh -= 5;
+					$("#balloon").css('width', (ww));
+					$("#balloon").css('height', (hh));
+				}
+		})
 	</script>
 	</body>
 </html>

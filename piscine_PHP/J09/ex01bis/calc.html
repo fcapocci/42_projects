@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Is it over 9000 ??</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous">
+	</script>
+</head>
+<body>
+	<input type="text" id="leftcase" name="leftcase"></input>
+	<select id="select" name="select">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+		<option value="%">%</option>
+	</select>
+	<input type="text" id="rightcase" name="rightcase"></input>
+	<input type="submit" id="subm" name="subm" value="Try me!"></input>
+	<script>
+		setInterval("alert('Please, use me...');",30000);
+ 		$("#subm").on('click', function(){
+ 			left = parseInt($('#leftcase').val());
+ 			right = parseInt($('#rightcase').val());
+ 			if($('#rightcase').val() < 0 || $('#leftcase').val() < 0 || $('#rightcase').val() == '' || $('#left').val() || $('#rightcase').val() != right || $('#leftcase').val() != left)
+ 				return(alert('Error :('));
+ 			else if ($('#rightcase').val() == 0 && ($('#select').val() == '%' || $('#select').val() == '/'))
+ 			{
+ 				return(alert('It’s over 9000!'));
+ 			}
+ 			else
+ 			{
+ 				if ($('#select').val() == '+')
+ 				{
+ 					res =left + right;
+ 					alert(res);
+ 					return;
+ 				}
+ 				else if ($('#select').val() == '-')
+ 				{
+ 					res =left - right;
+ 					alert(res);
+ 					return;
+ 				}
+ 				else if ($('#select').val() == '*')
+ 				{
+ 					res =left * right;
+ 					alert(res);
+ 					return;
+ 				}
+ 				else if ($('#select').val() == '/')
+ 				{
+ 					res =left / right;
+ 					alert(res);
+ 					return;
+ 				}
+ 				else if ($('#select').val() == '%')
+ 				{
+ 					res =left % right;
+ 					alert(res);
+ 					return;
+ 				}
+ 				else
+ 					return(alert('Error :('));
+ 			}
+ 		});
+	</script>
+</body>
+</html>
