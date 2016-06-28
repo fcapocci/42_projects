@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 15:31:09 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/27 11:44:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/27 17:43:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static char					*get_start_end(char **line, char **end,
 	i = 0;
 	cpy_line = *line;
 	*len_line = ft_strlen(*line);
-	start = *line;
+	while (ft_isspace(cpy_line[i]) == 1)
+		i++;
+	start = &cpy_line[i];
 	while (cpy_line[i] != '\0')
 	{
 		if (ft_isspace(cpy_line[i]) == 1)
@@ -109,7 +111,6 @@ int							check_bin(t_42sh *sh, t_multi_line **m_line)
 
 	if ((bin = get_bin(sh, (*m_line)->line)) != NULL)
 	{
-
 		if ((env = new_var_env(sh)) == NULL)
 			return (ERROR);
 		if ((argv = save_argv(bin, (*m_line)->line)) == NULL)

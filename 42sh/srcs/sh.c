@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/11 17:41:24 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/23 10:07:46 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 13:05:19 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_42sh						*init_sh(char **env)
 {
 	t_42sh					*sh;
 
-	if ((sh = ft_memalloc(sizeof(*sh))) == NULL)
+	if ((sh = ft_memalloc(sizeof(*sh))) == NULL || save_history(sh) == -1)
 		return (NULL);
 	get_struct_42sh(&sh);
 	if ((sh->lst_env = save_env(env)) == NULL || init_term(&sh) == ERROR)
@@ -84,6 +84,7 @@ int							del_sh(t_42sh **sh)
 	if (sh == NULL || *sh == NULL)
 		return (-1);
 	tcsetattr(0, TCSADRAIN, &(*sh)->reset);
+	del_history();
 	del_hash_bin((*sh));
 	del_env(&(*sh)->lst_env);
 	if ((*sh)->path != NULL)

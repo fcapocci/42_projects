@@ -6,7 +6,7 @@
 #*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/05/17 16:07:18 by fpasquer          #+#    #+#             *#
-#*   Updated: 2016/06/24 21:41:14 by fpasquer         ###   ########.fr       *#
+#*   Updated: 2016/06/28 17:08:32 by fpasquer         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -16,7 +16,7 @@ SRC_NAME		= main.c sh.c save_hash_bin.c hash_tab.c del_hash_bin.c			\
 				save_sort_bin.c sort_list.c sort_fonctions.c autocompletion.c	\
 				loop_shell.c builtin.c env.c env1.c builtin_echo.c multy_line.c	\
 				builtin_setenv.c term.c exe_bin.c argv.c catch_signal.c key.c	\
-				key_event1.c
+				key_event1.c history.c key_event2.c
 
 INCLUDES		= _42sh.h key.h
 
@@ -64,6 +64,7 @@ fclean : clean
 	make -C libft fclear
 
 re : fclean All
+	rm /tmp/42sh_history.txt
 
 push : fclean
 	git add $(SRCDIR) $(INCDIR) $(OTHERS) ./libft

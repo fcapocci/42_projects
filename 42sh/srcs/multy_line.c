@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 22:39:42 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/27 11:51:09 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:30:09 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../libft/libft.h"
 #include "../incs/key.h"
 
-#define C_LINE "\033[31m/\033[0m "
+#define C_LINE "\033[31m\n/\033[0m "
 
 
 #include <stdio.h>
@@ -85,8 +85,10 @@ int							get_loop(int loop, char *start, char end,
 	unsigned int			i;
 	static long long int	count = 0;
 
-	if (start == NULL || line == NULL || line[0] == '\0')
-		return (line == NULL ? -1 : 0);
+	if (start == NULL || line == NULL)
+		return (-1);
+	if (line[0] == '\0' && loop == 0)
+		return (0);
 	ret = 0;
 	i = 0;
 	while (line[i++] != '\0')
@@ -106,6 +108,35 @@ int							get_loop(int loop, char *start, char end,
 		}
 	return (loop + ret);
 }
+
+/*int							get_loop(int loop, char *start, char end,
+		char *line)
+{
+	int						ret;
+	unsigned int			i;
+	static long long int	count = 0;
+
+	if (start == NULL || line == NULL || line[0] == '\0')
+		return (line == NULL || start == NULL ? -1 : 0);
+	ret = 0;
+	i = 0;
+	while (line[i++] != '\0')
+		if (line[i - 1] == *start)
+		{
+			if (*start == '\"' || *start == '\'')
+				ret = count++ % 2 == 0 ? ret + 1 : ret - 1;
+			else
+				ret ++;
+		}
+		else if (line[i - 1] == end)
+		{
+			if (end == '\"' || end == '\'')
+				ret = count++ % 2 == 1 ? ret - 1 : ret + 1;
+			else
+				ret--;
+		}
+	return (loop + ret);
+}*/
 
 t_multi_line				*get_multi_line(void)
 {
@@ -141,7 +172,7 @@ void						del_multi_line(t_multi_line **m_line)
 		while ((*m_line) != NULL)
 		{
 			tmp = (*m_line)->next;
-			ft_memdel((void**)&(*m_line)->line);
+//			ft_memdel((void**)&(*m_line)->line);
 			ft_memdel((void**)m_line);
 			(*m_line) = tmp;
 		}

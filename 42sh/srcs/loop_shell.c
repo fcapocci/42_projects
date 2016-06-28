@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 12:22:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/27 13:53:58 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 12:48:36 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 #define SIZE_PROMT 2000
 #define COLOR_PROMT "\033[032;1m"
-#define COLOR_LINE "\033[034;1m"
+#define COLOR_LINE "\033[034;1;4m"
+#define COLOR_LAST "\033[036;1m"
 #define RESET_COLOR "\033[0m"
 
 void						print_header(t_42sh *sh)
@@ -63,7 +64,7 @@ int							print_promt(t_42sh *sh)
 	return (1);
 }
 
-void						prin_new_env(t_42sh *sh)
+/*void						prin_new_env(t_42sh *sh)
 {
 	char					**env;
 	unsigned int			i;
@@ -74,22 +75,30 @@ void						prin_new_env(t_42sh *sh)
 			printf("env[%2d] = %s\n", i, env[i]);
 		ft_free_strsplit(env);
 	}
-}
+}*/
 
 static int					print_line_shell(t_multi_line *m_line)
 {
+	unsigned int			i;
 	t_multi_line			*curs;
 
-	ft_putstr(COLOR_LINE);
 	curs = m_line;
-	if (curs->line[0] != '\0')
-		ft_putchar('\n');
-	while (curs != NULL)
+	i = 0;
+	ft_putchar('\n');
+	while (ft_isspace(curs->line[i]) == 1)
+		i++;
+	if (curs->line[i] != '\0')
 	{
-		ft_putendl(curs->line);
-		curs = curs->next;
+		ft_putstr(COLOR_LINE);
+		while (curs != NULL)
+		{
+			ft_putendl(curs->line);
+			curs = curs->next;
+		}
+		ft_putstr(RESET_COLOR);
 	}
-	ft_putstr(RESET_COLOR);
+	else
+		ft_putstr("vide\n");
 	return (1);
 }
 
@@ -103,6 +112,7 @@ void						loop_shell(t_42sh *sh)
 		if ((m_line = get_multi_line()) == NULL)
 			break ;
 		print_line_shell(m_line);
+		save_m_line(sh, &m_line);
 		if (m_line->line[0] != '\0')
 			if (check_builtin(&sh, &m_line) != BUILT)
 				check_bin(sh, &m_line);

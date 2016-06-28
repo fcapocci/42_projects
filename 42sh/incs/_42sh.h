@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:41:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/23 10:55:06 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 17:01:35 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define SIZE_SORT 27
 
 # define NAME "42sh"
+# define HISTORY_NAME "/tmp/42sh_history.txt"
 
 # define ERROR -1
 # define BUILT 1
@@ -33,6 +34,13 @@ typedef struct				s_multi_line
 	char					*line;					//line ecrite au clavier
 	struct s_multi_line		*next;					//line suivante
 }							t_multi_line;
+
+typedef struct				s_history_shell
+{
+	char					*line;					//ligne ecrite au clavier
+	struct s_history_shell	*next;					//ligne suivante
+	struct s_history_shell	*prev;					//ligne precedente
+}							t_history_shell;
 
 typedef struct				s_bin
 {
@@ -61,11 +69,15 @@ typedef struct				s_42sh
 	char					*path_line;				//path recu avec env
 	char					*term_name;				//nom du terminal dans env
 	char					*home;					//path du home
+	int						fd_history;				//fichier avec l'hitorique de toules les lignes du shell
 	unsigned int			len_home;				//len home
 	unsigned int			nb_bin;					//nombre de binaire qui compose le path
 	t_bin					*hash_bin[SIZE_HASH];	//table de hash des binaires
 	t_bin					*sort_bin[SIZE_SORT];	//tableau des binaires tries par ordre alphabetique
 	t_env					*lst_env;				//liste des varoables d'env
+	t_history_shell			*history;				//liste de l'hitorique
+	t_history_shell			*curs_history;			//position dans la liste chainee
+	t_history_shell			*last_add;				//adresse de la derniere ligne ajoutee
 	struct termios			reset;					//structure sans modif du term
 	struct termios			setting;				//structure avec modif du term
 	struct winsize			info_w;					//info si la fenetre du terminal
@@ -103,5 +115,12 @@ t_multi_line				*get_multi_line(void);
 void						del_multi_line(t_multi_line **m_line);
 char						**new_var_env(t_42sh *sh);
 void						print_status(void);
+
+t_history_shell				*add_new_line_head(char **line, t_history_shell **lst);
+int							save_history(t_42sh *sh);
+int							save_m_line(t_42sh *sh, t_multi_line **m_line);
+void						del_history(void);
+void						print_history(void);
+int							print_promt(t_42sh *sh);
 
 # endif

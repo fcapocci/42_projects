@@ -6,27 +6,20 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 15:29:45 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/27 14:40:28 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 16:48:50 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/key.h"
 #include "../libft/libft.h"
+#include "../incs/_42sh.h"
 #include <unistd.h>
-
-#define MAX_LEN_LINE 10000
-
-#include <stdio.h>
 
 char						*get_add_line(void)
 {
 	static char				mem_line[MAX_LEN_LINE + 2];
-	unsigned int			i;
 
-	i = 0;
-	while (ft_isspace(mem_line[i]) == 1)
-		i++;
-	return(&mem_line[i]);
+	return(mem_line);
 }
 
 int							check_key(int func(char key[BUFF_SIZE_READ + 1]))
@@ -73,11 +66,12 @@ char						*save_line(char c)
 		add_key(c);
 	else if (c == '\n')
 	{
-/*		ft_putchar('\n');
-		ft_putstr("g_len_line = ");
+//		ft_putchar('\n');
+/*		ft_putstr("g_len_line = ");
 		ft_putnbr(g_len_line);
 		ft_putstr(" g_i_curs = ");
 		ft_putnbr(g_i_curs);*/
+
 		g_len_line = 0;
 		g_i_curs = 0;
 	}
@@ -98,12 +92,13 @@ int							event_key(char b[BUFF_SIZE_READ + 1])
 	else if (ARROW_RIGHT)
 		move_one_c_right();
 	else if (ARROW_DOWN)
-		ft_putstr("ARROW_DOWN\n");
+			arrow_down();
 	else if (ARROW_UP)
-		ft_putstr("ARROW_UP\n");
+		arrow_up();
 	else if (F1)
-		ft_putstr("F1\n");
+		print_history();
 	else if (F2)
+//		del_history();
 		ft_putstr("F2\n");
 	else if (F3)
 		ft_putstr("F3\n");
@@ -121,8 +116,6 @@ int							event_key(char b[BUFF_SIZE_READ + 1])
 		ft_putstr("F9\n");
 	else if (F10)
 		ft_putstr("F10\n");
-	else if (HK)
-		ft_putstr("K\n");
 	else if (ENTER)
 	{
 		save_line(b[0]);
@@ -140,11 +133,9 @@ char						*get_line(void)
 
 	line = NULL;
 	while (1)
-	{
 		if ((ret = check_key(event_key)) == -1)
 			return (NULL);
 		else if (ret == 0)
 			return (ft_strdup(get_add_line()));
-	}
 	return (NULL);
 }

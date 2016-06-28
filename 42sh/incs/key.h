@@ -6,13 +6,15 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 13:01:40 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/27 12:20:37 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 12:20:08 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 
 # define KEY_H
+
+# define MAX_LEN_LINE 10000
 
 unsigned int			g_i_curs;
 unsigned int			g_len_line;
@@ -158,5 +160,7 @@ int							del_left(void);
 char						*save_line(char c);
 int							cmd_termcap(char *str);
 char						*get_add_line(void);
+int							arrow_up(void);
+int							arrow_down(void);
 
 #endif
