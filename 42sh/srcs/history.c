@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 22:17:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/28 13:14:02 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/28 19:41:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int							save_history(t_42sh *sh)
 {
 	char					*line;
 
-	if ((sh->fd_history = ft_fopen(HISTORY_NAME, "r")) < 0)
+	if ((sh->fd_history = ft_fopen(HISTORY_NAME, "w+")) < 0)
 		return (0);
 	while (get_next_line(sh->fd_history, &line) > 0)
 		if ((sh->last_add = add_new_line_tail(&line, &sh->history)) == NULL)
