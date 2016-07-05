@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/04 13:52:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/05 19:41:01 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,26 @@
 # include <term.h>
 # include <stdlib.h>
 
+# define ERR -1
+# define OK 0
+
+typedef struct			s_lst
+{
+	char				*name;
+	size_t				len_name;
+	int					type;
+	int					selected;
+	size_t				num;
+	struct s_lst		*prev;
+	struct s_lst		*next;
+}						t_lst;
+
+//typedef struct		s_term
+//{
+//}						t_term;
+
+int						ft_select(int argc, char **argv);
+t_lst					*init_lst(int argc, char **argv);
+void					free_lst(t_lst *lst);
 
 # endif

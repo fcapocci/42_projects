@@ -6,13 +6,13 @@
 #*   By: fpasquer <fcapocci@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/05/17 16:07:18 by fcapocci          #+#    #+#             *#
-#*   Updated: 2016/07/04 23:09:45 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/07/05 19:20:28 by fcapocci         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 NAME			= ft_select
 
-SRC_NAME		= main.c
+SRC_NAME		= main.c ft_select.c init_lst.c free.c
 
 INCLUDES		=ft_select.h
 

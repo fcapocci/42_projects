@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/04 13:43:06 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 18:59:33 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/07/05 19:19:59 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/07/05 20:06:35 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/ft_select.h"
 
-int		main(int argc, char **argv)
+void			free_lst(t_lst *lst)
 {
-	if (argc > 1)
+	t_lst		*tmp;
+
+	while (lst)
 	{
-		if (ft_select(argc, argv) == ERR)
-			return (ERR);
+		tmp = lst->next;
+		if (lst->name)
+			ft_memdel((void**)&lst->name);
+		lst->prev->next = NULL;
+		ft_memdel((void**)&lst);
+		lst = tmp;
 	}
-	else
-		ft_putendl("Not argument for ft_select");
-	return (0);
+	ft_memdel((void**)&lst);
 }
+
