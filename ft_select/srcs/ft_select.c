@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 20:57:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/05 21:44:29 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,10 @@ int				ft_select(int argc, char **argv)
 	t_lst			*lst;
 	struct termios	term;
 
+	if (init_term_env(&term) == ERR)
+		return (ERR);
 	if ((lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
-	if (init_term_env(&term) == ERR)
-	{
-		free_lst(lst);
-		return (ERR);
-	}
 	free_lst(lst);
 	return (OK);
 }
