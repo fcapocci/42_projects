@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 19:41:01 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/07 08:45:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct			s_lst
 
 int						ft_select(int argc, char **argv);
 t_lst					*init_lst(int argc, char **argv);
+void					print_argv(t_lst *lst);
 void					free_lst(t_lst *lst);
 
 # endif

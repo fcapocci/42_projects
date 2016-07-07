@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 21:44:29 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/07 15:21:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,34 @@ static int		init_term_env(struct termios *term)
 		return (ERR);
 	if (tcgetattr(0, term) == -1)
 		return (ERR);
+	term->c_lflag &= ~(ICANON | ECHO);
+	term->c_cc[VMIN] = 1;
+	term->c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, term) == -1)
+		return (ERR);
+	return (OK);
+}
+static int		res_term_env(struct termios *term)
+{
+	
+}
+
+static int		looper(struct termios term, t_lst *lst)
+{
+	char			buff[3];
+
+	while (1)
+	{
+		print_argv(lst);
+		read(0, buff, 3);
+		if (buff[0] == 27)
+			ft_putendl("c'est une flech");
+		if (buff[0] == 4)
+		{
+			ft_putendl("ctrl-D on quit");
+			break ;
+		}
+	}
 	return (OK);
 }
 
@@ -37,6 +65,8 @@ int				ft_select(int argc, char **argv)
 		return (ERR);
 	if ((lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
+	looper(term, &(*lst));
 	free_lst(lst);
+	res_term_env(&term);
 	return (OK);
 }
