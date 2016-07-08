@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/07 15:21:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/08 13:19:44 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static int		init_term_env(struct termios *term)
 }
 static int		res_term_env(struct termios *term)
 {
-	
+	term->c_lflag = (ICANON | ECHO);
+	if (tcsetattr(0, 0, term) == -1)
+		return (ERR);
+	return (OK);
 }
 
 static int		looper(struct termios term, t_lst *lst)
