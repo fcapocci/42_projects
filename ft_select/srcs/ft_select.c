@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/08 13:19:44 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:27:28 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,22 @@ static int		res_term_env(struct termios *term)
 
 static int		looper(struct termios term, t_lst *lst)
 {
-	char			buff[3];
+	char			buff[4];
+	t_lst			*curs;
 
+	curs = lst;
+	ft_bzero(buff, 3);
 	while (1)
 	{
 		print_argv(lst);
 		read(0, buff, 3);
+		// if (event_key() == )
+		//	return ()
 		if (buff[0] == 27)
+		{
+			exe_cmd("cl");
 			ft_putendl("c'est une flech");
+		}
 		if (buff[0] == 4)
 		{
 			ft_putendl("ctrl-D on quit");
