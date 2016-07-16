@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/16 04:13:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 20:59:30 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int		res_term_env(struct termios *term)
 	term->c_lflag = (ICANON | ECHO);
 	if (tcsetattr(0, 0, term) == -1)
 		return (ERR);
+	exe_cmd("te");
+	exe_cmd("ve");
 	return (OK);
 }
 

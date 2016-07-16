@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/16 03:44:36 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 20:57:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ t_lst					*init_lst(int argc, char **argv);
 
 void					print_argv(t_lst *lst, t_lst *curs);
 
-int						event_key(char *buff, t_lst **lst, t_lst **curs);
 int						space_key(t_lst **curs);
+int						del_key(t_lst **lst, t_lst **curs);
+int						event_key(char *buff, t_lst **lst, t_lst **curs);
 
 int						move_left(t_lst **curs);
 int						move_right(t_lst **curs);

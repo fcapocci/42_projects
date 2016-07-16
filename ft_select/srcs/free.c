@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 19:19:59 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 20:06:35 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 21:00:42 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void			free_lst(t_lst *lst)
 {
 	t_lst		*tmp;
 
-	while (lst)
+	if (lst)
 	{
-		tmp = lst->next;
-		if (lst->name)
-			ft_memdel((void**)&lst->name);
-		lst->prev->next = NULL;
+		while (lst)
+		{
+			tmp = lst->next;
+			if (lst->name)
+				ft_memdel((void**)&lst->name);
+			lst->prev->next = NULL;
+			ft_memdel((void**)&lst);
+			lst = tmp;
+		}
 		ft_memdel((void**)&lst);
-		lst = tmp;
 	}
-	ft_memdel((void**)&lst);
 }
 

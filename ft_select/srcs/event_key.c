@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 01:57:09 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/16 04:00:09 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 20:57:13 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@ int				space_key(t_lst **curs)
 	return (OK);
 }
 
+int				del_key(t_lst **lst, t_lst **curs)
+{
+	t_lst		*tmp;
+
+	tmp = *curs;
+	*curs = (*curs)->next;
+	tmp->next->prev = tmp->prev;
+	tmp->prev->next = tmp->next;
+	if (tmp == tmp->next)
+		return (ERR);
+	else if (tmp == *lst)
+		*lst = (*lst)->next;
+	if (tmp->name)
+		ft_memdel((void**)&tmp->name);
+	ft_memdel((void**)&tmp);
+	return (OK);
+}
+
 int				event_key(char *buff, t_lst **lst, t_lst **curs)
 {
 	if (RIGHT)
@@ -27,6 +45,8 @@ int				event_key(char *buff, t_lst **lst, t_lst **curs)
 		return (move_left(&(*curs)));
 	else if (SPACE)
 		return (space_key(&(*curs)));
+	else if (DEL || DEL2)
+		return (del_key(&(*lst), &(*curs)));
 	else if (CD)
 		return (ERR);
 	return (OK);
