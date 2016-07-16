@@ -6,13 +6,13 @@
 #*   By: fpasquer <fcapocci@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/05/17 16:07:18 by fcapocci          #+#    #+#             *#
-#*   Updated: 2016/07/09 18:40:51 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/07/16 02:53:23 by fcapocci         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 NAME			= ft_select
 
-SRC_NAME		= main.c ft_select.c init_lst.c free.c print_argv.c util.c
+SRC_NAME		= main.c ft_select.c init_lst.c free.c print_argv.c util.c event_key.c move.c
 
 INCLUDES		=ft_select.h
 

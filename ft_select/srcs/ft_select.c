@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/09 19:27:28 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 03:59:59 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,19 @@ static int		res_term_env(struct termios *term)
 	return (OK);
 }
 
-static int		looper(struct termios term, t_lst *lst)
+static int		looper(struct termios term, t_lst **lst)
 {
 	char			buff[4];
 	t_lst			*curs;
 
-	curs = lst;
-	ft_bzero(buff, 3);
+	curs = *lst;
 	while (1)
 	{
-		print_argv(lst);
+		print_argv(*lst, curs);
+		ft_bzero(buff, 3);
 		read(0, buff, 3);
-		// if (event_key() == )
-		//	return ()
-		if (buff[0] == 27)
-		{
-			exe_cmd("cl");
-			ft_putendl("c'est une flech");
-		}
-		if (buff[0] == 4)
-		{
-			ft_putendl("ctrl-D on quit");
+		if (event_key(buff, &(*lst), &curs) == ERR)
 			break ;
-		}
 	}
 	return (OK);
 }
@@ -76,7 +66,7 @@ int				ft_select(int argc, char **argv)
 		return (ERR);
 	if ((lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
-	looper(term, &(*lst));
+	looper(term, &lst);
 	free_lst(lst);
 	res_term_env(&term);
 	return (OK);
