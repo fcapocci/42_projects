@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/16 03:59:59 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/16 04:13:59 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int		init_term_env(struct termios *term)
 		return (ERR);
 	if (tcgetattr(0, term) == -1)
 		return (ERR);
+	exe_cmd("ti");
+	exe_cmd("vi");
 	term->c_lflag &= ~(ICANON | ECHO);
 	term->c_cc[VMIN] = 1;
 	term->c_cc[VTIME] = 0;
