@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/17 19:24:32 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/18 00:45:22 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int				ft_select(int argc, char **argv)
 	if ((lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
 	looper(term, &lst);
-	free_lst(lst);
 	res_term_env(&term);
+	print_selected(lst);
+	free_lst(lst);
 	return (OK);
 }
