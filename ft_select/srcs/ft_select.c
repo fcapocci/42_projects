@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/18 00:45:22 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/07/30 19:46:45 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int		looper(struct termios term, t_lst **lst)
 {
 	char			buff[4];
 	t_lst			*curs;
+	int				ret;
 
 	curs = *lst;
 	while (1)
@@ -55,8 +56,8 @@ static int		looper(struct termios term, t_lst **lst)
 		print_argv(*lst, curs);
 		ft_bzero(buff, 3);
 		read(0, buff, 3);
-		if (event_key(buff, &(*lst), &curs) == ERR)
-			break ;
+		if ((ret = event_key(buff, &(*lst), &curs)))
+			return (ret == ERR ? ERR : PRINT);
 	}
 	return (OK);
 }
@@ -65,14 +66,16 @@ int				ft_select(int argc, char **argv)
 {
 	t_lst			*lst;
 	struct termios	term;
+	int				ret;
 
 	if (init_term_env(&term) == ERR)
 		return (ERR);
 	if ((lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
-	looper(term, &lst);
+	ret = looper(term, &lst);
 	res_term_env(&term);
-	print_selected(lst);
+	if (ret == PRINT)
+		print_selected(lst);
 	free_lst(lst);
 	return (OK);
 }
