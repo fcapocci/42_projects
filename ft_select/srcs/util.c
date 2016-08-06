@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 18:26:27 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/09 18:37:03 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/06 21:58:00 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,18 @@ int			exe_cmd(char *s)
 	if (tputs(res, 0, ft_ouct))
 		return (ERR);
 	return (OK);
+}
+
+int			move_curs(int x, int y)
+{
+	char			*str_cm;
+	char			*char_goto;
+
+	if ((str_cm = tgetstr("cm", NULL)) == NULL)
+		return (ERR);
+	if ((char_goto = tgoto(str_cm, x, y)) == NULL)
+		return (ERR);
+	if (tputs(char_goto, 0, ft_ouct))
+		return (ERR);
+	return(OK);
 }

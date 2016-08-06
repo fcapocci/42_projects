@@ -6,7 +6,7 @@
 #*   By: fpasquer <fcapocci@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/05/17 16:07:18 by fcapocci          #+#    #+#             *#
-#*   Updated: 2016/07/18 00:38:17 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/08/06 20:19:21 by fcapocci         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -52,6 +52,7 @@ $(OBJDIR) :
 
 clean :
 	rm -rf $(OBJ)
+	rm -rf $(OBJDIR)
 
 fclean : clean
 	rm -rf $(NAME)

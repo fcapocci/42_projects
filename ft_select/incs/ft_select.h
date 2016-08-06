@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/30 19:34:44 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/06 20:38:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define CD		(buff[0] ==   4 && buff [1] ==  0 && buff[2] ==  0)
 # define TAB	(buff[0] ==   9 && buff [1] ==  0 && buff[2] ==  0)
 # define ESC	(buff[0] ==  27 && buff [1] ==  0 && buff[2] ==  0)
-# define DEL	(buff[0] == 127 && buff [1] ==  0 && buff[2] ==  0i)
+# define DEL	(buff[0] == 127 && buff [1] ==  0 && buff[2] ==  0)
 # define DEL2	(buff[0] == 126 && buff [1] ==  0 && buff[2] ==  0)
 # define SPACE	(buff[0] ==  32 && buff [1] ==  0 && buff[2] ==  0)
 # define RET	(buff[0] ==  10 && buff [1] ==  0 && buff[2] ==  0)
@@ -33,7 +33,7 @@
 # define LEFT	(buff[0] ==  27 && buff [1] == 91 && buff[2] == 68)
 
 
-# define ERR	-1
+# define ERR   -1
 # define OK		0
 # define PRINT	1
 
@@ -69,6 +69,7 @@ int						move_right(t_lst **curs);
 
 int						ft_ouct(int c);
 int						exe_cmd(char *s);
+int						move_curs(int x, int y);
 
 void					free_lst(t_lst *lst);
 
