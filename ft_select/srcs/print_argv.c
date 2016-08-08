@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/06 22:25:30 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/08 20:23:50 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 #define SELECT "\033[7m"
 #define C_SELC "\033[7;4m"
 #define RES "\033[0m"
+
+static size_t		bigger_in_list(t_lst *lst)
+{
+	size_t				len;
+	t_lst				*start;
+
+	len = 0;
+	start = lst->prev;
+	while (lst != start)
+		len = lst->len_name > len ? lst->len_name : len;
+	return (len);
+}
 
 static int			get_window_size(struct winsize *win)
 {
@@ -32,21 +44,22 @@ static void		put_word(char *s)
 }
 
 static void		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
-				**start, size_t *bigger)
+				**start, int loop)
 {
 	int					i;
+	size_t				bigger;
 
-	i = 1;
+	i = 0;
+	bigger = bigger_in_list(*lst);
 	while (i < win.ws_row && *lst != *start)
 	{
 		*start = (*start == NULL) ? *lst : *start;
-		*bigger = (*lst)->len_name > *bigger ? (*lst)->len_name : *bigger;
 		if (*lst == *curs)
 			ft_putstr((*lst)->selected == 1 ? C_SELC : CURS);
 		else
 			ft_putstr((*lst)->selected == 1 ? SELECT : RES);
+		move_curs(loop ? (bigger + 2) : 0, i);
 		put_word((*lst)->name);
-		exe_cmd("do");
 		*lst = (*lst)->next;
 		i++;
 	}
@@ -56,24 +69,15 @@ void			print_argv(t_lst *lst, t_lst *curs)
 {
 	t_lst				*start;
 	struct winsize		win;
-	size_t				bigger;
-	size_t				decalage;
+	int					loop;
 
 	get_window_size(&win);
 	exe_cmd("cl");
 	start = NULL;
-	bigger = 1;
-	decalage = 0;
-	ft_putstr("nb de ligne: ");
-	ft_putnbr(win.ws_row);
-	ft_putchar('\n');
-	ft_putstr("nb de colones: ");
-	ft_putnbr(win.ws_col);
-	ft_putchar('\n');
+	loop = 0;
 	while (lst != start)
 	{
-		print_col(&lst, &curs, win, &start, &bigger);
-		move_curs(bigger + 2 + decalage, 0);
-		decalage = bigger;
+		print_col(&lst, &curs, win, &start, loop);
+		loop++;
 	}
 }
