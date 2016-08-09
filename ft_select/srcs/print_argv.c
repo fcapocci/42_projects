@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/08 20:23:50 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/09 20:15:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ static size_t		bigger_in_list(t_lst *lst)
 	t_lst				*start;
 
 	len = 0;
-	start = lst->prev;
+	start = NULL;
 	while (lst != start)
+	{
+		start = !start ? lst : start;
 		len = lst->len_name > len ? lst->len_name : len;
+		lst = lst->next;
+	}
 	return (len);
 }
 
@@ -48,9 +52,11 @@ static void		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
 {
 	int					i;
 	size_t				bigger;
+	size_t				savver;
 
 	i = 0;
 	bigger = bigger_in_list(*lst);
+	savver = loop > 1 ? (bigger * (loop - 1) + (2 * (loop - 1))) : 0;
 	while (i < win.ws_row && *lst != *start)
 	{
 		*start = (*start == NULL) ? *lst : *start;
@@ -58,7 +64,7 @@ static void		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
 			ft_putstr((*lst)->selected == 1 ? C_SELC : CURS);
 		else
 			ft_putstr((*lst)->selected == 1 ? SELECT : RES);
-		move_curs(loop ? (bigger + 2) : 0, i);
+		move_curs(loop ? (bigger + 2 + (savver)) : 0, i);
 		put_word((*lst)->name);
 		*lst = (*lst)->next;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 01:57:09 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/30 19:36:38 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/09 20:27:52 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ int				event_key(char *buff, t_lst **lst, t_lst **curs)
 {
 	if (ESC)
 		return (ERR);
-	else if (RIGHT)
-		return (move_right(&(*curs)));
-	else if (LEFT)
-		return (move_left(&(*curs)));
+	else if (UP)
+		return (move_up(&(*curs)));
+	else if (DOWN)
+		return (move_down(&(*curs)));
+	//else if (RIGHT)
+	//	return (move_right(&(*curs)));
+	//else if (LEFT)
+	//	return (move_left(&(*curs)));
 	else if (SPACE)
 		return (space_key(&(*curs)));
 	else if (DEL || DEL2)
