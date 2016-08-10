@@ -6,11 +6,17 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 18:26:27 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/08 18:37:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/10 19:35:02 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/ft_select.h"
+
+void		error(char *s)
+{
+	exe_cmd("cl");
+	ft_putstr(s);
+}
 
 int			ft_ouct(int c)
 {

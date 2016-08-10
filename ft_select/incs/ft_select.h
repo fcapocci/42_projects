@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/09 20:28:41 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/10 22:19:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ typedef struct			s_lst
 
 //typedef struct		s_term
 //{
+//	int					nb_word_col;
+//	s_lst				*l;
+//	s_lst				*c;
 //}						t_term;
 
 int						ft_select(int argc, char **argv);
@@ -67,6 +70,7 @@ int						event_key(char *buff, t_lst **lst, t_lst **curs);
 int						move_up(t_lst **curs);
 int						move_down(t_lst **curs);
 
+void					error(char *s);
 int						ft_ouct(int c);
 int						exe_cmd(char *s);
 int						move_curs(int x, int y);

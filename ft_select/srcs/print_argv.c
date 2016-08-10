@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/09 20:15:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/10 21:49:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,19 @@ static void		put_word(char *s)
 	ft_putstr(RES);
 }
 
-static void		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
+static int		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
 				**start, int loop)
 {
 	int					i;
 	size_t				bigger;
 	size_t				savver;
+	size_t				limit;
 
 	i = 0;
 	bigger = bigger_in_list(*lst);
 	savver = loop > 1 ? (bigger * (loop - 1) + (2 * (loop - 1))) : 0;
+	if ((limit = (loop ? ((bigger * 2) + 2): bigger ) + savver) > win.ws_col)
+		return (ERR);
 	while (i < win.ws_row && *lst != *start)
 	{
 		*start = (*start == NULL) ? *lst : *start;
@@ -69,6 +72,7 @@ static void		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
 		*lst = (*lst)->next;
 		i++;
 	}
+	return (OK);
 }
 
 void			print_argv(t_lst *lst, t_lst *curs)
@@ -83,7 +87,8 @@ void			print_argv(t_lst *lst, t_lst *curs)
 	loop = 0;
 	while (lst != start)
 	{
-		print_col(&lst, &curs, win, &start, loop);
+		if (print_col(&lst, &curs, win, &start, loop))
+			return (error("Error window size"));
 		loop++;
 	}
 }
