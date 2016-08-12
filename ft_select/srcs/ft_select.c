@@ -6,13 +6,13 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/06 22:28:33 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 04:13:07 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/ft_select.h"
 
-static int		init_term_env(struct termios *term)
+static int		init_term_env(t_term *glob)
 {
 	char			*name_term;
 
@@ -23,40 +23,39 @@ static int		init_term_env(struct termios *term)
 	}
 	if (tgetent(NULL, name_term) == -1)
 		return (ERR);
-	if (tcgetattr(0, term) == -1)
+	if (tcgetattr(0, &(glob->term)) == -1)
 		return (ERR);
 	exe_cmd("ti");
 	exe_cmd("vi");
-	term->c_lflag &= ~(ICANON | ECHO);
-	term->c_cc[VMIN] = 1;
-	term->c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, term) == -1)
+	glob->term.c_lflag &= ~(ICANON | ECHO);
+	glob->term.c_cc[VMIN] = 1;
+	glob->term.c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, &(glob->term)) == -1)
 		return (ERR);
 	return (OK);
 }
-static int		res_term_env(struct termios *term)
+static int		res_term_env(t_term *glob)
 {
-	term->c_lflag = (ICANON | ECHO);
-	if (tcsetattr(0, 0, term) == -1)
+	glob->term.c_lflag = (ICANON | ECHO);
+	if (tcsetattr(0, 0, &(glob->term)) == -1)
 		return (ERR);
 	exe_cmd("te");
 	exe_cmd("ve");
 	return (OK);
 }
 
-static int		looper(struct termios term, t_lst **lst)
+static int		looper(t_term *glob)
 {
 	char			buff[4];
-	t_lst			*curs;
 	int				ret;
 
-	curs = *lst;
+	glob->curs = glob->lst;
 	while (1)
 	{
-		print_argv(*lst, curs);
+		print_argv(glob);
 		ft_bzero(buff, 3);
 		read(0, buff, 3);
-		if ((ret = event_key(buff, &(*lst), &curs)))
+		if ((ret = event_key(buff, &(glob->lst), &(glob->curs))))
 			return (ret == ERR ? ERR : PRINT);
 	}
 	return (OK);
@@ -64,18 +63,18 @@ static int		looper(struct termios term, t_lst **lst)
 
 int				ft_select(int argc, char **argv)
 {
-	t_lst			*lst;
-	struct termios	term;
 	int				ret;
+	t_term			glob;
 
-	if (init_term_env(&term) == ERR)
+	if (init_term_env(&glob) == ERR)
 		return (ERR);
-	if ((lst = init_lst(argc, argv)) == NULL)
+	if ((glob.lst = init_lst(argc, argv)) == NULL)
 		return (ERR);
-	ret = looper(term, &lst);
-	res_term_env(&term);
+	signal(SIGWINCH, (void*)print_argv);
+	ret = looper(&glob);
+	res_term_env(&glob);
 	if (ret == PRINT)
-		print_selected(lst);
-	free_lst(lst);
+		print_selected(glob.lst);
+	free_lst(glob.lst);
 	return (OK);
 }

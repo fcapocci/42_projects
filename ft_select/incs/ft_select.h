@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/10 22:19:07 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 00:26:42 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,19 @@ typedef struct			s_lst
 	struct s_lst		*next;
 }						t_lst;
 
-//typedef struct		s_term
-//{
-//	int					nb_word_col;
-//	s_lst				*l;
-//	s_lst				*c;
-//}						t_term;
+typedef struct		s_term
+{
+	int					nb_word_col;
+	t_lst				*lst;
+	t_lst				*curs;
+	struct termios		term;
+}						t_term;
 
 int						ft_select(int argc, char **argv);
 
 t_lst					*init_lst(int argc, char **argv);
 
-void					print_argv(t_lst *lst, t_lst *curs);
+void					print_argv(t_term *glob);
 
 void					print_selected(t_lst *lst);
 

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/10 21:49:40 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 00:18:40 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		put_word(char *s)
 	ft_putstr(RES);
 }
 
-static int		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
+static int		print_col(t_term *glob, struct winsize win, t_lst
 				**start, int loop)
 {
 	int					i;
@@ -56,26 +56,26 @@ static int		print_col(t_lst **lst, t_lst **curs, struct winsize win, t_lst
 	size_t				limit;
 
 	i = 0;
-	bigger = bigger_in_list(*lst);
+	bigger = bigger_in_list(glob->lst);
 	savver = loop > 1 ? (bigger * (loop - 1) + (2 * (loop - 1))) : 0;
 	if ((limit = (loop ? ((bigger * 2) + 2): bigger ) + savver) > win.ws_col)
 		return (ERR);
-	while (i < win.ws_row && *lst != *start)
+	while (i < win.ws_row && glob->lst != *start)
 	{
-		*start = (*start == NULL) ? *lst : *start;
-		if (*lst == *curs)
-			ft_putstr((*lst)->selected == 1 ? C_SELC : CURS);
+		*start = (*start == NULL) ? glob->lst : *start;
+		if (glob->lst == glob->curs)
+			ft_putstr(glob->lst->selected == 1 ? C_SELC : CURS);
 		else
-			ft_putstr((*lst)->selected == 1 ? SELECT : RES);
+			ft_putstr(glob->lst->selected == 1 ? SELECT : RES);
 		move_curs(loop ? (bigger + 2 + (savver)) : 0, i);
-		put_word((*lst)->name);
-		*lst = (*lst)->next;
+		put_word(glob->lst->name);
+		glob->lst = glob->lst->next;
 		i++;
 	}
 	return (OK);
 }
 
-void			print_argv(t_lst *lst, t_lst *curs)
+void			print_argv(t_term *glob)
 {
 	t_lst				*start;
 	struct winsize		win;
@@ -85,9 +85,9 @@ void			print_argv(t_lst *lst, t_lst *curs)
 	exe_cmd("cl");
 	start = NULL;
 	loop = 0;
-	while (lst != start)
+	while (glob->lst != start)
 	{
-		if (print_col(&lst, &curs, win, &start, loop))
+		if (print_col(glob, win, &start, loop))
 			return (error("Error window size"));
 		loop++;
 	}

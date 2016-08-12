@@ -6,7 +6,7 @@
 #*   By: fpasquer <fcapocci@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/05/17 16:07:18 by fcapocci          #+#    #+#             *#
-#*   Updated: 2016/08/10 21:56:24 by fcapocci         ###   ########.fr       *#
+#*   Updated: 2016/08/12 00:43:12 by fcapocci         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -65,6 +65,8 @@ push : fclean
 	git add $(SRCDIR) $(INCDIR) $(OTHERS) ./libft
 	git commit -m "$(DATE)"
 	git push
+
+re : fclean All
 
 norm:
 	norminette $(SRC) $(INC)
