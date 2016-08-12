@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 19:19:59 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/30 03:12:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:08:55 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,14 @@ void			free_lst(t_lst *lst)
 		ft_memdel((void**)&lst);
 		lst = tmp;
 	}
+}
+
+void			stop(int nb)
+{
+	t_term		*glob;
+
+	glob = get_addr();
+	free_lst(glob->lst);
+	ft_memdel((void**)&glob);
+	nb++;
 }

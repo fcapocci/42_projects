@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 00:18:40 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:17:12 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,16 @@ static int		print_col(t_term *glob, struct winsize win, t_lst
 	return (OK);
 }
 
-void			print_argv(t_term *glob)
+void			print_argv(int nb)
 {
 	t_lst				*start;
 	struct winsize		win;
 	int					loop;
+	t_term				*glob;
 
+	glob = get_addr();
 	get_window_size(&win);
+	glob->nb_word_col = win.ws_row;
 	exe_cmd("cl");
 	start = NULL;
 	loop = 0;

@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 02:53:33 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/09 20:28:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:46:32 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,15 @@ int				move_up(t_lst **curs)
 int				move_down(t_lst **curs)
 {
 	(*curs) = (*curs)->next;
+	return (OK);
+}
+
+int				move_right(t_lst **curs, int word_col)
+{
+	return (OK);
+}
+
+int				move_left(t_lst **curs, int word_col)
+{
 	return (OK);
 }

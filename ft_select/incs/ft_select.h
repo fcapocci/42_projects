@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 00:26:42 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:39:37 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,26 @@ int						ft_select(int argc, char **argv);
 
 t_lst					*init_lst(int argc, char **argv);
 
-void					print_argv(t_term *glob);
+void					print_argv(int nb);
 
 void					print_selected(t_lst *lst);
 
 int						space_key(t_lst **curs);
 int						del_key(t_lst **lst, t_lst **curs);
-int						event_key(char *buff, t_lst **lst, t_lst **curs);
+int						event_key(char *buff);
 
 int						move_up(t_lst **curs);
 int						move_down(t_lst **curs);
+int						move_right(t_lst **curs, int word_col);
+int						move_left(t_lst **curs, int word_col);
 
+t_term					*get_addr(void);
 void					error(char *s);
 int						ft_ouct(int c);
 int						exe_cmd(char *s);
 int						move_curs(int x, int y);
 
 void					free_lst(t_lst *lst);
+void					stop(int nb);
 
 # endif

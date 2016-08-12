@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 04:13:07 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:41:25 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ static int		looper(t_term *glob)
 	glob->curs = glob->lst;
 	while (1)
 	{
-		print_argv(glob);
+		print_argv(0);
 		ft_bzero(buff, 3);
 		read(0, buff, 3);
-		if ((ret = event_key(buff, &(glob->lst), &(glob->curs))))
+		if ((ret = event_key(buff)))
 			return (ret == ERR ? ERR : PRINT);
 	}
 	return (OK);
@@ -64,17 +64,19 @@ static int		looper(t_term *glob)
 int				ft_select(int argc, char **argv)
 {
 	int				ret;
-	t_term			glob;
+	t_term			*glob;
 
-	if (init_term_env(&glob) == ERR)
+	if ((glob = get_addr()) == NULL)
 		return (ERR);
-	if ((glob.lst = init_lst(argc, argv)) == NULL)
+	if (init_term_env(glob) == ERR)
 		return (ERR);
-	signal(SIGWINCH, (void*)print_argv);
-	ret = looper(&glob);
-	res_term_env(&glob);
+	if ((glob->lst = init_lst(argc, argv)) == NULL)
+		return (ERR);
+	signal(SIGWINCH, print_argv);
+	ret = looper(glob);
+	res_term_env(glob);
 	if (ret == PRINT)
-		print_selected(glob.lst);
-	free_lst(glob.lst);
+		print_selected(glob->lst);
+	stop(0);
 	return (OK);
 }

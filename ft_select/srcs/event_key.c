@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 01:57:09 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/09 20:27:52 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/12 23:40:54 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,26 @@ int				del_key(t_lst **lst, t_lst **curs)
 	return (OK);
 }
 
-int				event_key(char *buff, t_lst **lst, t_lst **curs)
+int				event_key(char *buff)
 {
+	t_term		*glob;
+
+	if ((glob = get_addr()) == NULL)
+		return (ERR);
 	if (ESC)
 		return (ERR);
 	else if (UP)
-		return (move_up(&(*curs)));
+		return (move_up(&(glob->curs)));
 	else if (DOWN)
-		return (move_down(&(*curs)));
+		return (move_down(&(glob->curs)));
 	//else if (RIGHT)
-	//	return (move_right(&(*curs)));
+	//	return (move_right(&(glob->curs), glob->nb_word_col));
 	//else if (LEFT)
-	//	return (move_left(&(*curs)));
+	//	return (move_left(&(glob->curs), glob->nb_word_col));
 	else if (SPACE)
-		return (space_key(&(*curs)));
+		return (space_key(&(glob->curs)));
 	else if (DEL || DEL2)
-		return (del_key(&(*lst), &(*curs)));
+		return (del_key(&(glob->lst), &(glob->curs)));
 	else if (RET)
 		return (PRINT);
 	return (OK);
