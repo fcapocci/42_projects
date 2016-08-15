@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 01:57:09 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 23:40:54 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/15 13:21:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int				event_key(char *buff)
 		return (move_up(&(glob->curs)));
 	else if (DOWN)
 		return (move_down(&(glob->curs)));
-	//else if (RIGHT)
-	//	return (move_right(&(glob->curs), glob->nb_word_col));
-	//else if (LEFT)
-	//	return (move_left(&(glob->curs), glob->nb_word_col));
+	else if (RIGHT)
+		return (move_right(&(glob->curs), glob->nb_word_col));
+	else if (LEFT)
+		return (move_left(&(glob->curs), glob->nb_word_col));
 	else if (SPACE)
 		return (space_key(&(glob->curs)));
 	else if (DEL || DEL2)
