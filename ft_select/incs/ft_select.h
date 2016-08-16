@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 13:36:07 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 23:39:37 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/16 09:42:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_lst					*init_lst(int argc, char **argv);
 void					print_argv(int nb);
 
 void					print_selected(t_lst *lst);
+
+void					nb_select(int place, t_lst *lst, t_lst *start);
 
 int						space_key(t_lst **curs);
 int						del_key(t_lst **lst, t_lst **curs);

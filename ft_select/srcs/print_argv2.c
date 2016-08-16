@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   print_argv2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/16 02:53:33 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/16 10:00:02 by fcapocci         ###   ########.fr       */
+/*   Created: 2016/08/16 07:53:44 by fcapocci          #+#    #+#             */
+/*   Updated: 2016/08/16 10:12:16 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/ft_select.h"
 
-int				move_up(t_lst **curs)
+void			nb_select(int place, t_lst *lst, t_lst *start)
 {
-	(*curs) = (*curs)->prev;
-	return (OK);
-}
+	int			nb;
 
-int				move_down(t_lst **curs)
-{
-	(*curs) = (*curs)->next;
-	return (OK);
-}
-
-int				move_right(t_lst **curs, int word_col)
-{
-	while ((word_col - 4) > 0)
+	nb = 0;
+	while (lst != start)
 	{
-		(*curs) = (*curs)->next;
-		word_col--;
+		start = (start == NULL) ? lst : start;
+		if (lst->selected == 1)
+			nb++;
+		lst = lst->next;
 	}
-	return (OK);
-}
-
-int				move_left(t_lst **curs, int word_col)
-{
-	while ((word_col - 4) > 0)
-	{
-		(*curs) = (*curs)->prev;
-		word_col--;
-	}
-	return (OK);
+	move_curs(0, place - 1);
+	ft_putnbr(nb);
+	ft_putstr(" obj selected");
 }

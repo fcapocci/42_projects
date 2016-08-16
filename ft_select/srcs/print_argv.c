@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 23:17:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/08/16 10:11:27 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int		print_col(t_term *glob, struct winsize win, t_lst
 	savver = loop > 1 ? (bigger * (loop - 1) + (2 * (loop - 1))) : 0;
 	if ((limit = (loop ? ((bigger * 2) + 2): bigger ) + savver) > win.ws_col)
 		return (ERR);
-	while (i < win.ws_row && glob->lst != *start)
+	while (i < (win.ws_row - 4) && glob->lst != *start)
 	{
 		*start = (*start == NULL) ? glob->lst : *start;
 		if (glob->lst == glob->curs)
@@ -94,4 +94,5 @@ void			print_argv(int nb)
 			return (error("Error window size"));
 		loop++;
 	}
+	nb_select(win.ws_row, glob->lst, NULL);
 }
