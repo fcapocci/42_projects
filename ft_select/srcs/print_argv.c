@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/16 10:11:27 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/09/07 19:31:17 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ void			print_argv(int nb)
 	while (glob->lst != start)
 	{
 		if (print_col(glob, win, &start, loop))
+		{
+			glob->lst = start ? start : glob->lst;
 			return (error("Error window size"));
+		}
 		loop++;
 	}
 	nb_select(win.ws_row, glob->lst, NULL);
