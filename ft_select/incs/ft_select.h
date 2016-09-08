@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <term.h>
 # include <stdlib.h>
+# include <signal.h>
 
 # define CD		(buff[0] ==   4 && buff [1] ==  0 && buff[2] ==  0)
 # define TAB	(buff[0] ==   9 && buff [1] ==  0 && buff[2] ==  0)

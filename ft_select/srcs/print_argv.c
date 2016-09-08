@@ -75,19 +75,18 @@ static int		print_col(t_term *glob, struct winsize win, t_lst
 	return (OK);
 }
 
-void			print_argv(int nb)
+void			print_argv(int loop)
 {
 	t_lst				*start;
 	struct winsize		win;
-	int					loop;
 	t_term				*glob;
 
 	glob = get_addr();
 	get_window_size(&win);
 	glob->nb_word_col = win.ws_row;
 	exe_cmd("cl");
-	start = NULL;
 	loop = 0;
+	start = NULL;
 	while (glob->lst != start)
 	{
 		if (print_col(glob, win, &start, loop))
