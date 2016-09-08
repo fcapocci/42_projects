@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 10:08:17 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/08/12 23:41:25 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:50:21 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int		init_term_env(t_term *glob)
 		return (ERR);
 	return (OK);
 }
+
 static int		res_term_env(t_term *glob)
 {
 	glob->term.c_lflag = (ICANON | ECHO);

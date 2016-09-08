@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 11:55:15 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/07/05 19:14:30 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/09/08 18:41:47 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_lst	*crea_elem(char *str, size_t i)
 		return (NULL);
 	link->name = ft_strdup(str);
 	link->len_name = ft_strlen(str);
-	link->type = 0; //file_type(str);
+	link->type = 0;
 	link->selected = 0;
 	link->num = i + 1;
 	link->prev = NULL;

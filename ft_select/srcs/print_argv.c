@@ -6,7 +6,7 @@
 /*   By: fcapocci <fcapocci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:45:49 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/09/07 19:31:17 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:57:39 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static int			get_window_size(struct winsize *win)
 	return (OK);
 }
 
-static void		put_word(char *s)
+static void			put_word(char *s)
 {
 	ft_putstr(s);
 	ft_putstr(RES);
 }
 
-static int		print_col(t_term *glob, struct winsize win, t_lst
-				**start, int loop)
+static int			print_col(t_term *glob, struct winsize win,
+					t_lst **start, int loop)
 {
 	int					i;
 	size_t				bigger;
@@ -58,7 +58,7 @@ static int		print_col(t_term *glob, struct winsize win, t_lst
 	i = 0;
 	bigger = bigger_in_list(glob->lst);
 	savver = loop > 1 ? (bigger * (loop - 1) + (2 * (loop - 1))) : 0;
-	if ((limit = (loop ? ((bigger * 2) + 2): bigger ) + savver) > win.ws_col)
+	if ((limit = (loop ? ((bigger * 2) + 2) : bigger) + savver) > win.ws_col)
 		return (ERR);
 	while (i < (win.ws_row - 4) && glob->lst != *start)
 	{
@@ -75,7 +75,7 @@ static int		print_col(t_term *glob, struct winsize win, t_lst
 	return (OK);
 }
 
-void			print_argv(int loop)
+void				print_argv(int loop)
 {
 	t_lst				*start;
 	struct winsize		win;
