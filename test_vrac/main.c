@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/03 21:24:06 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/12/05 17:16:12 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/12/05 17:44:08 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,16 @@ static void				print_pid(char *str)
 
 	pid = getpid();
 	ppid = getppid();
-	printf("curent pid in %s == %d\nparent pid in %s == %d\n", str, pid, str, ppid);
+	ft_putstr_fd("curent pid in ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(" == ", 2);
+	ft_putnbr_fd(pid, 2);
+	ft_putchar_fd('\n', 2);
+	ft_putstr_fd("parent pid in ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(" == ", 2);
+	ft_putnbr_fd(ppid, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 static void				ft_exit(char **line, t_cmd *cmd)
@@ -128,10 +137,8 @@ static void				ft_pipe(t_cmd *cmd)
 	ft_putendl_fd("\nFT_PIPE", 2);
 	ret = 0;
 	pipe(cmd->right->pipefd);
-	print_pid("ft_pipe befor fork");
 	if ((pid = fork()) != -1)
 	{
-		print_pid("ft_pipe after fork");
 		if (pid == 0)
 			ft_child(cmd);
 		else
