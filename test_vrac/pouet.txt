@@ -1,0 +1,11 @@
+a.out
+a.out.dSYM
+libft.a
+libft.h
+main.c
+parse.c
+parse.h
+parse2.c
+pouet.txt
+quotes.c
+split_quotes.c
