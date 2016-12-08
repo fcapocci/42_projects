@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/03 21:24:06 by fcapocci          #+#    #+#             */
-/*   Updated: 2016/12/05 17:44:08 by fcapocci         ###   ########.fr       */
+/*   Updated: 2016/12/09 00:20:15 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
-
-int						ft_exe(t_cmd *cmd);
 
 static void				print_pid(char *str)
 {
@@ -66,102 +64,75 @@ static int				check_access(t_cmd *cmd, int *ret)
 	return (0);
 }
 
-static void				ft_fork(t_cmd *cmd)
+static void				ft_execve(t_cmd *cmd)
 {
 	extern char			**environ;
-	pid_t				pid;
-	int					ret;
 
-	ft_putendl_fd("\nFT_FORK", 2);
-	ret = 0;
-	if ((pid = fork()) != -1)
-	{
-		if (pid == 0)
-		{
-			if (cmd->pipefd[0] != -1)
-			{
-				close(cmd->pipefd[1]);
-				dup2(cmd->pipefd[0], STDIN_FILENO);
-			}
-			if (execve(cmd->arg[0], cmd->arg, environ) == -1)
-			{
-				ft_putendl_fd("EXIT FT_FORK", STDERR_FILENO);
-				exit (EXIT_FAILURE);
-			}
-		}
-			else
-				waitpid(pid, &ret, WUNTRACED);
-	}
-	if (WIFEXITED(ret))
-		ret = WEXITSTATUS(ret);
-	cmd->done = ret;
-}
-
-static void				ft_child(t_cmd *cmd)
-{
-	ft_putendl_fd("\nFT_CHLD", 2);
-	print_pid("ft_child");
-	if (ft_exe(cmd->right) == -1)
-	{
-		ft_putendl_fd("EXIT FT_CHILD", STDERR_FILENO);
-		exit (EXIT_FAILURE);
-	}
-}
-
-static void				ft_father(t_cmd *cmd)
-{
-	extern char			**environ;
-	pid_t				pid;
-
-	ft_putendl_fd("\nFT_FATHER", 2);
-	close(cmd->right->pipefd[0]);
-	dup2(cmd->right->pipefd[1], STDOUT_FILENO);
+	ft_putendl_fd("\nFT_EXECVE", 2);
+	print_pid("ft_execve");
 	if (cmd->pipefd[0] != -1)
 	{
 		close(cmd->pipefd[1]);
 		dup2(cmd->pipefd[0], STDIN_FILENO);
 	}
-	print_pid("ft_father");
-	if (execve(cmd->arg[0], cmd->arg, environ) == -1)
+	else if (cmd->op == PIP)
+	{
+		close(cmd->right->pipefd[0]);
+		dup2(cmd->right->pipefd[1], STDOUT_FILENO);
+	}
+	if (check_access(cmd, &cmd->done) == -1
+			|| execve(cmd->arg[0], cmd->arg, environ) == -1)
 	{
 		ft_putendl_fd("EXIT FT_FATHER", STDERR_FILENO);
 		exit (EXIT_FAILURE);
 	}
 }
 
-static void				ft_pipe(t_cmd *cmd)
+static void				ft_pipe(t_cmd **cmd)
 {
 	pid_t				pid;
 	int					ret;
 
 	ft_putendl_fd("\nFT_PIPE", 2);
-	ret = 0;
-	pipe(cmd->right->pipefd);
+	ret = 1;
+	print_pid("ft_pipe");
 	if ((pid = fork()) != -1)
 	{
 		if (pid == 0)
-			ft_child(cmd);
+			ft_execve(*cmd);
 		else
-		{
-			ft_father(cmd);
 			waitpid(pid, &ret, WUNTRACED);
-		}
 	}
 	if (WIFEXITED(ret))
 		ret = WEXITSTATUS(ret);
-	cmd->done = ret;
+	(*cmd)->done = ret;
+	printf("cmd->done in ft_pipe== %d\n", (*cmd)->done);
+	*cmd = (*cmd)->right;
 }
 
 int				ft_exe(t_cmd *cmd)
 {
+	pid_t				pid;
+
 	ft_putendl_fd("\nFT_EXE", 2);
 	print_pid("ft_exe");
-	if (check_access(cmd, &cmd->done) == -1)
-		return (-1);
-	if (cmd->op == PIP)
-		ft_pipe(cmd);
-	else
-		ft_fork(cmd);
+	if ((pid = fork()) != -1)
+	{
+		if (pid == 0)
+		{
+			while (cmd->op == PIP)
+			{
+				pipe(cmd->right->pipefd);
+				ft_pipe(&cmd);
+				ft_putstr("L\n");
+				printf("cmd->done == %d\n", cmd->done);
+			}
+			if (cmd->op != PIP && cmd->done == -1)
+				ft_execve(cmd);
+		}
+		else
+			waitpid(pid, 0, WUNTRACED);
+	}
 	return (0);
 }
 
@@ -171,6 +142,7 @@ static void				loop_cmd(t_cmd *cmd)
 
 	while (cmd && cmd->arg && cmd->arg[0])
 	{
+		ft_putendl_fd("PASS", 2);
 		ft_exe(cmd);
 		save_done = cmd->done;
 		while ((cmd->right && cmd->right->done >= 0)
