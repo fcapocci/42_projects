@@ -6,7 +6,7 @@
 /*   By: fcapocci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 21:42:53 by fcapocci          #+#    #+#             */
-/*   Updated: 2017/05/23 09:52:45 by fcapocci         ###   ########.fr       */
+/*   Updated: 2017/05/23 13:52:24 by fcapocci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int							main(void)
 		sig_manager();
 		signal(SIGWINCH, resize_win);
 		loop_shell();
-		ft_putendl("Erreur 21 sh");
+		ft_putendl("Erreur 42 sh");
 	}
 	return (EXIT_SUCCESS);
 }

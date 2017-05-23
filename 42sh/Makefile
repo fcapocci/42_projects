@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= 21sh
+NAME			= 42sh
 
 SRC_NAME		= main.c init_21sh.c fonctions.c bin.c table_hash.c del_bin.c	\
 					sort_fonctions.c sort_list.c env.c builtin_env.c			\
